@@ -30,12 +30,7 @@ struct ContentView: View {
             
             
             ZStack{
-           
-       
-                
-                
-                
-                            List{
+                        List{
                                 Section{
                                     ForEach(savedItemsList.items){
                                         item in
@@ -45,15 +40,10 @@ struct ContentView: View {
                                 }
                             }
                 .navigationBarTitle("Your passwords")
+                        .navigationBarItems(trailing: EditButton())
                             .listStyle(GroupedListStyle())
-                
-                
-                
-                HStack{
 
-          
-                        
-                        
+                HStack{
                     
                     Spacer(    )
                     VStack{
@@ -83,18 +73,12 @@ struct ContentView: View {
                 
                 }.zIndex(3.0)
             }
-            
-            
-            
-            
-            
-            
+                 
         }
     
     
     }
     
-
 }
 
 

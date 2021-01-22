@@ -53,11 +53,7 @@ struct AddNewItemView: View {
                     self.addNewItem()
                   } )
         {
-                  Image(systemName: "plus")
-                      .resizable()
-                      .padding(6)
-                      .frame(width: 24, height: 24)
-                      .clipShape(Circle())
+                 Text("Done")
                                 } )
         .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/)
 
@@ -89,26 +85,6 @@ struct AddNewItemView_Previews: PreviewProvider {
     static var previews: some View {
         AddNewItemView()
     }
-}
-
-
-struct AddItemFormView: View{
-
-    var body: some View{
-        
-        NavigationLink(
-            destination: Text("Item detail here")){
-            
-        
-        HStack{
-         
-            Image(systemName: "key.fill")
-        
-        }.padding()
-        
-    }
-    }
-    
 }
 
 

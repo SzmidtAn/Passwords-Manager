@@ -26,9 +26,9 @@ struct AppView: View {
    
             
             
-            Text("Favourits").tabItem {
+            Text("Favorite").tabItem {
                 Image(systemName: "star.fill")
-                Text("Favourits")
+                Text("Favorite")
                 
                 
             }.tag(1)
