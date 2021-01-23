@@ -26,7 +26,8 @@ struct AppView: View {
    
             
             
-            Text("Favorite").tabItem {
+           FavouriteView()
+                .tabItem {
                 Image(systemName: "star.fill")
                 Text("Favorite")
                 
@@ -54,7 +55,7 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+        AppView().environmentObject(SavedItems())
     }
 }
 

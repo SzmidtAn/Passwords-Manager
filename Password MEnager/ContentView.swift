@@ -15,10 +15,10 @@ struct ContentView: View {
     static let paymentTypes = ["Cash", "CredicCard", "iDinePoints"]
 
     
-    var item = Item(title: "fef", password: "fewf")
     
     func remove(at offsets: IndexSet){
 
+        
         savedItemsList.items.remove(atOffsets: offsets)
     }
     
@@ -36,10 +36,24 @@ struct ContentView: View {
                                         item in
                                         ItemListView(item: item)
                                     }.onDelete(perform: remove(at:))
+                                    
+                                    
                 
                                 }
+                            
+                            Section{
+                                ForEach(savedItemsList.items){
+                                    item in
+                                    ItemListView(item: item)
+                                }.onDelete(perform: remove(at:))
+            
                             }
-                .navigationBarTitle("Your passwords")
+                            
+                            
+                            }
+
+
+                .navigationBarTitle("Accounts")
                         .navigationBarItems(trailing: EditButton())
                             .listStyle(GroupedListStyle())
 
@@ -72,9 +86,11 @@ struct ContentView: View {
 
                 
                 }.zIndex(3.0)
+
             }
-                 
+
         }
+
     
     
     }
@@ -83,21 +99,32 @@ struct ContentView: View {
 
 
 struct ContentView_Previews: PreviewProvider {
+
+    
+    static let modelData = SavedItems()
+
     static var previews: some View {
         ContentView()
+            .environmentObject(modelData)
+
     }
 }
 
 
 struct ItemListView: View{
-    var item: Item
+    @EnvironmentObject var savedItemsList: SavedItems
     @State   var img = "star"
 
+    var item: Item
+  
+    
+    
 
     var body: some View{
         
         NavigationLink(
-            destination: Text("Item detail here")){
+            destination: ItemDetailView(item: item)){
+            
             
         
         HStack{
@@ -112,22 +139,52 @@ struct ItemListView: View{
             
             
           Image(systemName: img)
+            .foregroundColor(.yellow)
                 .onTapGesture {
                     
+                    let index = savedItemsList.items.firstIndex { i -> Bool in
+                        i.id == self.item.id
+                    }
+                 
                     if img == "star"{
-                    // TODO add to favourite
-                    img = "star.fill"
+
+                        savedItemsList.items[index!].isFovourite = true
+                        img = "star.fill"
                     }else {
-                        img = "star"
+                     img = "star"
+                        savedItemsList.items[index!].isFovourite = false
                     }
               
                     
                 }
 
-        }.padding()
+        }
+      
+        
+        }
+   
+        .onAppear(){
+
+       
+            
+            let index = savedItemsList.items.firstIndex { i -> Bool in
+                i.id == self.item.id
+            }
+
+            if index != nil {
+
+
+            if            savedItemsList.items[index!].isFovourite{
+                img = "star.fill"
+            }else{
+                img = "star"
+            }
+            }
+        }
         
     }
-    }
+    
+    
     
 }
 

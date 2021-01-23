@@ -15,10 +15,11 @@ class SavedItems : ObservableObject{
     init() {
         items.append(Item(title: "Facebook", password: "dfewfd43"))
         items.append(Item(title: "Twitter", password: "dfewfd43"))
-        items.append(Item(title: "Gmail", password: "dfewfd43"))
+        items.append(Item(title: "Gmail", password: "dfewfd43", isFovourite: true))
+        items.append(Item( title: "dew", password: "ded", isFovourite: true))
         items.append(Item(title: "Instagram", password: "dfewfd43"))
         items.append(Item(title: "Facebook", password: "dfewfd43"))
-        items.append(Item(title: "Hotmail", password: "dfewfd43"))
+        items.append(Item(title: "Hotmail", password: "dfewfd43", isFovourite: true))
         items.append(Item(title: "Facebook", password: "dfewfd43"))
 
     }

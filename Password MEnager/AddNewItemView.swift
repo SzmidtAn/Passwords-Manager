@@ -12,8 +12,12 @@ struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentation
     
     @State private var getTitle = ""
-    @State private var getPassword = ""
-    @State private var length = 9
+    @State  var getPassword: String = ""
+    var pass:String = ""
+    @State private var getUrl = ""
+    @State private var getUsername = ""
+
+    @State private var showSheet = false
 
     
     var body: some View {
@@ -24,24 +28,25 @@ struct AddNewItemView: View {
             
             Section{
                 
+                
                 TextField("Tittle", text: $getTitle)
+                TextField("Username", text: $getUsername)
+                TextField("Url", text: $getUrl)
                 TextField("Password", text: $getPassword)
 
-                Button("Password generator", action: {
-                    autoPasswordGenerator()
-                          }).buttonStyle(DefaultButtonStyle())
-                
-                
-            }
-            
-            
-            Section{
-                
-                Stepper("How many characters: \(length)", value: $length, in: 3...20)
 
+                Button("Password generator", action: {
+
+                    self.showSheet.toggle()
+                }).buttonStyle(DefaultButtonStyle())
+                .sheet(isPresented: $showSheet){
+                    PasswordGenerator(pass: self.$getPassword)
+                }
+                
                 
             }
             
+      
             
             
             
@@ -59,22 +64,13 @@ struct AddNewItemView: View {
 
     }
     
-    func autoPasswordGenerator(){
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let pass =   String((0..<length).map{ _ in letters.randomElement()! })
-        
-        
-        getPassword = pass
-        
-        
-    }
-    
+
     
     func addNewItem(){
         
         if getTitle != "" && getPassword != ""{
        
-         savedItemsList.items.append(Item(title: getTitle, password: getPassword))
+            savedItemsList.items.append(Item(title: getTitle, password: getPassword, url: getUrl, username: getUsername))
         self.presentation.wrappedValue.dismiss()
         }else {
         }

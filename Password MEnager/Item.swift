@@ -12,5 +12,9 @@ struct Item: Identifiable {
     
     var title: String
     var password: String
+    var url: String = "www.facebook.pl"
+    var username: String = "Aneta"
+
+    var isFovourite = false
     
 }
