@@ -41,11 +41,34 @@ struct AddNewItemView: View {
                 
                 switch selectedStrength {
               
-                case "Password":
-                    newPassForm()
-                case "Mail":
-                    newMailForm()
+                case 0:
+                    
+                    Label {TextField("Tittle", text: $getTitle)
+                    } icon: {Image(systemName: "plus")}
+                    
+                    Label {TextField("Username", text: $getUsername)
+                    } icon: {Image(systemName: "person.crop.circle")}
+                    
+                    Label {TextField("Url", text: $getUrl)
+                    } icon: {Image(systemName: "link")}
+                    
+                    Label {TextField("Password", text: $getPassword)
+                    } icon: {Image(systemName: "lock")}
+                case 1:
+                    
+                    Label {TextField("Tittle", text: $getTitle)
+                    } icon: {Image(systemName: "plus")}
+                    
+                    Label {TextField("E-mail", text: $getUsername)
+                    } icon: {Image(systemName: "envelope")}
+             
+                    
+                    Label {TextField("Password", text: $getPassword)
+                    } icon: {Image(systemName: "lock")}
 
+
+                default:
+                    Text("Choose category")
                 }
                 
            
@@ -53,7 +76,6 @@ struct AddNewItemView: View {
 
 
                 Button("Password generator", action: {
-
                     self.showSheet.toggle()
                 }).buttonStyle(DefaultButtonStyle())
                 .sheet(isPresented: $showSheet){
@@ -65,10 +87,19 @@ struct AddNewItemView: View {
             
        
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("Add a new password", displayMode: .inline)
         .navigationBarItems(trailing:
                                 Button(action: {
-                    self.addNewItem()
+                                    switch selectedStrength{
+                                    case 0:
+                                        self.addNewPassword()
+
+                                    case 1:
+                                        self.addNewMail()
+                                    default:
+                       break
+                       }
                   } )
         {
                  Text("Done")
@@ -80,8 +111,18 @@ struct AddNewItemView: View {
     }
     
 
+    func addNewMail(){
+        
+        if getTitle != "" && getPassword != ""{
+       
+            savedItemsList.MailsList.append(Mails(title: getTitle, adress: getUsername, password: getPassword))
+        self.presentation.wrappedValue.dismiss()
+        }else {
+        }
+        }
     
-    func addNewItem(){
+    func addNewPassword(){
+        
         
         if getTitle != "" && getPassword != ""{
        
@@ -97,40 +138,4 @@ struct AddNewItemView_Previews: PreviewProvider {
         AddNewItemView()
     }
 }
-
-struct newPassForm: View {
-    var body: some View{
-        
-        Label {TextField("Tittle", text: $getTitle)
-        } icon: {Image(systemName: "plus")}
-        
-        Label {TextField("Username", text: $getUsername)
-        } icon: {Image(systemName: "person.crop.circle")}
-        
-        Label {TextField("Url", text: $getUrl)
-        } icon: {Image(systemName: "link")}
-        
-        Label {TextField("Password", text: $getPassword)
-        } icon: {Image(systemName: "lock")}
-    }
-}
-
-struct newMailForm: View {
-    var body: some View{
-        
-        Label {TextField("Tittle", text: $getTitle)
-        } icon: {Image(systemName: "plus")}
-        
-        Label {TextField("Username", text: $getUsername)
-        } icon: {Image(systemName: "person.crop.circle")}
-        
-        Label {TextField("Url", text: $getUrl)
-        } icon: {Image(systemName: "link")}
-        
-        Label {TextField("Password", text: $getPassword)
-        } icon: {Image(systemName: "lock")}
-    }
-}
-
-
 
