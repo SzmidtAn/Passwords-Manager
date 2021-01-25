@@ -18,21 +18,38 @@ struct AddNewItemView: View {
     @State private var getUsername = ""
 
     @State private var showSheet = false
+    var strengths = ["Password", "Mail"]
 
+       @State private var selectedStrength = 0
+    
     
     var body: some View {
 
 
         Form{
             
+            Section {
+                            Picker(selection: $selectedStrength, label: Text("Category")) {
+                                ForEach(0 ..< strengths.count) {
+                                    Text(self.strengths[$0])
+    }
+                            }
+                     }
+            
             
             Section{
                 
+                switch selectedStrength {
+              
+                case "Password":
+                    newPassForm()
+                case "Mail":
+                    newMailForm()
+
+                }
                 
-                TextField("Tittle", text: $getTitle)
-                TextField("Username", text: $getUsername)
-                TextField("Url", text: $getUrl)
-                TextField("Password", text: $getPassword)
+           
+            
 
 
                 Button("Password generator", action: {
@@ -46,11 +63,7 @@ struct AddNewItemView: View {
                 
             }
             
-      
-            
-            
-            
-           
+       
         }
         .navigationBarTitle("Add a new password", displayMode: .inline)
         .navigationBarItems(trailing:
@@ -60,7 +73,9 @@ struct AddNewItemView: View {
         {
                  Text("Done")
                                 } )
-        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/)
+        .shadow(radius: 30 )
+        .background(backgrundColor())
+        .ignoresSafeArea()
 
     }
     
@@ -70,7 +85,7 @@ struct AddNewItemView: View {
         
         if getTitle != "" && getPassword != ""{
        
-            savedItemsList.items.append(Item(title: getTitle, password: getPassword, url: getUrl, username: getUsername))
+            savedItemsList.PasswordsList.append(Password(title: getTitle, password: getPassword, url: getUrl, username: getUsername))
         self.presentation.wrappedValue.dismiss()
         }else {
         }
@@ -80,6 +95,40 @@ struct AddNewItemView: View {
 struct AddNewItemView_Previews: PreviewProvider {
     static var previews: some View {
         AddNewItemView()
+    }
+}
+
+struct newPassForm: View {
+    var body: some View{
+        
+        Label {TextField("Tittle", text: $getTitle)
+        } icon: {Image(systemName: "plus")}
+        
+        Label {TextField("Username", text: $getUsername)
+        } icon: {Image(systemName: "person.crop.circle")}
+        
+        Label {TextField("Url", text: $getUrl)
+        } icon: {Image(systemName: "link")}
+        
+        Label {TextField("Password", text: $getPassword)
+        } icon: {Image(systemName: "lock")}
+    }
+}
+
+struct newMailForm: View {
+    var body: some View{
+        
+        Label {TextField("Tittle", text: $getTitle)
+        } icon: {Image(systemName: "plus")}
+        
+        Label {TextField("Username", text: $getUsername)
+        } icon: {Image(systemName: "person.crop.circle")}
+        
+        Label {TextField("Url", text: $getUrl)
+        } icon: {Image(systemName: "link")}
+        
+        Label {TextField("Password", text: $getPassword)
+        } icon: {Image(systemName: "lock")}
     }
 }
 

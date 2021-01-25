@@ -8,92 +8,50 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @EnvironmentObject var savedItemsList: SavedItems
+    var navBackgroundImage = UIImage(systemName: "tramsparent")
 
-    @State private var paymentType = 0
-    static let paymentTypes = ["Cash", "CredicCard", "iDinePoints"]
 
     
     
-    func remove(at offsets: IndexSet){
+    init() {
 
+        UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = .purple
         
-        savedItemsList.items.remove(atOffsets: offsets)
+        UITableView.appearance().backgroundColor = UIColor(Color.white.opacity(0))
+
     }
-    
     
     
     var body: some View {
-        
+     
         NavigationView{
-            
+
+       
             
             ZStack{
-                        List{
-                                Section{
-                                    ForEach(savedItemsList.items){
-                                        item in
-                                        ItemListView(item: item)
-                                    }.onDelete(perform: remove(at:))
-                                    
-                                    
+             
                 
-                                }
-                            
-                            Section{
-                                ForEach(savedItemsList.items){
-                                    item in
-                                    ItemListView(item: item)
-                                }.onDelete(perform: remove(at:))
-            
-                            }
-                            
-                            
-                            }
-
-
-                .navigationBarTitle("Accounts")
-                        .navigationBarItems(trailing: EditButton())
-                            .listStyle(GroupedListStyle())
-
+                ListsView()
+                
+                
                 HStack{
-                    
-                    Spacer(    )
-                    VStack{
-                    
-                Spacer(     )
+                    addNewButton()
+         }.zIndex(3.0)
+                .offset(y: -100)
                 
-                NavigationLink(
-                    destination: AddNewItemView()    ){
-                    
-                Image(systemName: "plus.circle")
-                .resizable()
-                    .frame(width: 50, height: 50)
-                .clipShape(Circle())
-                    .foregroundColor(.white)
-                    .background(Color.purple)
-                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                .overlay(Circle().stroke(Color.white, lineWidth: 3))
-                .shadow(radius: 20)
-                
-                }
-       
-
-                }
-                .padding()
-                
-
-                
-                }.zIndex(3.0)
-
+                Spacer()
+        
             }
+            .background(backgrundColor())
+            .ignoresSafeArea()
+
 
         }
-
-    
+        
     
     }
+
     
 }
 
@@ -110,82 +68,96 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-struct ItemListView: View{
-    @EnvironmentObject var savedItemsList: SavedItems
-    @State   var img = "star"
-
-    var item: Item
-  
-    
-    
-
+struct addNewButton: View {
     var body: some View{
-        
-        NavigationLink(
-            destination: ItemDetailView(item: item)){
-            
-            
-        
-        HStack{
+        Spacer(    )
+         VStack{
+    Spacer(     )
+     
+     NavigationLink(
+         destination: AddNewItemView()    ){
          
-            Image(systemName: "key.fill")
-                .rotationEffect(.degrees(-30))
+     Image(systemName: "plus.circle")
+     .resizable()
+         .frame(width: 50, height: 50)
+     .clipShape(Circle())
+         .foregroundColor(.white)
+         .background(Color.purple)
+         .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+     .overlay(Circle().stroke(Color.white, lineWidth: 3))
+     .shadow(radius: 20)
+     }
+}
+     .padding()
+    }
+}
+
+struct ListsView: View {
+    
+    @EnvironmentObject var savedItemsList: SavedItems
+
+    @State private var paymentType = 0
+    static let paymentTypes = ["Cash", "CredicCard", "iDinePoints"]
+
+    
+    
+    func remove(at offsets: IndexSet){
 
         
-        Text(item.title)
-            
-            Spacer()
-            
-            
-          Image(systemName: img)
-            .foregroundColor(.yellow)
-                .onTapGesture {
-                    
-                    let index = savedItemsList.items.firstIndex { i -> Bool in
-                        i.id == self.item.id
-                    }
-                 
-                    if img == "star"{
-
-                        savedItemsList.items[index!].isFovourite = true
-                        img = "star.fill"
-                    }else {
-                     img = "star"
-                        savedItemsList.items[index!].isFovourite = false
-                    }
-              
-                    
-                }
-
-        }
-      
-        
-        }
-   
-        .onAppear(){
-
-       
-            
-            let index = savedItemsList.items.firstIndex { i -> Bool in
-                i.id == self.item.id
-            }
-
-            if index != nil {
-
-
-            if            savedItemsList.items[index!].isFovourite{
-                img = "star.fill"
-            }else{
-                img = "star"
-            }
-            }
-        }
-        
+        savedItemsList.PasswordsList.remove(atOffsets: offsets)
     }
     
     
     
+    var body: some View{
+        
+                List{
+                    Section(header: Text("Passwords")
+                                .bold()){
+                            ForEach(savedItemsList.PasswordsList){
+                                item in
+                                PasswordListRowView(item: item)
+                                
+                                    
+
+                            }.onDelete(perform: remove(at:))
+                            
+
+      }
+                    
+
+
+                    Section(header: Text("Mails")
+                                .bold()){
+                        ForEach(savedItemsList.MailsList){
+                            item in
+                            MailListRowView(item: item)
+                        }.onDelete(perform: remove(at:))
+       }
+    }
+
+                
+                
+                
+.navigationBarTitle("Accounts")
+           
+                .navigationBarItems(trailing: EditButton())
+                .listStyle(InsetGroupedListStyle())
+                .shadow(radius: 30 )
+
+        
+        
+    }
+
 }
 
+struct backgrundColor: View {
+    var body: some View{
+        LinearGradient(
+            gradient: Gradient(colors: [.purple, .white, .white]),
+          startPoint: UnitPoint(x: 0.0, y: 0.0),
+          endPoint: .bottomTrailing
+        )
+    }
+}
 

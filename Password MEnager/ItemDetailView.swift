@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    var item: Item
+    var password: Password = Password(title: "", password: "")
+    var mail: Mails = Mails(title: "", adress: "", password: "")
+    @State var ifCategory = true
 
 
     
@@ -16,23 +18,21 @@ struct ItemDetailView: View {
         
         NavigationView{
             
-        
-        VStack{
-            DetaiRow(label: "Title", text: item.title)
-            DetaiRow(label: "Username", text: item.username)
-            DetaiRow(label: "Url", text: item.url)
-            PasswordRow(item: item)
+            ZStack{
+            backgrundColor()
 
-            Spacer()
-
-     
-        }
-  
+                if ifCategory{
+                showDetailsPassword(item: password)
+                } else {
+                    showDetailsMail(item: mail)
+                }
+                
     
-
+            }
+            .ignoresSafeArea()
 
         }
-        .navigationBarTitle(item.title, displayMode: .inline)
+        .navigationBarTitle(password.title, displayMode: .inline)
         
         }
     
@@ -41,7 +41,64 @@ struct ItemDetailView: View {
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(item: Item(title: "Facebook", password: "edsfw332"))
+        ItemDetailView(password: Password(title: "Facebook", password: "edsfw332"), mail: Mails(title: "dfe", adress: "de", password: "dw3d"))
+    }
+}
+
+struct showDetailsMail : View {
+    var item: Mails
+
+    
+    var body: some View{
+        
+        VStack{
+
+            DetaiRow(label: "Title", text: item.title)
+            DetaiRow(label: "E-mail", text: item.adress)
+            PasswordRow(item: item.password)
+
+
+     
+        }
+        .background(Color.white)
+        .cornerRadius(20)
+             .overlay(
+                 RoundedRectangle(cornerRadius: 20)
+                     .stroke(Color.purple, lineWidth: 5)
+             )
+        .padding()
+        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+        
+
+    }
+}
+
+struct showDetailsPassword : View {
+    var item: Password
+
+    
+    var body: some View{
+        
+        VStack{
+
+            DetaiRow(label: "Title", text: item.title)
+            DetaiRow(label: "Username", text: item.username)
+            DetaiRow(label: "Url", text: item.url)
+            PasswordRow(item: item.password)
+
+
+     
+        }
+        .background(Color.white)
+        .cornerRadius(20)
+             .overlay(
+                 RoundedRectangle(cornerRadius: 20)
+                     .stroke(Color.purple, lineWidth: 5)
+             )
+        .padding()
+        .shadow(radius: 30 )
+        
+
     }
 }
 
@@ -52,7 +109,6 @@ struct DetaiRow: View {
     var body: some View{
         
         HStack{
-            
             Text(label)
                 .bold()
             
@@ -60,14 +116,14 @@ struct DetaiRow: View {
 
             Spacer()
         }
-        .padding([.leading, .bottom, .trailing])
+        .padding([.leading, .top, .trailing])
         
     }
 }
 
 
 struct PasswordRow: View {
-    var item: Item
+    var item: String
 
     @State private var password = ""
     @State private var showPassword = false
@@ -107,8 +163,8 @@ struct PasswordRow: View {
         
         }
         .onAppear(){
-            password = item.password
+            password = item
         }
-        .padding([.leading, .bottom, .trailing])
+        .padding([.leading, .bottom, .top, .trailing])
     }
 }

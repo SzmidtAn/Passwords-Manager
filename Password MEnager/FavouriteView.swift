@@ -11,7 +11,14 @@ struct FavouriteView: View {
     
     @EnvironmentObject var savedItemsList: SavedItems
 
-    
+    init() {
+
+        UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = .purple
+        
+        UITableView.appearance().backgroundColor = UIColor(Color.white.opacity(0))
+
+    }
     
     
     
@@ -21,29 +28,43 @@ struct FavouriteView: View {
             
             
             ZStack{
+                
                         List{
-                                Section{
-                                    ForEach(savedItemsList.items){
+                                    ForEach(savedItemsList.PasswordsList){
                                         item in
                                         if item.isFovourite == true{
-                                        ItemListView(item: item)
+                                        PasswordListRowView(item: item)
                                             
                                         }
                                         }
                                     .onDelete(perform: { indexSet in
-                                        savedItemsList.items.remove(atOffsets: indexSet)
+                                        savedItemsList.PasswordsList.remove(atOffsets: indexSet)
 
                                     })
-                
-                                }
+                           
+                                ForEach(savedItemsList.MailsList){
+                                    item in
+                                    if item.isFovourite == true{
+                                    MailListRowView(item: item)
+                                        
+                                    }
+                                    }
+                                .onDelete(perform: { indexSet in
+                                    savedItemsList.PasswordsList.remove(atOffsets: indexSet)
+
+                                })
+                      
                             }
                 .navigationBarTitle("Favourite")
                         .navigationBarItems(trailing: EditButton())
-                        
-                            .listStyle(GroupedListStyle())
+                        .shadow(radius: 30 )
+                        .listStyle(InsetGroupedListStyle())
+                        .background(backgrundColor())
+                        .ignoresSafeArea()
 
           
             }
+            .ignoresSafeArea()
         }
       
     }
