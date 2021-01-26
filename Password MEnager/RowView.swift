@@ -156,7 +156,23 @@ struct PasswordListRowView: View{
 
         case "Instagram":
             img = "instagram"
+            
+        case "Snapchat":
+            img = "snapchat"
+            
+        case "LinkedIn":
+            img = "linkedin"
+            
+        case "GitHub":
+            img = "github"
+            
+        case "Ebay":
+            img = "ebay"
 
+        case "YouTube":
+            img = "youtube"
+            
+            
         default:
             img = "key"
         }

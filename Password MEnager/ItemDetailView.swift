@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ItemDetailView: View {
     var password: Password = Password(title: "", password: "")
     var mail: Mails = Mails(title: "", adress: "", password: "")
@@ -113,6 +114,11 @@ struct DetaiRow: View {
                 .bold()
             
             Text(text)
+            
+            Image(systemName: "doc.on.doc")
+                .onTapGesture {
+             
+                }
 
             Spacer()
         }

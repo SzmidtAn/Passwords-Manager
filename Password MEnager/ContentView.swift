@@ -101,11 +101,7 @@ struct ListsView: View {
 
     
     
-    func remove(at offsets: IndexSet){
 
-        
-        savedItemsList.PasswordsList.remove(atOffsets: offsets)
-    }
     
     
     
@@ -117,10 +113,12 @@ struct ListsView: View {
                             ForEach(savedItemsList.PasswordsList){
                                 item in
                                 PasswordListRowView(item: item)
-                                
-                                    
-
-                            }.onDelete(perform: remove(at:))
+                        
+                    
+                            }
+                            .onDelete(perform: { indexSet in
+                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
+                            })
                             
 
       }
@@ -132,7 +130,10 @@ struct ListsView: View {
                         ForEach(savedItemsList.MailsList){
                             item in
                             MailListRowView(item: item)
-                        }.onDelete(perform: remove(at:))
+                        }
+                        .onDelete(perform: { indexSet in
+                            savedItemsList.MailsList.remove(atOffsets: indexSet)
+                        })
        }
     }
 

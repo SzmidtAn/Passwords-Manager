@@ -50,8 +50,7 @@ struct FavouriteView: View {
                                     }
                                     }
                                 .onDelete(perform: { indexSet in
-                                    savedItemsList.PasswordsList.remove(atOffsets: indexSet)
-
+                                    savedItemsList.MailsList.remove(atOffsets: indexSet)
                                 })
                       
                             }
