@@ -19,6 +19,7 @@ struct LoginView: View {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
 
+      
     }
     
     
@@ -75,14 +76,16 @@ struct LoginView: View {
                         .offset(y: 165)
                     
                     logoView()
+                    
+
               
                 }
+
          
            
             }
             .background(backgrundColor())
             .ignoresSafeArea()
-  
       
 
 
@@ -107,8 +110,11 @@ struct LoginView: View {
                 DispatchQueue.main.async {
                     if success{
                         self.isUnlocked = true
-                        AppView()
-                        
+                        print("authen...")
+                        if isUnlocked{
+                            AppView()
+
+                        }
                     }else{
                         
                     }
@@ -117,6 +123,8 @@ struct LoginView: View {
         }else{
             
         }
+        
+    
     }
 }
 
