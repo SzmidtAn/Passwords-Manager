@@ -10,22 +10,28 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var isUnlocked = false
+
     @State private var username = ""
     @State private var password = ""
+    @State private var unlock = false
+    @State var isUser = false
 
     
     init() {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
 
-      
+        
     }
     
     
     
     var body: some View {
         
+        if unlock{
+            AppView()
+        }else{
+
         NavigationView{
 
          
@@ -43,37 +49,23 @@ struct LoginView: View {
 
                       
                     NavigationLink(
-                        destination: LoginPinView()                     ){
+                        destination: LoginPinView( isUser: $isUser, isUnlocked: $unlock)
+                    ){
                         
                     
                Circle()
                 .foregroundColor(.purple)
                 .frame( width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
                 }
                     
-                    VStack{
-                    Image(
-                    systemName: "key")
-                        .foregroundColor(.white)
-                        .rotationEffect(.degrees(270.0))
-                     
-                    Text("Login")
-                        .font(.system(size: 22))
-                        .foregroundColor(.white)
-         
+                    if isUser{
+           ifUserLogoView(isUnlocked: $unlock)
+                    }
+                    else{
+                        ifNotUserLogoView()
                     }
                     
-                    Image(systemName: "faceid")
-                        .resizable()
-                        .foregroundColor(.white)
-                        .offset(y: 130)
-                        .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .onTapGesture {
-                            authentication()
-                        }
-                    
-                    Text("Face ID")
-                        .offset(y: 165)
                     
                     logoView()
                     
@@ -94,38 +86,12 @@ struct LoginView: View {
 
         
     
-     
-            
-    }
-    
-    
-    func authentication(){
-        let context = LAContext()
-            var error: NSError?
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error){
-            let resaon =  "We need to unlock your data"
-            
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: resaon){
-                success, authenticationError in
-                DispatchQueue.main.async {
-                    if success{
-                        self.isUnlocked = true
-                        print("authen...")
-                        if isUnlocked{
-                            AppView()
-
-                        }
-                    }else{
-                        
-                    }
-                }
-            }
-        }else{
-            
         }
-        
-    
+            
     }
+    
+    
+ 
 }
 
 struct LoginView_Previews: PreviewProvider {
@@ -202,4 +168,82 @@ struct logoView: View {
 }
 
 
+struct ifUserLogoView: View {
+    @Binding var isUnlocked: Bool
 
+    var body: some View{
+        VStack{
+        Image(
+        systemName: "key")
+            .foregroundColor(.white)
+            .rotationEffect(.degrees(270.0))
+         
+        Text("Login")
+            .font(.system(size: 22))
+            .foregroundColor(.white)
+
+        }
+        
+        Image(systemName: "faceid")
+            .resizable()
+            .foregroundColor(.white)
+            .offset(y: 130)
+            .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .onTapGesture {
+                authentication()
+            }
+        
+        Text("Face ID")
+            .offset(y: 165)
+    }
+    
+    func authentication(){
+
+        let context = LAContext()
+            var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error){
+            let resaon =  "We need to unlock your data"
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: resaon){
+                success, authenticationError in
+                DispatchQueue.main.async {
+                    if success{
+                        self.isUnlocked = true
+                     
+                    }else{
+                        self.isUnlocked = false
+
+                    }
+                }
+            }
+        }else{
+            
+        }
+        
+    
+    }
+    
+}
+
+
+struct ifNotUserLogoView: View{
+    @State private var unlock = false
+
+    var body: some View{
+        
+        VStack{
+        Image(
+        systemName: "person")
+            .resizable()
+            .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .foregroundColor(.white)
+            
+            
+        Text("Get started")
+            .font(.system(size: 22))
+            .foregroundColor(.white)
+
+        }
+    
+    }
+}

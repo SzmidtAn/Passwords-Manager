@@ -8,18 +8,31 @@
 import SwiftUI
 
 struct LoginPinView: View {
-    var chunkedArray = [1, 2, 3, 4]
     @State var num = ""
     @State var circle1 = "circle"
     @State var circle2 = "circle"
     @State var circle3 = "circle"
     @State var circle4 = "circle"
-    let pinKod = "1212"
+    @State var pinKod = ""
+    
+   @Binding var isUser: Bool
+    
+    @Binding var isUnlocked: Bool
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    private var mixedLayout = [GridItem(.adaptive(minimum: 100))]
+
+
+   
+     var mixedLayout = [GridItem(.adaptive(minimum: 100))]
 
     
     var body: some View {
+
+
+        if isUnlocked {
+        }else{
+        
         NavigationView{
 
          
@@ -64,14 +77,23 @@ struct LoginPinView: View {
                                                 circle3 = "circle.fill"
                                             case 4:
                                                 circle4 = "circle.fill"
-                                                checkPin()
+                                              
+                                                if isUser{
+                                                    checkPin()
+
+                                                }else{
+                                                    saveNewPin()
+                                                }
+                                                
+                                                
+                                                
                                             default:
+                                                isUnlocked = false
                                              break
                    
                                             }
                                             
                                             
-                                            print(num)
                                             
                                         }
                                   }
@@ -96,18 +118,22 @@ struct LoginPinView: View {
 
         }
         
+        }
                 
     }
     
     func checkPin(){
+        print(pinKod)
         if num == pinKod{
-            print("PIN OK")
             circle4 = "circle.fill"
 
-            AppView()
+            isUnlocked = true
+            
+
+           self.presentationMode.wrappedValue.dismiss()
+
 
         }else{
-            print("PIN FEL")
             circle1 = "circle"
             circle2 = "circle"
             circle3 = "circle"
@@ -117,11 +143,22 @@ struct LoginPinView: View {
         }
     }
     
+    func saveNewPin() {
+        pinKod = num
+        isUser = true
+        print(pinKod)
+
+        self.presentationMode.wrappedValue.dismiss()
+        
+
+    }
+    
 }
 
 struct LoginPinView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginPinView()
+
+        Text(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/)
     }
 }
 

@@ -13,7 +13,6 @@ struct AddNewItemView: View {
     
     @State private var getTitle = ""
     @State  var getPassword: String = ""
-    var pass:String = ""
     @State private var getUrl = ""
     @State private var getUsername = ""
 

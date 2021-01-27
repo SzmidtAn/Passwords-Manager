@@ -40,6 +40,7 @@ struct PasswordGenerator: View {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
          pass =   String((0..<length).map{ _ in letters.randomElement()! })
         
+        
             
         
     }
