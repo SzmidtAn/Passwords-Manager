@@ -18,6 +18,7 @@ struct AppView: View {
         TabView {
             
          ContentView()
+            
             .tabItem {
                   Image(systemName: "list.dash")
                   Text("List")

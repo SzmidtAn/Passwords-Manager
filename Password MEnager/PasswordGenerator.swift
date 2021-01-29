@@ -21,17 +21,18 @@ struct PasswordGenerator: View {
 
         VStack{
         
-
+            
             TextField("Password", text: $pass)
-                .padding()
                 .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
 
-            Stepper("How many characters: \(length)", value: $length, in: 3...20)
-                .padding()
+            Stepper("Characters: \(length)", value: $length, in: 6...25)
             Button("Generate password", action: autoPasswordGenerator)
                 .padding()
+                .border(Color.purple)
+         
         }
-        .onDisappear()
+        .padding()
+        .cornerRadius(30)
         
         
     }

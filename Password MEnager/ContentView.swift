@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var navBackgroundImage = UIImage(systemName: "tramsparent")
+    @Environment(\.colorScheme) var colorScheme
 
 
     
@@ -16,10 +17,10 @@ struct ContentView: View {
     init() {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
-        UINavigationBar.appearance().tintColor = .purple
         
         UITableView.appearance().backgroundColor = UIColor(Color.white.opacity(0))
 
+        print("start")
     }
     
     
@@ -30,7 +31,8 @@ struct ContentView: View {
        
             
             ZStack{
-             
+                Text(colorScheme == .dark ? "In dark mode" : "In light mode")
+
                 
                 ListsView()
                 
@@ -43,6 +45,10 @@ struct ContentView: View {
                 Spacer()
         
             }
+            
+.navigationBarTitle("Accounts")
+       
+            .navigationBarItems(trailing: EditButton())
             .background(backgrundColor())
             .ignoresSafeArea()
 
@@ -64,6 +70,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(modelData)
+         //   .environment(\.colorScheme, .dark)
+
 
     }
 }
@@ -86,6 +94,8 @@ struct addNewButton: View {
          .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
      .overlay(Circle().stroke(Color.white, lineWidth: 3))
      .shadow(radius: 20)
+        .animation(.easeIn)
+
      }
 }
      .padding()
@@ -139,10 +149,7 @@ struct ListsView: View {
 
                 
                 
-                
-.navigationBarTitle("Accounts")
-           
-                .navigationBarItems(trailing: EditButton())
+
                 .listStyle(InsetGroupedListStyle())
                 .shadow(radius: 30 )
 

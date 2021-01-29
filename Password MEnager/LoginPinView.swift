@@ -13,19 +13,28 @@ struct LoginPinView: View {
     @State var circle2 = "circle"
     @State var circle3 = "circle"
     @State var circle4 = "circle"
-    @State var pinKod = ""
+    @Binding var pinKod: String
+    @State private var showingAlert = false
+    @Binding var isUser: Bool
     
-   @Binding var isUser: Bool
+    @State var pinKodText: String = ""
+    
+        
+
+
     
     @Binding var isUnlocked: Bool
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    @Environment(\.managedObjectContext) private var viewContext
 
 
    
      var mixedLayout = [GridItem(.adaptive(minimum: 100))]
 
+    
+    
     
     var body: some View {
 
@@ -44,8 +53,9 @@ struct LoginPinView: View {
                 
                 VStack{
                     
-
-                Text("Pin kod")
+             
+            
+                Text(pinKodText)
                     .padding()
                 
                 HStack{
@@ -108,10 +118,20 @@ struct LoginPinView: View {
                 
                 
             }
+            .onAppear{
+                checkIfUser()
+            }
+            
             .background(Color.purple)
             .foregroundColor(.white)
 
             .ignoresSafeArea()
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Your pin kod is: "), message: Text(pinKod), dismissButton: .default(Text("Got it!")){
+                    self.presentationMode.wrappedValue.dismiss()
+
+                })
+                  }
   
       
 
@@ -120,6 +140,15 @@ struct LoginPinView: View {
         
         }
                 
+    }
+    
+    func checkIfUser(){
+        
+        if isUser{
+            pinKodText = "Pin kod"
+        }else{
+            pinKodText = "You can choose your pin kod"
+        }
     }
     
     func checkPin(){
@@ -146,10 +175,8 @@ struct LoginPinView: View {
     func saveNewPin() {
         pinKod = num
         isUser = true
-        print(pinKod)
-
-        self.presentationMode.wrappedValue.dismiss()
-        
+        showingAlert = true
+      
 
     }
     

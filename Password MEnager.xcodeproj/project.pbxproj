@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */; };
 		1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */; };
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFromPictureView.swift; sourceTree = "<group>"; };
 		1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		1E3B070F25BDAA5B00D41179 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				1E8090F225B9EAB00001D99D /* AppView.swift */,
 				1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */,
 				1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */,
+				1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */,
 				1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */,
 				1E8090EF25B9CF090001D99D /* SavedItems.swift */,
 				1E8090EC25B9CDF50001D99D /* Password.swift */,
@@ -192,6 +195,7 @@
 				1E6ADC3025C033AB000130C8 /* LoginView.swift in Sources */,
 				1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */,
 				1E8090DC25B9CC710001D99D /* Password_MEnager.xcdatamodeld in Sources */,
+				1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */,
 				1E8090F025B9CF090001D99D /* SavedItems.swift in Sources */,
 				1E6ADC3325C064C1000130C8 /* LoginPinView.swift in Sources */,
 				1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */,

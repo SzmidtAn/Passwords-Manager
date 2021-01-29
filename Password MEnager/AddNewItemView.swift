@@ -24,9 +24,14 @@ struct AddNewItemView: View {
     
     var body: some View {
 
+   
 
         Form{
             
+                
+                
+
+
             Section {
                             Picker(selection: $selectedStrength, label: Text("Category")) {
                                 ForEach(0 ..< strengths.count) {
@@ -34,34 +39,34 @@ struct AddNewItemView: View {
     }
                             }
                      }
-            
-            
+
+//
             Section{
-                
+
                 switch selectedStrength {
-              
+
                 case 0:
-                    
+
                     Label {TextField("Tittle", text: $getTitle)
                     } icon: {Image(systemName: "plus")}
-                    
+
                     Label {TextField("Username", text: $getUsername)
                     } icon: {Image(systemName: "person.crop.circle")}
-                    
+
                     Label {TextField("Url", text: $getUrl)
                     } icon: {Image(systemName: "link")}
-                    
+
                     Label {TextField("Password", text: $getPassword)
                     } icon: {Image(systemName: "lock")}
                 case 1:
-                    
+
                     Label {TextField("Tittle", text: $getTitle)
                     } icon: {Image(systemName: "plus")}
-                    
+
                     Label {TextField("E-mail", text: $getUsername)
                     } icon: {Image(systemName: "envelope")}
-             
-                    
+
+
                     Label {TextField("Password", text: $getPassword)
                     } icon: {Image(systemName: "lock")}
 
@@ -69,27 +74,49 @@ struct AddNewItemView: View {
                 default:
                     Text("Choose category")
                 }
-                
-           
-            
-
+//
+//
+//
+//
 
                 Button("Password generator", action: {
                     self.showSheet.toggle()
                 }).buttonStyle(DefaultButtonStyle())
-                .sheet(isPresented: $showSheet){
+//
+//
+//
+        }
+//
+//
+            Section{
+                NavigationLink(
+                    destination: ReadFromPictureView()    ){
+
+                    Button("Skan login details from picture", action: {
+                        self.showSheet.toggle()
+                    }).buttonStyle(DefaultButtonStyle())
+
+
+                }
+
+            }
+
+
+            Section{
+                if self.showSheet{
                     PasswordGenerator(pass: self.$getPassword)
                 }
-                
-                
             }
             
-       
+            
+            
+            
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("Add a new password", displayMode: .inline)
         .navigationBarItems(trailing:
                                 Button(action: {
+                                    print("butt")
                                     switch selectedStrength{
                                     case 0:
                                         self.addNewPassword()
