@@ -19,30 +19,26 @@ struct ReadFromPictureView: View {
     }
     var body: some View {
         Text(text)
-            .onAppear{
-                text = "dd"
-            }
+       
         
         Button("Get text") {
             detectText(in: UIImage(named: "logintext")!)
-            print("get")
 
         }
     }
     
     
     func handleDetectionResults(results: [Any]?) {
-        print("ewdd")
       guard let results = results, results.count > 0 else {
           print("No text found")
           return
       }
 
       for result in results {
-        self.text = "eee"
         
         if let observation = result as? VNRecognizedTextObservation {
               for text in observation.topCandidates(1) {
+                self.text = self.text + "\n" + text.string
                   print(text.string)
                   print(text.confidence)
                   print(observation.boundingBox)
