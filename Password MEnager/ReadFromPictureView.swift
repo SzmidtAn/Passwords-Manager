@@ -12,20 +12,48 @@ import Vision
 struct ReadFromPictureView: View {
     
     @State var text = "text"
+    var image = UIImage(named: "logintext")
     
-    
-    init() {
+    @State var usernamn = ""
+    @State var password = ""
 
-    }
+    @State var wordsList = [String.SubSequence]()
+    
+   @State var listex = ["first"]
+    @State var intUser = 0
+    @State var intPass = 0
+
+    
+    
+  
+    
     var body: some View {
-        Text(text)
-       
-        
-        Button("Get text") {
-            detectText(in: UIImage(named: "logintext")!)
 
+        VStack{
+       Image("logintext")
+        .resizable()
+        .frame(width: 200, height: 400, alignment: .top)
+
+            Text("Username: " + usernamn)
+            Text("Password: " + password)
+
+        Button("Get text") {
+            detectText(in: image!)
         }
+            
+        }
+         
     }
+  
+    func getLoginInfo(){
+        intUser = listex.firstIndex(of: "Username:")!
+        intPass = listex.firstIndex(of: "Password:")!
+
+        usernamn = listex[intUser + 1]
+        password = listex[intPass + 1]
+        
+    }
+    
     
     
     func handleDetectionResults(results: [Any]?) {
@@ -38,14 +66,15 @@ struct ReadFromPictureView: View {
         
         if let observation = result as? VNRecognizedTextObservation {
               for text in observation.topCandidates(1) {
-                self.text = self.text + "\n" + text.string
-                  print(text.string)
-                  print(text.confidence)
-                  print(observation.boundingBox)
-                  print("\n")
+                
+                    listex.append(text.string)
+                    
+                print(listex.count)
+
               }
           }
       }
+     getLoginInfo()
     }
     
     
@@ -57,6 +86,7 @@ struct ReadFromPictureView: View {
       DispatchQueue.global(qos: .userInitiated).async {
           do {
               try handler.perform(requests)
+
           } catch let error {
               print("Error: \(error)")
           }
@@ -64,7 +94,6 @@ struct ReadFromPictureView: View {
     }
     
     func detectText(in image: UIImage) {
-        print("sss")
       guard let image = image.cgImage else {
         print("Invalid image")
         return
@@ -91,3 +120,5 @@ struct ReadFromPictureView_Previews: PreviewProvider {
         ReadFromPictureView()
     }
 }
+
+

@@ -31,7 +31,6 @@ struct ContentView: View {
        
             
             ZStack{
-                Text(colorScheme == .dark ? "In dark mode" : "In light mode")
 
                 
                 ListsView()
