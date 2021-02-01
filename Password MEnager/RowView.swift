@@ -64,7 +64,7 @@ struct MailListRowView: View{
     var body: some View{
         
         NavigationLink(
-            destination: ItemDetailView(mail: item, ifCategory: false)){
+            destination: ItemDetailView(mail: item, ifCategory: "mail")){
             
             
         
@@ -185,7 +185,7 @@ struct PasswordListRowView: View{
     var body: some View{
         
         NavigationLink(
-            destination: ItemDetailView(password: item)){
+            destination: ItemDetailView(password: item, ifCategory: "password")){
             HStack{
          
                 Image(img)
@@ -230,6 +230,102 @@ struct PasswordListRowView: View{
  
             getImage()
             doFavourite()
+        }
+        
+    }
+    
+    
+    
+}
+
+
+struct NotesListRowView: View{
+    @EnvironmentObject var savedItemsList: SavedItems
+    @State   var img = "mail"
+    @State   var starImage = "star"
+
+    var item: Notes
+
+    func doFavourite() {
+        let index = savedItemsList.NotesList.firstIndex { i -> Bool in
+            i.id == self.item.id
+        }
+
+        if index != nil {
+
+
+            if            savedItemsList.NotesList[index!].isFovourite{
+            starImage = "star.fill"
+        }else{
+            starImage = "star"
+        }
+        }
+    }
+    func getImage() {
+        let liveAlbums = item.title
+
+        switch liveAlbums {
+      
+        case "Gmail":
+            img = "gmail"
+        case "Hotmail":
+            img = "outlook"
+        default:
+            img = "mail"
+        }
+        
+    }
+
+    var body: some View{
+        
+        NavigationLink(
+            destination: ItemDetailView(note: item , ifCategory: "note"))
+        {
+            
+            
+        
+        HStack{
+         
+            Image(img)
+                .resizable()
+                .frame(width: 20.0, height: 20.0)
+
+        
+        Text(item.title)
+            
+            Spacer()
+            
+            
+          Image(systemName: starImage)
+            .foregroundColor(.yellow)
+                .onTapGesture {
+                    
+                    let index = savedItemsList.NotesList.firstIndex { i -> Bool in
+                        i.id == self.item.id
+                    }
+                 
+                    if starImage == "star"{
+
+                        savedItemsList.NotesList[index!].isFovourite = true
+                        starImage = "star.fill"
+                    }else {
+                        starImage = "star"
+                        savedItemsList.NotesList[index!].isFovourite = false
+                    }
+              
+                    
+                }
+
+        }
+      
+        
+        }
+   
+        .onAppear(){
+
+       getImage()
+            doFavourite()
+  
         }
         
     }

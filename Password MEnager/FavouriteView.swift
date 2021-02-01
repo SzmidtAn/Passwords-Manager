@@ -52,6 +52,17 @@ struct FavouriteView: View {
                                 .onDelete(perform: { indexSet in
                                     savedItemsList.MailsList.remove(atOffsets: indexSet)
                                 })
+                            
+                            ForEach(savedItemsList.NotesList){
+                                item in
+                                if item.isFovourite == true{
+                                NotesListRowView(item: item)
+                                    
+                                }
+                                }
+                            .onDelete(perform: { indexSet in
+                                savedItemsList.NotesList.remove(atOffsets: indexSet)
+                            })
                       
                             }
                 .navigationBarTitle("Favourite")

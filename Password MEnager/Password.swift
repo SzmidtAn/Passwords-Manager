@@ -22,12 +22,18 @@ struct Password: Identifiable {
 
 struct Mails: Identifiable {
     var id = UUID()
-    
     var title: String
     var adress: String
-
     var password: String
+    var isFovourite = false
+    
+}
 
+
+struct Notes: Identifiable {
+    var id = UUID()
+    var title: String
+    var note: String
     var isFovourite = false
     
 }

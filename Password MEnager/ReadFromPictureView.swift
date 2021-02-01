@@ -19,7 +19,7 @@ struct ReadFromPictureView: View {
 
     @State var wordsList = [String.SubSequence]()
     
-   @State var listex = ["first"]
+    @State var listex: [Any] = [Any]()
     @State var intUser = 0
     @State var intPass = 0
 
@@ -46,11 +46,35 @@ struct ReadFromPictureView: View {
     }
   
     func getLoginInfo(){
-        intUser = listex.firstIndex(of: "Username:")!
-        intPass = listex.firstIndex(of: "Password:")!
+        
+        for result in listex {
 
-        usernamn = listex[intUser + 1]
-        password = listex[intPass + 1]
+          
+          if let observation = result as? VNRecognizedTextObservation {
+                for text in observation.topCandidates(1) {
+
+
+                    if text.string == "Password:"{
+                    intUser = observation.topCandidates(1).firstIndex(of: text)!
+             
+                    print(intUser)
+                    }
+
+                }
+            print(observation.topCandidates(1))
+            }
+        }
+        
+    
+        
+//        self.wordsList =  self.text.split(separator: " ")
+//
+//
+//        intUser = wordsList.firstIndex(of: "Username:")!
+//        intPass = wordsList.firstIndex(of: "Password:")!
+//
+//        usernamn = String(wordsList[intUser + 1])
+//        password = String(wordsList[intPass + 1])
         
     }
     
@@ -61,20 +85,23 @@ struct ReadFromPictureView: View {
           print("No text found")
           return
       }
+        
+        listex = results
 
       for result in results {
+
         
         if let observation = result as? VNRecognizedTextObservation {
               for text in observation.topCandidates(1) {
-                
-                    listex.append(text.string)
+           
+
+           
                     
-                print(listex.count)
 
               }
           }
       }
-     getLoginInfo()
+    getLoginInfo()
     }
     
     
@@ -117,7 +144,7 @@ struct ReadFromPictureView: View {
 
 struct ReadFromPictureView_Previews: PreviewProvider {
     static var previews: some View {
-        ReadFromPictureView()
+        Text("Placeholder")
     }
 }
 

@@ -19,8 +19,6 @@ struct ContentView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
         
         UITableView.appearance().backgroundColor = UIColor(Color.white.opacity(0))
-
-        print("start")
     }
     
     
@@ -144,7 +142,24 @@ struct ListsView: View {
                             savedItemsList.MailsList.remove(atOffsets: indexSet)
                         })
        }
+                    
+                    Section(header: Text("Notes")
+                                .bold()){
+                            ForEach(savedItemsList.NotesList){
+                                item in
+                                NotesListRowView(item: item)
+                        
+                    
+                            }
+                            .onDelete(perform: { indexSet in
+                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
+                            })
+                            
+                        
+                        
     }
+                    
+                }
 
                 
                 

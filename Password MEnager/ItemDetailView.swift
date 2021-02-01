@@ -11,7 +11,11 @@ import SwiftUI
 struct ItemDetailView: View {
     var password: Password = Password(title: "", password: "")
     var mail: Mails = Mails(title: "", adress: "", password: "")
-    @State var ifCategory = true
+    var note: Notes = Notes(title: "", note: "")
+
+    @State var ifCategory: String
+    @State var ifEditMode = false
+
 
 
     
@@ -22,42 +26,71 @@ struct ItemDetailView: View {
             ZStack{
             backgrundColor()
 
-                if ifCategory{
-                showDetailsPassword(item: password)
-                } else {
-                    showDetailsMail(item: mail)
+                switch(ifCategory){
+                case "mail":
+                    showDetailsMail(item: mail, ifEditMode: ifEditMode)
+
+                case "password":
+                    showDetailsPassword(item: password, ifEditMode: ifEditMode)
+
+                case "note":
+
+                    showDetailsNotes(item: note, ifEditMode: ifEditMode)
+                default :
+                Text("text")
+                
                 }
                 
+            
     
             }
             .ignoresSafeArea()
 
         }
         .navigationBarTitle(password.title, displayMode: .inline)
+        .navigationBarItems(trailing:
+                                Button(action: {
+                             EditItemButton()
+                  } )
+        {
+                 Text("Edit item")
+                                } )
+      
+        
+        
         
         }
     
+    func EditItemButton() {
+        self.ifEditMode.toggle()
     }
+    
+}
 
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(password: Password(title: "Facebook", password: "edsfw332"), mail: Mails(title: "dfe", adress: "de", password: "dw3d"))
+        ItemDetailView(password: Password(title: "Facebook", password: "edsfw332"), mail: Mails(title: "dfe", adress: "de", password: "dw3d"), ifCategory: "")
     }
 }
 
 struct showDetailsMail : View {
-    var item: Mails
+    @EnvironmentObject var savedItemsList: SavedItems
+
+    @State var item: Mails
+    var ifEditMode: Bool
+
 
     
     var body: some View{
         
         VStack{
 
-            DetaiRow(label: "Title", text: item.title)
-            DetaiRow(label: "E-mail", text: item.adress)
-            PasswordRow(item: item.password)
-
+            
+            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $item.title)
+            DetailRow(label: "E-mail", ifEditMode: ifEditMode, text: $item.adress)
+            PasswordRow(password: $item.password, ifEditMode: ifEditMode)
+            
 
      
         }
@@ -69,23 +102,49 @@ struct showDetailsMail : View {
              )
         .padding()
         .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+        .onDisappear{
+            saveEditedItem()
+        }
         
 
+    }
+    
+    func saveEditedItem(){
+      
+        let index = savedItemsList.MailsList.firstIndex { i -> Bool in
+            i.id == self.item.id
+        }!
+        
+        print(savedItemsList.MailsList[index])
+        print(item.title)
+        
+        savedItemsList.MailsList[index].title = item.title
+        savedItemsList.MailsList[index].adress = item.adress
+        savedItemsList.MailsList[index].password = item.password
+
+
+   
+        
     }
 }
 
 struct showDetailsPassword : View {
-    var item: Password
+    @State var item: Password
+    var ifEditMode: Bool
+    
+    @EnvironmentObject var savedItemsList: SavedItems
+
+
 
     
     var body: some View{
         
         VStack{
 
-            DetaiRow(label: "Title", text: item.title)
-            DetaiRow(label: "Username", text: item.username)
-            DetaiRow(label: "Url", text: item.url)
-            PasswordRow(item: item.password)
+            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $item.title)
+            DetailRow(label: "Username", ifEditMode: ifEditMode, text: $item.username)
+            DetailRow(label: "Url", ifEditMode: ifEditMode, text: $item.url)
+            PasswordRow(password: $item.password, ifEditMode: ifEditMode)
 
 
      
@@ -98,60 +157,107 @@ struct showDetailsPassword : View {
              )
         .padding()
         .shadow(radius: 30 )
+        .onDisappear{
+            saveEditedItem()
+        }
         
 
+    }
+    
+    func saveEditedItem(){
+      
+        let index = savedItemsList.PasswordsList.firstIndex { i -> Bool in
+            i.id == self.item.id
+        }!
+        
+    
+        
+        savedItemsList.PasswordsList[index].title = item.title
+        savedItemsList.PasswordsList[index].url = item.url
+        savedItemsList.PasswordsList[index].username = item.username
+        savedItemsList.PasswordsList[index].password = item.password
+
+
+   
+        
     }
 }
 
 
-struct DetaiRow: View {
+struct DetailRow: View {
     var label: String
-    var text: String
+    var ifEditMode: Bool
+    @Binding var text: String
     var body: some View{
         
         HStack{
             Text(label)
                 .bold()
             
-            Text(text)
-            
+            if ifEditMode{
+            TextField(text, text: $text)
+                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+            }else{
+                Text(text)
+
+            }
+                
+                
+                Spacer()
+
             Image(systemName: "doc.on.doc")
+                .frame(width: 10, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .onTapGesture {
-             
+                    UIPasteboard.general.string = text
+
                 }
 
-            Spacer()
         }
         .padding([.leading, .top, .trailing])
+     
         
     }
+    
+ 
 }
 
 
 struct PasswordRow: View {
-    var item: String
 
-    @State private var password = ""
-    @State private var showPassword = false
+    @Binding  var password: String
+    @State  var showPassword = false
+    var ifEditMode: Bool
+
+    
+    
     var body: some View{
         HStack{
             
             Text("Password")
                 .bold()
+        
+         
             
-            if showPassword {
+            if ifEditMode{
+                TextField(password, text: $password)
 
-                                Text(password)
+                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+            }else{
+                if showPassword {
+
+                    Text(password)
+                                        .frame(width: 150.0)
+                                } else {
+                                SecureField("Password",
+                                            text: $password)
+
                                     .frame(width: 150.0)
+                                    
+                                }
+            }
+                
 
-
-                            } else {
-                            SecureField("Password",
-                                      text: $password)
-
-                                .frame(width: 150.0)
-                            }
-
+            Spacer()
 
             Image(systemName: "eye")
                 .onTapGesture {
@@ -161,16 +267,68 @@ struct PasswordRow: View {
                         showPassword = false
                     }
                 }
+            
+            Image(systemName: "doc.on.doc")
+                .frame(width: 10, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .onTapGesture {
+                    UIPasteboard.general.string = password
+
+                }
+    
+        }
+      
+        .padding([.leading, .bottom, .top, .trailing])
+    }
+}
+
+struct showDetailsNotes : View {
+    @EnvironmentObject var savedItemsList: SavedItems
+
+    @State var item: Notes
+    var ifEditMode: Bool
+
+
+    
+    var body: some View{
+        
+        VStack{
 
             
-            Spacer()
+            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $item.title)
+            DetailRow(label: "Note", ifEditMode: ifEditMode, text: $item.note)
+            
 
-
+     
+        }
+        .background(Color.white)
+        .cornerRadius(20)
+             .overlay(
+                 RoundedRectangle(cornerRadius: 20)
+                     .stroke(Color.purple, lineWidth: 5)
+             )
+        .padding()
+        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+        .onDisappear{
+            saveEditedItem()
+        }
         
-        }
-        .onAppear(){
-            password = item
-        }
-        .padding([.leading, .bottom, .top, .trailing])
+
+    }
+    
+    func saveEditedItem(){
+      
+        let index = savedItemsList.NotesList.firstIndex { i -> Bool in
+            i.id == self.item.id
+        }!
+        
+        print(savedItemsList.NotesList[index])
+        print(item.title)
+        
+        savedItemsList.NotesList[index].title = item.title
+        savedItemsList.NotesList[index].note = item.note
+
+
+   
+        
     }
 }
