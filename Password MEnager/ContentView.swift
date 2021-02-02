@@ -78,7 +78,7 @@ struct addNewButton: View {
         Spacer(    )
          VStack{
     Spacer(     )
-     
+
      NavigationLink(
          destination: AddNewItemView()    ){
          

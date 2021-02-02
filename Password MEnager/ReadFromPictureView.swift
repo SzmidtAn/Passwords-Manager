@@ -12,16 +12,19 @@ import Vision
 struct ReadFromPictureView: View {
     
     @State var text = "text"
-    var image = UIImage(named: "logintext")
+   @State var image = UIImage(named: "logintext")
+    @State private var currentDrawing: Drawing = Drawing()
+
     
-    @State var usernamn = ""
-    @State var password = ""
+    @Binding var username: String
+    @Binding var password: String
 
     @State var wordsList = [String.SubSequence]()
     
     @State var listex: [Any] = [Any]()
     @State var intUser = 0
     @State var intPass = 0
+    @State var showingAlert = false
 
     
     
@@ -30,59 +33,55 @@ struct ReadFromPictureView: View {
     var body: some View {
 
         VStack{
-       Image("logintext")
-        .resizable()
-        .frame(width: 200, height: 400, alignment: .top)
+            
+            ZStack{
+    
 
-            Text("Username: " + usernamn)
-            Text("Password: " + password)
+                DrawOnImageView(image: $currentDrawing)
+                
+            }
+            
+            HStack{
+                Text("Username: ")
+                    .bold()
+            TextField("Loading username... ", text: $username)
+                Spacer()
+            }
+            .padding()
+            
+            
+            HStack{
+                Text("Password: ")
+                    .bold()
+                TextField("Loading password...", text: $password)
+            
+                Spacer()
+            }
+            .padding()
 
         Button("Get text") {
             detectText(in: image!)
         }
-            
+        .padding()
+         
+            Spacer()
         }
+        .background(backgrundColor())
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("No text found"), message: Text("Try a different image"), dismissButton: .default(Text("Got it!")))
+
+              }
          
     }
   
-    func getLoginInfo(){
-        
-        for result in listex {
 
-          
-          if let observation = result as? VNRecognizedTextObservation {
-                for text in observation.topCandidates(1) {
-
-
-                    if text.string == "Password:"{
-                    intUser = observation.topCandidates(1).firstIndex(of: text)!
-             
-                    print(intUser)
-                    }
-
-                }
-            print(observation.topCandidates(1))
-            }
-        }
-        
-    
-        
-//        self.wordsList =  self.text.split(separator: " ")
-//
-//
-//        intUser = wordsList.firstIndex(of: "Username:")!
-//        intPass = wordsList.firstIndex(of: "Password:")!
-//
-//        usernamn = String(wordsList[intUser + 1])
-//        password = String(wordsList[intPass + 1])
-        
-    }
-    
     
     
     func handleDetectionResults(results: [Any]?) {
       guard let results = results, results.count > 0 else {
           print("No text found")
+        self.showingAlert.toggle()
+
           return
       }
         
@@ -93,15 +92,39 @@ struct ReadFromPictureView: View {
         
         if let observation = result as? VNRecognizedTextObservation {
               for text in observation.topCandidates(1) {
+                let getTextString = text.string
+                
+                if getTextString == "Username:" || getTextString == "Username" ||
+                    getTextString == "username" || getTextString == "Email" ||
+                    getTextString == "Email:" || getTextString == "Login:"{
+                     intUser = results.firstIndex { i -> Bool in
+                        i as! NSObject == observation
+                     }!
+                }
            
-
-           
-                    
+                if getTextString == "Password:" || getTextString == "Password" ||
+                    getTextString == "password" || getTextString == "password:"{
+                    intPass = results.firstIndex { i -> Bool in
+                        i as! NSObject == observation
+                     }!
+                            }
 
               }
           }
       }
-    getLoginInfo()
+
+        var res =  results[intUser + 1] as! VNRecognizedTextObservation
+    
+        for getText in res.topCandidates(1){
+            username = getText.string
+        }
+        
+         res =  results[intPass + 1] as! VNRecognizedTextObservation
+    
+        for getText in res.topCandidates(1){
+            password = getText.string
+        }
+        
     }
     
     

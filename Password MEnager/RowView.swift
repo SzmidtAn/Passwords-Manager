@@ -291,7 +291,7 @@ struct NotesListRowView: View{
                 .frame(width: 20.0, height: 20.0)
 
         
-        Text(item.title)
+            Text(item.title).multilineTextAlignment(.trailing)
             
             Spacer()
             

@@ -17,7 +17,7 @@ struct AddNewItemView: View {
     @State private var getUsername = ""
 
     @State private var showSheet = false
-    var strengths = ["Password", "Mail"]
+    var categoriesList = ["Password", "Mail", "Note"]
 
        @State private var selectedStrength = 0
     
@@ -34,8 +34,8 @@ struct AddNewItemView: View {
 
             Section {
                             Picker(selection: $selectedStrength, label: Text("Category")) {
-                                ForEach(0 ..< strengths.count) {
-                                    Text(self.strengths[$0])
+                                ForEach(0 ..< categoriesList.count) {
+                                    Text(self.categoriesList[$0])
     }
                             }
                      }
@@ -58,6 +58,13 @@ struct AddNewItemView: View {
 
                     Label {TextField("Password", text: $getPassword)
                     } icon: {Image(systemName: "lock")}
+                    
+                    
+                    Button("Password generator", action: {
+                        self.showSheet.toggle()
+                    }).buttonStyle(DefaultButtonStyle())
+                    
+                    
                 case 1:
 
                     Label {TextField("Tittle", text: $getTitle)
@@ -70,7 +77,27 @@ struct AddNewItemView: View {
                     Label {TextField("Password", text: $getPassword)
                     } icon: {Image(systemName: "lock")}
 
+                    
+                    
+                    Button("Password generator", action: {
+                        self.showSheet.toggle()
+                    }).buttonStyle(DefaultButtonStyle())
+                    
 
+                case 2:
+
+                    Label {TextField("Tittle", text: $getTitle)
+                    } icon: {Image(systemName: "plus")}
+
+              
+
+
+                    Label {TextEditor( text: $getUsername)
+                    } icon: {Image(systemName: "note.text")}
+
+
+                    
+                    
                 default:
                     Text("Choose category")
                 }
@@ -79,9 +106,6 @@ struct AddNewItemView: View {
 //
 //
 
-                Button("Password generator", action: {
-                    self.showSheet.toggle()
-                }).buttonStyle(DefaultButtonStyle())
 //
 //
 //
@@ -90,7 +114,7 @@ struct AddNewItemView: View {
 //
             Section{
                 NavigationLink(
-                    destination: ReadFromPictureView()    ){
+                    destination: ReadFromPictureView(username: $getUsername, password: $getPassword)    ){
 
                     Button("Skan login details from picture", action: {
                         self.showSheet.toggle()
@@ -116,13 +140,14 @@ struct AddNewItemView: View {
         .navigationBarTitle("Add a new password", displayMode: .inline)
         .navigationBarItems(trailing:
                                 Button(action: {
-                                    print("butt")
                                     switch selectedStrength{
                                     case 0:
                                         self.addNewPassword()
 
                                     case 1:
                                         self.addNewMail()
+                                    case 2:
+                                        self.addNewNote()
                                     default:
                        break
                        }
@@ -157,6 +182,18 @@ struct AddNewItemView: View {
         }else {
         }
         }
+    
+    func addNewNote(){
+        
+        if getTitle != "" && getUsername != ""{
+       
+            savedItemsList.NotesList.append(Notes(title: getTitle, note: getUsername))
+        self.presentation.wrappedValue.dismiss()
+        }else {
+        }
+        }
+    
+    
 }
 
 struct AddNewItemView_Previews: PreviewProvider {

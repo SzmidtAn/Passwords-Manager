@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */; };
+		1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */; };
 		1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */; };
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
@@ -26,10 +27,12 @@
 		1E8090F025B9CF090001D99D /* SavedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090EF25B9CF090001D99D /* SavedItems.swift */; };
 		1E8090F325B9EAB00001D99D /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F225B9EAB00001D99D /* AppView.swift */; };
 		1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */; };
+		1E829F1A25C942C400C4CB76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFromPictureView.swift; sourceTree = "<group>"; };
+		1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawOnImageView.swift; sourceTree = "<group>"; };
 		1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		1E3B070F25BDAA5B00D41179 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		1E8090EF25B9CF090001D99D /* SavedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItems.swift; sourceTree = "<group>"; };
 		1E8090F225B9EAB00001D99D /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
+		1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
 				1E8090D825B9CC710001D99D /* ContentView.swift */,
 				1E6ADC2F25C033AB000130C8 /* LoginView.swift */,
+				1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */,
 				1E6ADC3225C064C1000130C8 /* LoginPinView.swift */,
 				1E3B071225BDAAB000D41179 /* MailDetailView.swift */,
 				1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */,
@@ -94,6 +99,7 @@
 				1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */,
 				1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */,
 				1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */,
+				1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */,
 				1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */,
 				1E8090EF25B9CF090001D99D /* SavedItems.swift */,
 				1E8090EC25B9CDF50001D99D /* Password.swift */,
@@ -172,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E8090E425B9CC760001D99D /* LaunchScreen.storyboard in Resources */,
+				1E829F1A25C942C400C4CB76 /* GoogleService-Info.plist in Resources */,
 				1E8090E125B9CC760001D99D /* Preview Assets.xcassets in Resources */,
 				1E8090DE25B9CC760001D99D /* Assets.xcassets in Resources */,
 			);
@@ -196,6 +203,7 @@
 				1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */,
 				1E8090DC25B9CC710001D99D /* Password_MEnager.xcdatamodeld in Sources */,
 				1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */,
+				1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */,
 				1E8090F025B9CF090001D99D /* SavedItems.swift in Sources */,
 				1E6ADC3325C064C1000130C8 /* LoginPinView.swift in Sources */,
 				1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */,

@@ -12,6 +12,7 @@ struct ItemDetailView: View {
     var password: Password = Password(title: "", password: "")
     var mail: Mails = Mails(title: "", adress: "", password: "")
     var note: Notes = Notes(title: "", note: "")
+   @State var titleNav = ""
 
     @State var ifCategory: String
     @State var ifEditMode = false
@@ -34,7 +35,6 @@ struct ItemDetailView: View {
                     showDetailsPassword(item: password, ifEditMode: ifEditMode)
 
                 case "note":
-
                     showDetailsNotes(item: note, ifEditMode: ifEditMode)
                 default :
                 Text("text")
@@ -47,19 +47,38 @@ struct ItemDetailView: View {
             .ignoresSafeArea()
 
         }
-        .navigationBarTitle(password.title, displayMode: .inline)
+        .navigationBarTitle(titleNav, displayMode: .inline)
         .navigationBarItems(trailing:
                                 Button(action: {
                              EditItemButton()
-                  } )
-        {
-                 Text("Edit item")
-                                } )
+                  } ){
+                 Text("Edit item")    } )
+        .onAppear{
+            getNavTitle()
+        }
       
         
         
         
         }
+    
+    func getNavTitle(){
+
+        switch(ifCategory){
+        case "mail":
+           titleNav =   mail.title
+
+        case "password":
+            titleNav =   password.title
+
+        case "note":
+            titleNav =  note.title
+        default :
+        Text("text")
+        
+        }
+            
+    }
     
     func EditItemButton() {
         self.ifEditMode.toggle()
