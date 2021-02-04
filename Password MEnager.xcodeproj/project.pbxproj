@@ -28,6 +28,8 @@
 		1E8090F325B9EAB00001D99D /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F225B9EAB00001D99D /* AppView.swift */; };
 		1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */; };
 		1E829F1A25C942C400C4CB76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */; };
+		1EBF026A25CC2674005B200D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026925CC2674005B200D /* Persistence.swift */; };
+		1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,9 @@
 		1E8090F225B9EAB00001D99D /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
 		1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1EBF026925CC2674005B200D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
+		1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataTest 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +96,13 @@
 				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
 				1E8090D825B9CC710001D99D /* ContentView.swift */,
 				1E6ADC2F25C033AB000130C8 /* LoginView.swift */,
+				1EBF026925CC2674005B200D /* Persistence.swift */,
 				1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */,
 				1E6ADC3225C064C1000130C8 /* LoginPinView.swift */,
 				1E3B071225BDAAB000D41179 /* MailDetailView.swift */,
 				1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */,
 				1E8090F225B9EAB00001D99D /* AppView.swift */,
+				1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */,
 				1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */,
 				1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */,
 				1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */,
@@ -199,7 +206,9 @@
 				1E8090F325B9EAB00001D99D /* AppView.swift in Sources */,
 				1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */,
 				1E6BA9D325BC3CD40007A1CD /* PasswordGenerator.swift in Sources */,
+				1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */,
 				1E6ADC3025C033AB000130C8 /* LoginView.swift in Sources */,
+				1EBF026A25CC2674005B200D /* Persistence.swift in Sources */,
 				1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */,
 				1E8090DC25B9CC710001D99D /* Password_MEnager.xcdatamodeld in Sources */,
 				1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */,
@@ -412,6 +421,17 @@
 			);
 			currentVersion = 1E8090DB25B9CC710001D99D /* Password_MEnager.xcdatamodel */;
 			path = Password_MEnager.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */,
+				1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */,
+			);
+			currentVersion = 1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */;
+			path = CoreDataTest.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -106,8 +106,12 @@ struct ListsView: View {
     @State private var paymentType = 0
     static let paymentTypes = ["Cash", "CredicCard", "iDinePoints"]
 
-    
-    
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \PasswordCore.title, ascending: true)],
+        animation: .default)
+    private var passwordsList: FetchedResults<PasswordCore>
 
     
     
@@ -120,7 +124,7 @@ struct ListsView: View {
                                 .foregroundColor(Color.black)
                                 .bold()
                                 .shadow(radius: 30 )){
-                            ForEach(savedItemsList.PasswordsList){
+                            ForEach(passwordsList){
                                 item in
                                 PasswordListRowView(item: item)
                                     
@@ -129,7 +133,17 @@ struct ListsView: View {
                     
                             }
                             .onDelete(perform: { indexSet in
-                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
+                                withAnimation {
+                                    indexSet.map { passwordsList[$0] }.forEach(viewContext.delete)
+
+                                    do {
+                                        try viewContext.save()
+                                    } catch {
+                                     
+                                        let nsError = error as NSError
+                                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                    }
+                                }
                             })
                             
 

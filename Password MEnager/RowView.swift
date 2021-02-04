@@ -127,7 +127,7 @@ struct PasswordListRowView: View{
     @State   var img = "key"
 
     
-    var item: Password
+    var item: PasswordCore
   
     
     func doFavourite() {
@@ -195,7 +195,7 @@ struct PasswordListRowView: View{
                   
                     
        
-        Text(item.title)
+                Text(item.title!)
             
             Spacer()
             

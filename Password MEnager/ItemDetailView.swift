@@ -9,7 +9,9 @@ import SwiftUI
 
 
 struct ItemDetailView: View {
-    var password: Password = Password(title: "", password: "")
+    @Environment(\.managedObjectContext) private var viewContext
+
+    var password: PasswordCore = PasswordCore()
     var mail: Mails = Mails(title: "", adress: "", password: "")
     var note: Notes = Notes(title: "", note: "")
    @State var titleNav = ""
@@ -34,6 +36,7 @@ struct ItemDetailView: View {
                 case "password":
                     showDetailsPassword(item: password, ifEditMode: ifEditMode)
 
+                 
                 case "note":
                     showDetailsNotes(item: note, ifEditMode: ifEditMode)
                 default :
@@ -69,7 +72,7 @@ struct ItemDetailView: View {
            titleNav =   mail.title
 
         case "password":
-            titleNav =   password.title
+            titleNav =   password.title!
 
         case "note":
             titleNav =  note.title
@@ -89,7 +92,7 @@ struct ItemDetailView: View {
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(password: Password(title: "Facebook", password: "edsfw332"), mail: Mails(title: "dfe", adress: "de", password: "dw3d"), ifCategory: "")
+      Text("pp")
     }
 }
 
@@ -148,22 +151,29 @@ struct showDetailsMail : View {
 }
 
 struct showDetailsPassword : View {
-    @State var item: Password
+    @Environment(\.managedObjectContext) private var viewContext
+
+    var item: PasswordCore
     var ifEditMode: Bool
     
     @EnvironmentObject var savedItemsList: SavedItems
 
+    @State var title = ""
+    @State var username = ""
+    @State var url = ""
+    @State var password = ""
 
+   
 
     
     var body: some View{
         
         VStack{
 
-            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $item.title)
-            DetailRow(label: "Username", ifEditMode: ifEditMode, text: $item.username)
-            DetailRow(label: "Url", ifEditMode: ifEditMode, text: $item.url)
-            PasswordRow(password: $item.password, ifEditMode: ifEditMode)
+            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $title)
+            DetailRow(label: "Username", ifEditMode: ifEditMode, text: $username)
+            DetailRow(label: "Url", ifEditMode: ifEditMode, text: $url)
+            PasswordRow(password: $password, ifEditMode: ifEditMode)
 
 
      
@@ -179,25 +189,49 @@ struct showDetailsPassword : View {
         .onDisappear{
             saveEditedItem()
         }
+        .onAppear{
+            title = item.title!
+            username = item.username!
+            url = item.url!
+            password = item.password!
+            
+        }
+        
         
 
     }
     
     func saveEditedItem(){
-      
-        let index = savedItemsList.PasswordsList.firstIndex { i -> Bool in
-            i.id == self.item.id
-        }!
         
-    
+        item.title = title
+       item.username! = username
+      item.url! = username
+      item.password! = password
         
-        savedItemsList.PasswordsList[index].title = item.title
-        savedItemsList.PasswordsList[index].url = item.url
-        savedItemsList.PasswordsList[index].username = item.username
-        savedItemsList.PasswordsList[index].password = item.password
-
-
-   
+        do {
+            try viewContext.save()
+       
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            print("error")
+        }
+        
+//        let index = savedItemsList.PasswordsList.firstIndex { i -> Bool in
+//            i.id == self.item.id
+//        }!
+//
+//
+//
+//        savedItemsList.PasswordsList[index].title = item.title
+//        savedItemsList.PasswordsList[index].url = item.url
+//        savedItemsList.PasswordsList[index].username = item.username
+//        savedItemsList.PasswordsList[index].password = item.password
+//
+//
+//
         
     }
 }
@@ -206,7 +240,7 @@ struct showDetailsPassword : View {
 struct DetailRow: View {
     var label: String
     var ifEditMode: Bool
-    @Binding var text: String
+  @Binding   var text: String
     var body: some View{
         
         HStack{

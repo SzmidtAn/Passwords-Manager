@@ -10,6 +10,12 @@ import SwiftUI
 
 class SavedItems : ObservableObject{
     
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \PasswordCore.title, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<PasswordCore>
+    
+    
     @Published var PasswordsList = [Password]()
     @Published var MailsList = [Mails]()
     @Published var NotesList = [Notes]()

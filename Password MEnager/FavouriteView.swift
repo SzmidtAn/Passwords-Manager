@@ -30,17 +30,17 @@ struct FavouriteView: View {
             ZStack{
                 
                         List{
-                                    ForEach(savedItemsList.PasswordsList){
-                                        item in
-                                        if item.isFovourite == true{
-                                        PasswordListRowView(item: item)
-                                            
-                                        }
-                                        }
-                                    .onDelete(perform: { indexSet in
-                                        savedItemsList.PasswordsList.remove(atOffsets: indexSet)
-
-                                    })
+//                                    ForEach(savedItemsList.PasswordsList){
+//                                        item in
+//                                        if item.isFovourite == true{
+//                                        PasswordListRowView(item: item)
+//
+//                                        }
+//                                        }
+//                                    .onDelete(perform: { indexSet in
+//                                        savedItemsList.PasswordsList.remove(atOffsets: indexSet)
+//
+//                                    })
                            
                                 ForEach(savedItemsList.MailsList){
                                     item in
