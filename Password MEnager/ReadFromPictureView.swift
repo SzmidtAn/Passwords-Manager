@@ -12,8 +12,8 @@ import Vision
 struct ReadFromPictureView: View {
     
     @State var getField = "word"
-   @State var image = UIImage(named: "logintext")
     @State private var currentDrawing: Drawing = Drawing()
+    @State var imageUI: UIImage? = UIImage()
 
     
     @Binding var username: String
@@ -27,6 +27,7 @@ struct ReadFromPictureView: View {
     @State var showingAlert = false
     @State var showingPicture = false
     @State var showingListButton = false
+    @State var isShowPicker: Bool = false
 
     
     
@@ -40,7 +41,29 @@ struct ReadFromPictureView: View {
                 
                 
                 if !showingListButton{
-                DrawOnImageView(image: $currentDrawing)
+
+
+                    VStack {
+                        Image(uiImage: imageUI!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 320)
+                        Button(action: {
+                            withAnimation {
+                                self.isShowPicker.toggle()
+                            }
+                        }) {
+                            Image(systemName: "photo")
+                                .font(.headline)
+                            Text("IMPORT").font(.headline)
+                        }.foregroundColor(.black)
+                        Spacer()
+                    }
+                    .sheet(isPresented: $isShowPicker) {
+                        ImagePicker(image: self.$imageUI)
+                    }
+                        
+
                 }else{
                             List{
                                 Section(header: Text("Choose \(getField)" )
@@ -100,7 +123,7 @@ struct ReadFromPictureView: View {
             .padding(.horizontal)
 
             Button(action: {
-                    detectText(in: image!)
+                    detectText(in: imageUI!)
                     self.showingListButton.toggle()                  })
             {
                       Text("Get text ")
@@ -230,4 +253,53 @@ struct ReadFromPictureView_Previews: PreviewProvider {
     }
 }
 
+
+
+struct ImagePicker: UIViewControllerRepresentable {
+
+    @Environment(\.presentationMode)
+    var presentationMode
+
+    @Binding var image: UIImage?
+
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+        @Binding var presentationMode: PresentationMode
+        @Binding var image: UIImage?
+
+        init(presentationMode: Binding<PresentationMode>, image: Binding<UIImage?>) {
+            _presentationMode = presentationMode
+            _image = image
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController,
+                                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            image = uiImage
+            presentationMode.dismiss()
+
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            presentationMode.dismiss()
+        }
+
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(presentationMode: presentationMode, image: $image)
+    }
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController,
+                                context: UIViewControllerRepresentableContext<ImagePicker>) {
+
+    }
+
+}
 

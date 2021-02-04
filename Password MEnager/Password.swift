@@ -43,7 +43,7 @@ struct Notes: Identifiable {
 import CoreData
 
 @objc(PasswordCor)
-final class TodoMO: NSManagedObject {
+final class PasswordMO: NSManagedObject {
     @NSManaged var uuid: UUID?
     @NSManaged var title: String
     @NSManaged var password: String
@@ -54,8 +54,26 @@ final class TodoMO: NSManagedObject {
 }
 
 
-extension TodoMO {
+extension PasswordMO {
     func convertToTodo() -> Password {
         Password(id: uuid ?? UUID() ,title: title, password: password  )
+    }
+}
+
+@objc(MailCor)
+final class MailMO: NSManagedObject {
+    @NSManaged var uuid: UUID?
+    @NSManaged var title: String
+    @NSManaged var password: String
+    @NSManaged var adress: String
+    
+
+    @NSManaged var isFavourite: Bool
+}
+
+
+extension MailMO {
+    func convertToTodo() -> Mails {
+        Mails(id: uuid ?? UUID() ,title: title, adress: adress, password: password  )
     }
 }

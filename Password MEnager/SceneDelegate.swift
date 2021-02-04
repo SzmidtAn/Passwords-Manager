@@ -11,7 +11,6 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var savedItensList = SavedItems()
     let persistenceController = PersistenceController.shared
 
 
@@ -25,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view anrd set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let contentView = AppView().environmentObject(savedItensList)
+        let contentView = AppView()
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
 
 

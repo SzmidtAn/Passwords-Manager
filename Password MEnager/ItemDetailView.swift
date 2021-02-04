@@ -12,7 +12,7 @@ struct ItemDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var password: PasswordCore = PasswordCore()
-    var mail: Mails = Mails(title: "", adress: "", password: "")
+    var mail: MailCore = MailCore()
     var note: Notes = Notes(title: "", note: "")
    @State var titleNav = ""
 
@@ -69,7 +69,7 @@ struct ItemDetailView: View {
 
         switch(ifCategory){
         case "mail":
-           titleNav =   mail.title
+           titleNav =   mail.title!
 
         case "password":
             titleNav =   password.title!
@@ -97,24 +97,25 @@ struct ItemDetailView_Previews: PreviewProvider {
 }
 
 struct showDetailsMail : View {
-    @EnvironmentObject var savedItemsList: SavedItems
+    @Environment(\.managedObjectContext) private var viewContext
 
-    @State var item: Mails
+  var item: MailCore
     var ifEditMode: Bool
+    @State var title = ""
+    @State var mail = ""
+    @State var password = ""
 
+   
 
     
     var body: some View{
         
         VStack{
 
-            
-            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $item.title)
-            DetailRow(label: "E-mail", ifEditMode: ifEditMode, text: $item.adress)
-            PasswordRow(password: $item.password, ifEditMode: ifEditMode)
-            
+            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $title)
+            DetailRow(label: "E-mail", ifEditMode: ifEditMode, text: $mail)
+            PasswordRow(password: $password, ifEditMode: ifEditMode)
 
-     
         }
         .background(Color.white)
         .cornerRadius(20)
@@ -127,24 +128,36 @@ struct showDetailsMail : View {
         .onDisappear{
             saveEditedItem()
         }
+        .onAppear{
+            title = item.title!
+            mail = item.adres!
+            password = item.password!
+            
+        }
         
 
     }
     
     func saveEditedItem(){
-      
-        let index = savedItemsList.MailsList.firstIndex { i -> Bool in
-            i.id == self.item.id
-        }!
         
-        print(savedItemsList.MailsList[index])
-        print(item.title)
+        item.title = title
+       item.adres! = mail
+      item.password! = password
         
-        savedItemsList.MailsList[index].title = item.title
-        savedItemsList.MailsList[index].adress = item.adress
-        savedItemsList.MailsList[index].password = item.password
+        do {
+            try viewContext.save()
+            
+            
+       
+        } catch {
+       
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            print("error")
+        }
+        
 
-
+ 
    
         
     }
@@ -156,7 +169,6 @@ struct showDetailsPassword : View {
     var item: PasswordCore
     var ifEditMode: Bool
     
-    @EnvironmentObject var savedItemsList: SavedItems
 
     @State var title = ""
     @State var username = ""
@@ -185,7 +197,7 @@ struct showDetailsPassword : View {
                      .stroke(Color.purple, lineWidth: 5)
              )
         .padding()
-        .shadow(radius: 30 )
+        .shadow(color: Color.purple, radius: 30 )
         .onDisappear{
             saveEditedItem()
         }
@@ -205,33 +217,22 @@ struct showDetailsPassword : View {
         
         item.title = title
        item.username! = username
-      item.url! = username
+      item.url! = url
       item.password! = password
         
         do {
             try viewContext.save()
+            
+            
        
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+       
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             print("error")
         }
         
-//        let index = savedItemsList.PasswordsList.firstIndex { i -> Bool in
-//            i.id == self.item.id
-//        }!
-//
-//
-//
-//        savedItemsList.PasswordsList[index].title = item.title
-//        savedItemsList.PasswordsList[index].url = item.url
-//        savedItemsList.PasswordsList[index].username = item.username
-//        savedItemsList.PasswordsList[index].password = item.password
-//
-//
-//
+
         
     }
 }
@@ -335,7 +336,6 @@ struct PasswordRow: View {
 }
 
 struct showDetailsNotes : View {
-    @EnvironmentObject var savedItemsList: SavedItems
 
     @State var item: Notes
     var ifEditMode: Bool
@@ -370,16 +370,6 @@ struct showDetailsNotes : View {
     
     func saveEditedItem(){
       
-        let index = savedItemsList.NotesList.firstIndex { i -> Bool in
-            i.id == self.item.id
-        }!
-        
-        print(savedItemsList.NotesList[index])
-        print(item.title)
-        
-        savedItemsList.NotesList[index].title = item.title
-        savedItemsList.NotesList[index].note = item.note
-
 
    
         

@@ -15,38 +15,36 @@ struct RowView: View {
 
 struct RowView_Previews: PreviewProvider {
     
-    static let modelData = SavedItems()
 
     static var previews: some View {
         ContentView()
-            .environmentObject(modelData)
 
     }
 }
 
 struct MailListRowView: View{
-    @EnvironmentObject var savedItemsList: SavedItems
+    
+    @Environment(\.managedObjectContext) private var viewContext
+
+    
     @State   var img = "mail"
     @State   var starImage = "star"
+    @State   var title = ""
 
-    var item: Mails
+    var item: MailCore
 
     func doFavourite() {
-        let index = savedItemsList.MailsList.firstIndex { i -> Bool in
-            i.id == self.item.id
-        }
-
-        if index != nil {
-
-
-            if            savedItemsList.MailsList[index!].isFovourite{
+        if item.isFavourite{
             starImage = "star.fill"
+
         }else{
             starImage = "star"
-        }
+
         }
     }
     func getImage() {
+        title = item.title!
+
         let liveAlbums = item.title
 
         switch liveAlbums {
@@ -58,6 +56,8 @@ struct MailListRowView: View{
         default:
             img = "mail"
         }
+        
+    doFavourite()
         
     }
 
@@ -75,7 +75,7 @@ struct MailListRowView: View{
                 .frame(width: 20.0, height: 20.0)
 
         
-        Text(item.title)
+            Text(title)
             
             Spacer()
             
@@ -84,19 +84,27 @@ struct MailListRowView: View{
             .foregroundColor(.yellow)
                 .onTapGesture {
                     
-                    let index = savedItemsList.MailsList.firstIndex { i -> Bool in
-                        i.id == self.item.id
-                    }
-                 
+                    
+
                     if starImage == "star"{
 
-                        savedItemsList.MailsList[index!].isFovourite = true
+                     item.isFavourite = true
                         starImage = "star.fill"
                     }else {
                         starImage = "star"
-                        savedItemsList.MailsList[index!].isFovourite = false
+                      item.isFavourite = false
                     }
-              
+                    
+                    do {
+                        try viewContext.save()
+                        
+                    } catch {
+            
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                        print("error")
+                    }
+
                     
                 }
 
@@ -122,28 +130,30 @@ struct MailListRowView: View{
 
 
 struct PasswordListRowView: View{
-    @EnvironmentObject var savedItemsList: SavedItems
     @State   var starImage = "star"
     @State   var img = "key"
+    @State   var title = ""
+    @Environment(\.managedObjectContext) private var viewContext
+
 
     
-    var item: PasswordCore
+   // @ObservedObject
+   @State var item: PasswordCore
   
     
     func doFavourite() {
-        let index = savedItemsList.PasswordsList.firstIndex { i -> Bool in
-                   i.id == self.item.id
-               }
-             if index != nil {
-            if            savedItemsList.PasswordsList[index!].isFovourite{
-                   starImage = "star.fill"
-               }else{
-                   starImage = "star"
-               }
-               }
+        if item.isFavourite{
+            starImage = "star.fill"
+
+        }else{
+            starImage = "star"
+
+        }
     }
     
     func getImage() {
+        
+        title = item.title!
         let liveAlbums = item.title
 
         switch liveAlbums {
@@ -177,6 +187,9 @@ struct PasswordListRowView: View{
             img = "key"
         }
         
+        
+   doFavourite()
+        
        
         
     }
@@ -195,7 +208,7 @@ struct PasswordListRowView: View{
                   
                     
        
-                Text(item.title!)
+                Text(title)
             
             Spacer()
             
@@ -204,19 +217,25 @@ struct PasswordListRowView: View{
             .foregroundColor(.yellow)
                 .onTapGesture {
                     
-                    let index = savedItemsList.PasswordsList.firstIndex { i -> Bool in
-                        i.id == self.item.id
-                    }
-                 
                     if starImage == "star"{
 
-                        savedItemsList.PasswordsList[index!].isFovourite = true
+                     item.isFavourite = true
                         starImage = "star.fill"
                     }else {
-                     starImage = "star"
-                        savedItemsList.PasswordsList[index!].isFovourite = false
+                        starImage = "star"
+                      item.isFavourite = false
                     }
-              
+                    
+                    do {
+                        try viewContext.save()
+                        
+                    } catch {
+            
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                        print("error")
+                    }
+
                     
                 }
         }
@@ -240,26 +259,25 @@ struct PasswordListRowView: View{
 
 
 struct NotesListRowView: View{
-    @EnvironmentObject var savedItemsList: SavedItems
     @State   var img = "mail"
     @State   var starImage = "star"
 
     var item: Notes
 
     func doFavourite() {
-        let index = savedItemsList.NotesList.firstIndex { i -> Bool in
-            i.id == self.item.id
-        }
-
-        if index != nil {
-
-
-            if            savedItemsList.NotesList[index!].isFovourite{
-            starImage = "star.fill"
-        }else{
-            starImage = "star"
-        }
-        }
+//        let index = savedItemsList.NotesList.firstIndex { i -> Bool in
+//            i.id == self.item.id
+//        }
+//
+//        if index != nil {
+//
+//
+//            if            savedItemsList.NotesList[index!].isFovourite{
+//            starImage = "star.fill"
+//        }else{
+//            starImage = "star"
+//        }
+//        }
     }
     func getImage() {
         let liveAlbums = item.title
@@ -299,21 +317,21 @@ struct NotesListRowView: View{
           Image(systemName: starImage)
             .foregroundColor(.yellow)
                 .onTapGesture {
-                    
-                    let index = savedItemsList.NotesList.firstIndex { i -> Bool in
-                        i.id == self.item.id
-                    }
-                 
-                    if starImage == "star"{
-
-                        savedItemsList.NotesList[index!].isFovourite = true
-                        starImage = "star.fill"
-                    }else {
-                        starImage = "star"
-                        savedItemsList.NotesList[index!].isFovourite = false
-                    }
-              
-                    
+//                    
+//                    let index = savedItemsList.NotesList.firstIndex { i -> Bool in
+//                        i.id == self.item.id
+//                    }
+//                 
+//                    if starImage == "star"{
+//
+//                        savedItemsList.NotesList[index!].isFovourite = true
+//                        starImage = "star.fill"
+//                    }else {
+//                        starImage = "star"
+//                        savedItemsList.NotesList[index!].isFovourite = false
+//                    }
+//              
+//                    
                 }
 
         }

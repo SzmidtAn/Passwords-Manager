@@ -17,7 +17,6 @@ struct AddNewItemView: View {
     private var items: FetchedResults<PasswordCore>
     
 
-    @EnvironmentObject var savedItemsList: SavedItems
     @Environment(\.presentationMode) var presentation
     
     @State private var getTitle = ""
@@ -174,12 +173,31 @@ struct AddNewItemView: View {
 
     func addNewMail(){
         
+        
         if getTitle != "" && getPassword != ""{
        
-            savedItemsList.MailsList.append(Mails(title: getTitle, adress: getUsername, password: getPassword))
+            
+            let newPassword = MailCore(context: viewContext)
+            newPassword.title = getTitle
+            newPassword.adres = getUsername
+            newPassword.password = getPassword
+            newPassword.id = UUID()
+            
+            do {
+                try viewContext.save()
+                
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("error")
+            }
+            
         self.presentation.wrappedValue.dismiss()
         }else {
         }
+        
         }
     
     func addNewPassword(){
@@ -197,8 +215,7 @@ struct AddNewItemView: View {
             
             do {
                 try viewContext.save()
-                print(newPassword)
-                print(items)
+                
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -207,7 +224,6 @@ struct AddNewItemView: View {
                 print("error")
             }
             
-            savedItemsList.PasswordsList.append(Password(title: getTitle, password: getPassword, url: getUrl, username: getUsername))
         self.presentation.wrappedValue.dismiss()
         }else {
         }
@@ -222,7 +238,6 @@ struct AddNewItemView: View {
         
         if getTitle != "" && getUsername != ""{
        
-            savedItemsList.NotesList.append(Notes(title: getTitle, note: getUsername))
         self.presentation.wrappedValue.dismiss()
         }else {
         }

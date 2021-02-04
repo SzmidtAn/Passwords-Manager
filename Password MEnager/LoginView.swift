@@ -56,7 +56,7 @@ struct LoginView: View {
                Circle()
                 .foregroundColor(.purple)
                 .frame( width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                .shadow(color: Color.purple, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
                 }
                     
                     if isUser{
@@ -123,7 +123,7 @@ struct loginFormView: View {
                      .stroke(Color.purple, lineWidth: 5)
              )
         .padding()
-        .shadow(radius: 30 )
+        .shadow(color: Color.purple, radius: 30 )
         
         Button("Login", action: {
             
@@ -136,7 +136,7 @@ struct loginFormView: View {
                  RoundedRectangle(cornerRadius: 20)
                      .stroke(Color.purple, lineWidth: 5)
              )
-        .shadow(radius: 30 )
+        .shadow(color: Color.purple, radius: 30 )
     }
 }
 

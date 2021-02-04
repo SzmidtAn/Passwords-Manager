@@ -62,13 +62,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
 
     
-    static let modelData = SavedItems()
 
     static var previews: some View {
         ContentView()
-            .environmentObject(modelData)
-         //   .environment(\.colorScheme, .dark)
-
 
     }
 }
@@ -90,7 +86,7 @@ struct addNewButton: View {
          .background(Color.purple)
          .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
      .overlay(Circle().stroke(Color.white, lineWidth: 3))
-     .shadow(radius: 20)
+        .shadow(color: Color.purple, radius: 20)
         .animation(.easeIn)
 
      }
@@ -101,7 +97,6 @@ struct addNewButton: View {
 
 struct ListsView: View {
     
-    @EnvironmentObject var savedItemsList: SavedItems
 
     @State private var paymentType = 0
     static let paymentTypes = ["Cash", "CredicCard", "iDinePoints"]
@@ -113,7 +108,12 @@ struct ListsView: View {
         animation: .default)
     private var passwordsList: FetchedResults<PasswordCore>
 
-    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \MailCore.title, ascending: true)],
+        animation: .default)
+    private var MailsList: FetchedResults<MailCore>
+
+
     
     
     var body: some View{
@@ -138,6 +138,7 @@ struct ListsView: View {
 
                                     do {
                                         try viewContext.save()
+                              
                                     } catch {
                                      
                                         let nsError = error as NSError
@@ -145,8 +146,7 @@ struct ListsView: View {
                                     }
                                 }
                             })
-                            
-
+                      
       }
                     
 
@@ -156,32 +156,44 @@ struct ListsView: View {
                                 .foregroundColor(Color.black)
                                 .bold()
                                 .shadow(radius: 30 )){
-                        ForEach(savedItemsList.MailsList){
+                        ForEach(MailsList){
                             item in
                             MailListRowView(item: item)
                         }
                         .onDelete(perform: { indexSet in
-                            savedItemsList.MailsList.remove(atOffsets: indexSet)
+                            withAnimation {
+                                indexSet.map { MailsList[$0] }.forEach(viewContext.delete)
+
+                                do {
+                                    try viewContext.save()
+                          
+                                } catch {
+                                 
+                                    let nsError = error as NSError
+                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                }
+                            }
+                            
                         })
        }
-                    
-                    Section(header: Text("Notes")
-                                .fontWeight(.light)
-                                .foregroundColor(Color.black)
-                                .bold()
-                                .shadow(radius: 30 )){                            ForEach(savedItemsList.NotesList){
-                                item in
-                                NotesListRowView(item: item)
-                        
-                    
-                            }
-                            .onDelete(perform: { indexSet in
-                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
-                            })
-                            
-                        
-                        
-    }
+//
+//                    Section(header: Text("Notes")
+//                                .fontWeight(.light)
+//                                .foregroundColor(Color.black)
+//                                .bold()
+//                                .shadow(radius: 30 )){                            ForEach(savedItemsList.NotesList){
+//                                item in
+//                                NotesListRowView(item: item)
+//
+//
+//                            }
+//                            .onDelete(perform: { indexSet in
+//                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
+//                            })
+//
+//
+//
+//    }
                     
                 }
 

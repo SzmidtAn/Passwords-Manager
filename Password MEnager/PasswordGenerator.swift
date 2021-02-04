@@ -12,7 +12,6 @@ struct PasswordGenerator: View {
     @State private var length = 9
     @Binding  var pass: String
 
-    @EnvironmentObject var savedItemsList: SavedItems
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
 
