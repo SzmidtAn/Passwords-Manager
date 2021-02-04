@@ -21,10 +21,12 @@ struct ReadFromPictureView: View {
 
     @State var wordsList = [String.SubSequence]()
     
-    @State var listex: [Any] = [Any]()
+    @State var listex = [String]()
     @State var intUser = 0
     @State var intPass = 0
     @State var showingAlert = false
+    @State var showingPicture = false
+    @State var showingListButton = false
 
     
     
@@ -34,36 +36,76 @@ struct ReadFromPictureView: View {
 
         VStack{
             
-            ZStack{
     
-
-                DrawOnImageView(image: $currentDrawing)
                 
-            }
+                
+                if !showingListButton{
+                DrawOnImageView(image: $currentDrawing)
+                }else{
+                            List{
+                                Section(header: Text("Choose word")
+                                            .bold()){
+                                    ForEach(listex, id: \.self){
+                                            item in
+
+                                        ListRowReadFromPicture(item: item, username: $username)
+                                       
+                                         
+                                        
+                                
+                                        }
+                              
+                                   
+                                        .onDelete(perform: { indexSet in
+                                        listex.remove(atOffsets: indexSet)
+                                        })
+                                
+                                        
+
+                  }
+                       
+                            }
+                            .listStyle(InsetGroupedListStyle())
+                            .shadow(color: Color.purple, radius: 30)
+                            
+
+                }
+            
             
             HStack{
                 Text("Username: ")
                     .bold()
             TextField("Loading username... ", text: $username)
                 Spacer()
+                Button("Set username") {
+                  
+
+                }
             }
-            .padding()
+            .padding(.horizontal)
             
             
             HStack{
                 Text("Password: ")
                     .bold()
                 TextField("Loading password...", text: $password)
-            
-                Spacer()
-            }
-            .padding()
+                Button("Set password") {
+                  
 
+                }
+            }
+            .padding(.horizontal)
+
+            
         Button("Get text") {
             detectText(in: image!)
+            self.showingListButton.toggle()
+
         }
         .padding()
-         
+            
+            
+            
             Spacer()
         }
         .background(backgrundColor())
@@ -85,7 +127,6 @@ struct ReadFromPictureView: View {
           return
       }
         
-        listex = results
 
       for result in results {
 
@@ -93,6 +134,10 @@ struct ReadFromPictureView: View {
         if let observation = result as? VNRecognizedTextObservation {
               for text in observation.topCandidates(1) {
                 let getTextString = text.string
+                var list = [String]()
+                list.append(getTextString)
+                
+                listex.append(contentsOf: list)
                 
                 if getTextString == "Username:" || getTextString == "Username" ||
                     getTextString == "username" || getTextString == "Email" ||

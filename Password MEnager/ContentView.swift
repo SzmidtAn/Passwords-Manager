@@ -120,6 +120,8 @@ struct ListsView: View {
                             ForEach(savedItemsList.PasswordsList){
                                 item in
                                 PasswordListRowView(item: item)
+                                    
+                                    
                         
                     
                             }

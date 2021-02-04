@@ -335,3 +335,20 @@ struct NotesListRowView: View{
 }
 
 
+struct ListRowReadFromPicture: View {
+    var item: String
+    @Binding var username: String
+    var body: some View{
+        Text(item)
+    
+            .onTapGesture {
+                username = item
+            }
+    }
+    
+    func returnUsername() -> String {
+        
+        return item
+    }
+    
+}
