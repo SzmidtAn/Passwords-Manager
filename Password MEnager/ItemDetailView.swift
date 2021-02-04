@@ -120,7 +120,7 @@ struct showDetailsMail : View {
                      .stroke(Color.purple, lineWidth: 5)
              )
         .padding()
-        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+        .shadow(color: Color.purple, radius: 15 )
         .onDisappear{
             saveEditedItem()
         }

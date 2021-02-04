@@ -11,7 +11,7 @@ import Vision
 
 struct ReadFromPictureView: View {
     
-    @State var text = "text"
+    @State var getField = "word"
    @State var image = UIImage(named: "logintext")
     @State private var currentDrawing: Drawing = Drawing()
 
@@ -43,12 +43,13 @@ struct ReadFromPictureView: View {
                 DrawOnImageView(image: $currentDrawing)
                 }else{
                             List{
-                                Section(header: Text("Choose word")
-                                            .bold()){
-                                    ForEach(listex, id: \.self){
+                                Section(header: Text("Choose \(getField)" )
+                                            .foregroundColor(Color.white)
+                                            .bold()
+                                            .shadow(radius: 30 )){                                    ForEach(listex, id: \.self){
                                             item in
 
-                                        ListRowReadFromPicture(item: item, username: $username)
+                                        ListRowReadFromPicture(item: item, username: $username, password: $password, getField: $getField)
                                        
                                          
                                         
@@ -67,6 +68,7 @@ struct ReadFromPictureView: View {
                             }
                             .listStyle(InsetGroupedListStyle())
                             .shadow(color: Color.purple, radius: 30)
+                            .padding()
                             
 
                 }
@@ -78,7 +80,7 @@ struct ReadFromPictureView: View {
             TextField("Loading username... ", text: $username)
                 Spacer()
                 Button("Set username") {
-                  
+                  getField = "username"
 
                 }
             }
@@ -90,19 +92,30 @@ struct ReadFromPictureView: View {
                     .bold()
                 TextField("Loading password...", text: $password)
                 Button("Set password") {
-                  
+                    getField = "password"
+
 
                 }
             }
             .padding(.horizontal)
 
+            Button(action: {
+                    detectText(in: image!)
+                    self.showingListButton.toggle()                  })
+            {
+                      Text("Get text ")
+                     
+                        .padding()
+                        .background(Color.purple)
+                        .cornerRadius(40)
+                        .foregroundColor(.white)
+                        .padding(8)
+                     
+            }
+            .shadow(color: Color.purple, radius: 4 )
             
-        Button("Get text") {
-            detectText(in: image!)
-            self.showingListButton.toggle()
-
-        }
-        .padding()
+            
+   
             
             
             
@@ -138,6 +151,7 @@ struct ReadFromPictureView: View {
                 list.append(getTextString)
                 
                 listex.append(contentsOf: list)
+               // listex = list
                 
                 if getTextString == "Username:" || getTextString == "Username" ||
                     getTextString == "username" || getTextString == "Email" ||

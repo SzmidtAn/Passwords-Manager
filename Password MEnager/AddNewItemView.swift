@@ -155,7 +155,7 @@ struct AddNewItemView: View {
         {
                  Text("Done")
                                 } )
-        .shadow(radius: 30 )
+        .shadow(color: Color.purple, radius: 20 )
         .background(backgrundColor())
         .ignoresSafeArea()
 

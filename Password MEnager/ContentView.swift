@@ -116,7 +116,10 @@ struct ListsView: View {
         
                 List{
                     Section(header: Text("Passwords")
-                                .bold()){
+                                .fontWeight(.light)
+                                .foregroundColor(Color.black)
+                                .bold()
+                                .shadow(radius: 30 )){
                             ForEach(savedItemsList.PasswordsList){
                                 item in
                                 PasswordListRowView(item: item)
@@ -135,7 +138,10 @@ struct ListsView: View {
 
 
                     Section(header: Text("Mails")
-                                .bold()){
+                                .fontWeight(.light)
+                                .foregroundColor(Color.black)
+                                .bold()
+                                .shadow(radius: 30 )){
                         ForEach(savedItemsList.MailsList){
                             item in
                             MailListRowView(item: item)
@@ -146,8 +152,10 @@ struct ListsView: View {
        }
                     
                     Section(header: Text("Notes")
-                                .bold()){
-                            ForEach(savedItemsList.NotesList){
+                                .fontWeight(.light)
+                                .foregroundColor(Color.black)
+                                .bold()
+                                .shadow(radius: 30 )){                            ForEach(savedItemsList.NotesList){
                                 item in
                                 NotesListRowView(item: item)
                         
@@ -167,7 +175,7 @@ struct ListsView: View {
                 
 
                 .listStyle(InsetGroupedListStyle())
-                .shadow(radius: 30 )
+                .shadow(color: Color.purple, radius: 10 )
 
         
         

@@ -338,11 +338,23 @@ struct NotesListRowView: View{
 struct ListRowReadFromPicture: View {
     var item: String
     @Binding var username: String
+    @Binding var password: String
+    @Binding var getField: String
+
     var body: some View{
+        HStack{
         Text(item)
-    
+            Spacer()
+        }
             .onTapGesture {
-                username = item
+                switch(getField){
+                case "password":
+                password = item
+                case "username":
+                    username = item
+                default :
+                    break
+            }
             }
     }
     
