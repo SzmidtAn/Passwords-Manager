@@ -77,3 +77,22 @@ extension MailMO {
         Mails(id: uuid ?? UUID() ,title: title, adress: adress, password: password  )
     }
 }
+
+
+@objc(NoteCor)
+final class NoteMO: NSManagedObject {
+    @NSManaged var uuid: UUID?
+    @NSManaged var title: String
+    @NSManaged var note: String
+    
+    @NSManaged var isFavourite: Bool
+}
+
+
+extension NoteMO {
+    func convertToTodo() -> Notes
+{
+        Notes(id: uuid ?? UUID() ,title: title, note: note  )
+        
+    }
+}

@@ -46,7 +46,7 @@ struct ContentView: View {
 .navigationBarTitle("Accounts")
        
             .navigationBarItems(trailing: EditButton())
-            .background(backgrundColor())
+        .background(backgrundColor())
             .ignoresSafeArea()
 
 
@@ -86,7 +86,7 @@ struct addNewButton: View {
          .background(Color.purple)
          .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
      .overlay(Circle().stroke(Color.white, lineWidth: 3))
-        .shadow(color: Color.purple, radius: 20)
+        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
         .animation(.easeIn)
 
      }
@@ -113,6 +113,11 @@ struct ListsView: View {
         animation: .default)
     private var MailsList: FetchedResults<MailCore>
 
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \NoteCore.title, ascending: true)],
+        animation: .default)
+    private var NotesList: FetchedResults<NoteCore>
+
 
     
     
@@ -123,7 +128,8 @@ struct ListsView: View {
                                 .fontWeight(.light)
                                 .foregroundColor(Color.black)
                                 .bold()
-                                .shadow(radius: 30 )){
+                            
+                    ){
                             ForEach(passwordsList){
                                 item in
                                 PasswordListRowView(item: item)
@@ -155,7 +161,8 @@ struct ListsView: View {
                                 .fontWeight(.light)
                                 .foregroundColor(Color.black)
                                 .bold()
-                                .shadow(radius: 30 )){
+                                .shadow(radius: 30 )
+                    ){
                         ForEach(MailsList){
                             item in
                             MailListRowView(item: item)
@@ -163,6 +170,33 @@ struct ListsView: View {
                         .onDelete(perform: { indexSet in
                             withAnimation {
                                 indexSet.map { MailsList[$0] }.forEach(viewContext.delete)
+
+                                do {
+                                    try viewContext.save()
+                          
+                                } catch {
+                                 
+                                    let nsError = error as NSError
+                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                }
+                            }
+                            
+                        })
+       }
+                    
+                    Section(header: Text("Notes")
+                                .fontWeight(.light)
+                                .foregroundColor(Color.black)
+                                .bold()
+                                .shadow(radius: 30 )
+                    ){
+                        ForEach(NotesList){
+                            item in
+                            NotesListRowView(item: item)
+                        }
+                        .onDelete(perform: { indexSet in
+                            withAnimation {
+                                indexSet.map { NotesList[$0] }.forEach(viewContext.delete)
 
                                 do {
                                     try viewContext.save()
@@ -201,7 +235,8 @@ struct ListsView: View {
                 
 
                 .listStyle(InsetGroupedListStyle())
-                .shadow(color: Color.purple, radius: 10 )
+        
+                .shadow(color: Color.purple.opacity(0.5) , radius: 10	, x: 10, y: 10)
 
         
         

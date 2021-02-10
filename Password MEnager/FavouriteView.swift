@@ -21,6 +21,11 @@ struct FavouriteView: View {
         animation: .default)
     private var MailsList: FetchedResults<MailCore>
 
+    @FetchRequest(
+        
+        sortDescriptors: [NSSortDescriptor(keyPath: \NoteCore.title, ascending: true)],
+        animation: .default)
+    private var NotesList: FetchedResults<NoteCore>
 
 
     init() {
@@ -92,33 +97,36 @@ struct FavouriteView: View {
                             }
                             
                         })
-       
+                    
+                    ForEach(NotesList){
+                        item in
+                        if item.isFavourite == true{
+                        NotesListRowView(item: item)
+                        }
+                    }
+                    .onDelete(perform: { indexSet in
+                        withAnimation {
+                            indexSet.map { NotesList[$0] }.forEach(viewContext.delete)
 
-//                    ForEach(savedItemsList.NotesList){
-//                                item in
-//                                NotesListRowView(item: item)
-//
-//
-//                            }
-//                            .onDelete(perform: { indexSet in
-//                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
-//                            })
-//
-//
-//
-//
+                            do {
+                                try viewContext.save()
+                      
+                            } catch {
+                             
+                                let nsError = error as NSError
+                                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                            }
+                        }
+                        
+                    })
+
                     
                 }
 
                 
-                
-                
-                
-                
-                
                 .navigationBarTitle("Favourite")
                         .navigationBarItems(trailing: EditButton())
-                        .shadow(color: Color.purple, radius: 20 )
+                .shadow(color: Color.purple.opacity(0.5) , radius: 15    , x: 10, y: 10)
                         .listStyle(InsetGroupedListStyle())
                         .background(backgrundColor())
                         .ignoresSafeArea()

@@ -236,12 +236,33 @@ struct AddNewItemView: View {
     
     func addNewNote(){
         
-        if getTitle != "" && getUsername != ""{
+        
+        if getTitle != "" && getPassword != ""{
        
+            
+            let newNote = NoteCore(context: viewContext)
+            newNote.title = getTitle
+            newNote.note = getUsername
+     
+            newNote.id = UUID()
+            
+            do {
+                try viewContext.save()
+                
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("error")
+            }
+            
         self.presentation.wrappedValue.dismiss()
         }else {
         }
-        }
+        
+    }
+    
     
     
 }

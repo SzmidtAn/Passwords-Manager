@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
-
+import UIKit
 
 struct ItemDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var password: PasswordCore = PasswordCore()
     var mail: MailCore = MailCore()
-    var note: Notes = Notes(title: "", note: "")
+    var note: NoteCore = NoteCore()
    @State var titleNav = ""
 
     @State var ifCategory: String
     @State var ifEditMode = false
+    @State private var isShareViewPresented: Bool = false
 
 
 
@@ -52,18 +53,36 @@ struct ItemDetailView: View {
         }
         .navigationBarTitle(titleNav, displayMode: .inline)
         .navigationBarItems(trailing:
-                                Button(action: {
-                             EditItemButton()
-                  } ){
-                 Text("Edit item")    } )
+                                
+                                HStack{
+                                    Button(action: {
+                                        isShareViewPresented.toggle()
+                      } ){
+                                      Image(systemName: "square.and.arrow.up")   }
+                                    
+                                    
+                                    Button(action: {
+                                 EditItemButton()
+                      } ){
+                     Text("Edit item")    }
+                                }
+                                )
+                             
         .onAppear{
             getNavTitle()
         }
-      
+        .sheet(isPresented: $isShareViewPresented, onDismiss: {
+                  print("Dismiss")
+              }, content: {
+                  ActivityViewController(itemsToShare: ["tex"])
+              })
+
         
         
         
         }
+    
+
     
     func getNavTitle(){
 
@@ -75,7 +94,7 @@ struct ItemDetailView: View {
             titleNav =   password.title!
 
         case "note":
-            titleNav =  note.title
+            titleNav =  note.title!
         default :
         Text("text")
         
@@ -124,7 +143,7 @@ struct showDetailsMail : View {
                      .stroke(Color.purple, lineWidth: 5)
              )
         .padding()
-        .shadow(color: Color.purple, radius: 15 )
+        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
         .onDisappear{
             saveEditedItem()
         }
@@ -197,7 +216,8 @@ struct showDetailsPassword : View {
                      .stroke(Color.purple, lineWidth: 5)
              )
         .padding()
-        .shadow(color: Color.purple, radius: 30 )
+        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
+        
         .onDisappear{
             saveEditedItem()
         }
@@ -242,6 +262,7 @@ struct DetailRow: View {
     var label: String
     var ifEditMode: Bool
   @Binding   var text: String
+
     var body: some View{
         
         HStack{
@@ -268,6 +289,7 @@ struct DetailRow: View {
 
         }
         .padding([.leading, .top, .trailing])
+   
      
         
     }
@@ -337,9 +359,15 @@ struct PasswordRow: View {
 
 struct showDetailsNotes : View {
 
-    @State var item: Notes
+     var item: NoteCore
     var ifEditMode: Bool
+    @Environment(\.managedObjectContext) private var viewContext
+    
 
+    @State var title = ""
+    @State var note = ""
+
+   
 
     
     var body: some View{
@@ -347,8 +375,8 @@ struct showDetailsNotes : View {
         VStack{
 
             
-            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $item.title)
-            DetailRow(label: "Note", ifEditMode: ifEditMode, text: $item.note)
+            DetailRow(label: "Title", ifEditMode: ifEditMode, text: $title)
+            DetailRow(label: "Note", ifEditMode: ifEditMode, text: $note)
             
 
      
@@ -360,18 +388,51 @@ struct showDetailsNotes : View {
                      .stroke(Color.purple, lineWidth: 5)
              )
         .padding()
-        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
         .onDisappear{
             saveEditedItem()
         }
-        
+        .onAppear{
+            title = item.title!
+            note = item.note!
+            
+        }
 
     }
     
     func saveEditedItem(){
-      
+        
+        item.title = title
+      item.note! = note
+        
+        do {
+            try viewContext.save()
+            
+            
+       
+        } catch {
+       
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            print("error")
+        }
+        
 
-   
         
     }
+}
+
+
+struct ActivityViewController: UIViewControllerRepresentable {
+
+    var itemsToShare: [Any]
+    var servicesToShareItem: [UIActivity]? = nil
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: itemsToShare, applicationActivities: servicesToShareItem)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
+
 }

@@ -261,23 +261,22 @@ struct PasswordListRowView: View{
 struct NotesListRowView: View{
     @State   var img = "mail"
     @State   var starImage = "star"
+    @State   var title = ""
 
-    var item: Notes
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @State var item: NoteCore
 
     func doFavourite() {
-//        let index = savedItemsList.NotesList.firstIndex { i -> Bool in
-//            i.id == self.item.id
-//        }
-//
-//        if index != nil {
-//
-//
-//            if            savedItemsList.NotesList[index!].isFovourite{
-//            starImage = "star.fill"
-//        }else{
-//            starImage = "star"
-//        }
-//        }
+        title = item.title!
+        if item.isFavourite{
+            starImage = "star.fill"
+
+        }else{
+            starImage = "star"
+
+        }
+        
     }
     func getImage() {
         let liveAlbums = item.title
@@ -291,7 +290,7 @@ struct NotesListRowView: View{
         default:
             img = "mail"
         }
-        
+        doFavourite()
     }
 
     var body: some View{
@@ -309,7 +308,7 @@ struct NotesListRowView: View{
                 .frame(width: 20.0, height: 20.0)
 
         
-            Text(item.title).multilineTextAlignment(.trailing)
+            Text(title).multilineTextAlignment(.trailing)
             
             Spacer()
             
@@ -317,21 +316,25 @@ struct NotesListRowView: View{
           Image(systemName: starImage)
             .foregroundColor(.yellow)
                 .onTapGesture {
-//                    
-//                    let index = savedItemsList.NotesList.firstIndex { i -> Bool in
-//                        i.id == self.item.id
-//                    }
-//                 
-//                    if starImage == "star"{
-//
-//                        savedItemsList.NotesList[index!].isFovourite = true
-//                        starImage = "star.fill"
-//                    }else {
-//                        starImage = "star"
-//                        savedItemsList.NotesList[index!].isFovourite = false
-//                    }
-//              
-//                    
+                    if starImage == "star"{
+
+                     item.isFavourite = true
+                        starImage = "star.fill"
+                    }else {
+                        starImage = "star"
+                      item.isFavourite = false
+                    }
+                    
+                    do {
+                        try viewContext.save()
+                        
+                    } catch {
+            
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                        print("error")
+                    }
+
                 }
 
         }

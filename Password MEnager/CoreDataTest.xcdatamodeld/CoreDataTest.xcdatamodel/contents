@@ -13,6 +13,12 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="NoteCore" representedClassName="NoteCore" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="PasswordCore" representedClassName="PasswordCore" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isFavourite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -23,7 +29,8 @@
     </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="74"/>
-        <element name="PasswordCore" positionX="-63" positionY="9" width="128" height="119"/>
         <element name="MailCore" positionX="-54" positionY="54" width="128" height="119"/>
+        <element name="PasswordCore" positionX="-63" positionY="9" width="128" height="119"/>
+        <element name="NoteCore" positionX="-54" positionY="63" width="128" height="89"/>
     </elements>
 </model>
