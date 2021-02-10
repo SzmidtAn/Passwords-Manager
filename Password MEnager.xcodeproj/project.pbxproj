@@ -27,6 +27,7 @@
 		1E8090F325B9EAB00001D99D /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F225B9EAB00001D99D /* AppView.swift */; };
 		1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */; };
 		1E829F1A25C942C400C4CB76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */; };
+		1E82D09625D428C400CE0992 /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E82D09525D428C400CE0992 /* PushNotifications.swift */; };
 		1EBF026A25CC2674005B200D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026925CC2674005B200D /* Persistence.swift */; };
 		1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */; };
 		1EBF027325CC61FA005B200D /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF027225CC61FA005B200D /* TestClass.swift */; };
@@ -55,6 +56,8 @@
 		1E8090F225B9EAB00001D99D /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
 		1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E82D09525D428C400CE0992 /* PushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
+		1E82D09825D42A9300CE0992 /* Password MEnager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Password MEnager.entitlements"; sourceTree = "<group>"; };
 		1EBF026925CC2674005B200D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
 		1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataTest 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		1E8090D325B9CC710001D99D /* Password MEnager */ = {
 			isa = PBXGroup;
 			children = (
+				1E82D09825D42A9300CE0992 /* Password MEnager.entitlements */,
 				1E8090D425B9CC710001D99D /* AppDelegate.swift */,
 				1E8090D625B9CC710001D99D /* SceneDelegate.swift */,
 				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
@@ -110,6 +114,7 @@
 				1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */,
 				1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */,
 				1E8090EC25B9CDF50001D99D /* Password.swift */,
+				1E82D09525D428C400CE0992 /* PushNotifications.swift */,
 				1E8090DD25B9CC760001D99D /* Assets.xcassets */,
 				1E8090E225B9CC760001D99D /* LaunchScreen.storyboard */,
 				1E8090E525B9CC760001D99D /* Info.plist */,
@@ -202,6 +207,7 @@
 				1E8090ED25B9CDF50001D99D /* Password.swift in Sources */,
 				1E8090D525B9CC710001D99D /* AppDelegate.swift in Sources */,
 				1E8090D725B9CC710001D99D /* SceneDelegate.swift in Sources */,
+				1E82D09625D428C400CE0992 /* PushNotifications.swift in Sources */,
 				1E3B071325BDAAB000D41179 /* MailDetailView.swift in Sources */,
 				1E8090F325B9EAB00001D99D /* AppView.swift in Sources */,
 				1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */,
@@ -355,6 +361,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Password MEnager/Password MEnager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Password MEnager/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -375,6 +382,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Password MEnager/Password MEnager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Password MEnager/Preview Content\"";
 				ENABLE_PREVIEWS = YES;

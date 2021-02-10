@@ -14,11 +14,13 @@ struct ItemDetailView: View {
     var password: PasswordCore = PasswordCore()
     var mail: MailCore = MailCore()
     var note: NoteCore = NoteCore()
+    @State var weeks = 8
    @State var titleNav = ""
 
     @State var ifCategory: String
     @State var ifEditMode = false
     @State private var isShareViewPresented: Bool = false
+    @State private var isScheduleViewPresented: Bool = false
 
 
 
@@ -30,6 +32,7 @@ struct ItemDetailView: View {
             ZStack{
             backgrundColor()
 
+                VStack{
                 switch(ifCategory){
                 case "mail":
                     showDetailsMail(item: mail, ifEditMode: ifEditMode)
@@ -45,7 +48,14 @@ struct ItemDetailView: View {
                 
                 }
                 
-            
+                    Button("Schedule passwords change") {
+                        self.isScheduleViewPresented.toggle()
+                    }
+                    
+                    if isScheduleViewPresented{
+                        showChangePasswordView(weeks: $weeks, isScheduleViewPresented: $isScheduleViewPresented, titleNav: titleNav)
+                    }
+                }
     
             }
             .ignoresSafeArea()
@@ -64,7 +74,7 @@ struct ItemDetailView: View {
                                     Button(action: {
                                  EditItemButton()
                       } ){
-                     Text("Edit item")    }
+                     Image(systemName: "square.and.pencil") }
                                 }
                                 )
                              
@@ -82,6 +92,7 @@ struct ItemDetailView: View {
         
         }
     
+
 
     
     func getNavTitle(){
@@ -435,4 +446,39 @@ struct ActivityViewController: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
 
+}
+
+
+struct showChangePasswordView: View {
+    
+    @Binding var weeks: Int
+    @Binding var isScheduleViewPresented: Bool
+    let titleNav: String
+    var body: some View{
+        VStack{
+            Stepper("Change password after \(weeks) weeks", value: $weeks, in: 1...104)
+         
+            Button("Done") {
+         showPushNotification()
+                self.isScheduleViewPresented.toggle()
+            }
+        }
+        .padding()
+    }
+    
+    func showPushNotification(){
+        let content = UNMutableNotificationContent()
+        content.title = "It's time to change password!"
+        content.subtitle = "\(titleNav) hasn't changeed the password for \(weeks) "
+        content.sound = UNNotificationSound.default
+        
+        let waitTime = weeks * 86400 * 7
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(waitTime), repeats: false)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+    }
 }

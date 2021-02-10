@@ -163,17 +163,19 @@ struct ReadFromPictureView: View {
           return
       }
         
+        var list = [String]()
 
       for result in results {
 
-        
+
         if let observation = result as? VNRecognizedTextObservation {
               for text in observation.topCandidates(1) {
                 let getTextString = text.string
-                var list = [String]()
                 list.append(getTextString)
                 
-                listex.append(contentsOf: list)
+              
+                
+            
                // listex = list
                 
                 if getTextString == "Username:" || getTextString == "Username" ||
@@ -194,6 +196,7 @@ struct ReadFromPictureView: View {
               }
           }
       }
+        listex.append(contentsOf: list)
 
         var res =  results[intUser + 1] as! VNRecognizedTextObservation
     
