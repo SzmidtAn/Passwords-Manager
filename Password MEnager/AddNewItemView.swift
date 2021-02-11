@@ -183,12 +183,12 @@ struct AddNewItemView: View {
        
             
             let newCreditCard = CreditCardCore(context: viewContext)
-        newCreditCard.bankTitle = "Bank"
-        newCreditCard.cardsTyp = "Master"
-        newCreditCard.cardsNumber = "0000 0000 2235 7786"
-        newCreditCard.cardsValid = "02/23"
-        newCreditCard.cardsOwner = "Aneta Ericsson"
-        newCreditCard.cardsColor = "grey"
+        newCreditCard.bankTitle = "Nordea"
+        newCreditCard.cardsTyp = "VISA"
+        newCreditCard.cardsNumber = "7847 0000 2235 7786"
+        newCreditCard.cardsValid = "02/28"
+        newCreditCard.cardsOwner = "Martin Ericsson"
+        newCreditCard.cardsColor = "green"
         
             newCreditCard.id = UUID()
             

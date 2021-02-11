@@ -9,27 +9,30 @@ import SwiftUI
 
 struct CardItemView: View {
     @State var getCardSida = 1
-    var currentCreditCard = 0
+    @State var currentCreditCard = 1
     @State var getCreditCard = CreditCardCore()
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \CreditCardCore.bankTitle, ascending: true)],
         animation: .default)
-    private var creditsCardsList: FetchedResults<CreditCardCore>
+     var creditsCardsList: FetchedResults<CreditCardCore>
 
+  
+    
+    
    
     var body: some View {
         
         VStack{
         
             ZStack{
-                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[1])
-                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[1])
+                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[5], currentCreditCard: $currentCreditCard)
+                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[6], currentCreditCard: $currentCreditCard)
                 .offset(x: -10, y: 40)
-                CardFrontView( cardSida: $getCardSida,  getCreditCard: creditsCardsList[1])
+                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[3], currentCreditCard: $currentCreditCard)
                 .offset(x: -20, y: 80)
-                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[1])
+                CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[4], currentCreditCard: $currentCreditCard)
                 .offset(x: -30, y: 120)
 
             }
@@ -39,14 +42,19 @@ struct CardItemView: View {
             
         switch getCardSida {
         case 1:
-            CardFrontView( cardSida: $getCardSida, getCreditCard: getCreditCard)
+            CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[self.currentCreditCard], currentCreditCard: $currentCreditCard)
 
 
         case 2:
-            CardBackView(cardSida: $getCardSida)
+            CardBackView(cardSida: $getCardSida, getCreditCard: creditsCardsList[currentCreditCard], currentCreditCard: $currentCreditCard)
+            
+        case 3:
+            CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[self.currentCreditCard], currentCreditCard: $currentCreditCard)
+
+
 
         default:
-            CardFrontView( cardSida: $getCardSida,  getCreditCard: getCreditCard)
+            CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[1], currentCreditCard: $currentCreditCard)
 
         }
             
@@ -55,9 +63,11 @@ struct CardItemView: View {
         }
         
         .background( Color.white.opacity(0))
+    
         
     
     }
+    
 }
 
 struct CardItemView_Previews: PreviewProvider {
@@ -65,17 +75,18 @@ struct CardItemView_Previews: PreviewProvider {
         CardItemView()
     }
 }
-struct CardFrontView: View {
-    @State var bankTitle = "Nordea"
-    @State var cardsTyp = "VISA"
-    @State var cardsNumber = "4323 4323 2235 7786"
-    @State var cardsValid = "02/23"
-    @State var cardsOwner = "Andreas Ericsson"
-    @Binding var cardSida: Int
-    var cardsColor: Color = Color.red
-    var getCreditCard: CreditCardCore
-    //   @Binding var currentCreditCard: Int
 
+struct CardFrontView: View {
+
+    @Binding var cardSida: Int
+   @State var cardsColor: Color = Color.red
+    var getCreditCard: CreditCardCore
+    @Binding var currentCreditCard: Int
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \CreditCardCore.bankTitle, ascending: true)],
+        animation: .default)
+     var creditsCardsList: FetchedResults<CreditCardCore>
 
     
     var body: some View{
@@ -86,9 +97,9 @@ struct CardFrontView: View {
             VStack{
             
                 HStack{
-            Text(bankTitle)
+                    Text(getCreditCard.bankTitle!)
             Spacer()
-                    Text(cardsTyp)
+                    Text(getCreditCard.cardsTyp!)
                         .font(.title)
                         .fontWeight(.heavy)
                 }
@@ -102,7 +113,7 @@ struct CardFrontView: View {
                 }
                 .padding(.leading)
                 
-                Text(cardsNumber)
+                Text(getCreditCard.cardsNumber!)
                     .font(.title)
                 
                 
@@ -111,7 +122,7 @@ struct CardFrontView: View {
                         .font(.system(size:7))
                         
 
-                Text(cardsValid)
+                    Text(getCreditCard.cardsValid!)
                 }
                 .padding(1.0)
                 
@@ -119,7 +130,7 @@ struct CardFrontView: View {
                 
                 
                 HStack{
-            Text(cardsOwner)
+                    Text(getCreditCard.cardsOwner!)
                 Spacer()
                 }
                 .padding([ .leading, .bottom])
@@ -127,27 +138,76 @@ struct CardFrontView: View {
                 
             }
             .frame(width: 350, height: 220, alignment: .center)
-            .background(LinearGradient(gradient: Gradient(colors: [cardsColor.opacity(0.6), cardsColor]), startPoint: .top, endPoint: .leading))
+            .background(LinearGradient(gradient: Gradient(colors: [cardsColor, cardsColor]), startPoint: .top, endPoint: .leading))
             .foregroundColor(Color.white)
             .cornerRadius(15.0)
             .shadow(color: cardsColor.opacity(0.9) , radius: 20    , x: 10, y: 10)
             .onTapGesture {
-                self.cardSida = 2
+
+             currentCreditCard =    creditsCardsList.firstIndex(where: { i in i.id == getCreditCard.id })!
+                changeCard()
+                
+                if cardSida == 1{
+                cardSida = 3
+                }else{
+                    cardSida = 1
+                }
+                
+                
             }
+            .gesture(
+                               DragGesture(minimumDistance: 20)
+                                   .onEnded { _ in
+                                    self.cardSida = 2
+                                   }
+                           )
             .padding(.bottom)
+            .onAppear{
+               changeCard()
+            }
             
 
             
      
         }
+       
         
+    }
+    
+    func changeCard()  {
+        switch getCreditCard.cardsColor {
+        case "red":
+            self.cardsColor = Color.red
+        case "blue":
+            self.cardsColor = Color.blue
+        case "yellow":
+            self.cardsColor = Color.yellow
+        case "green":
+            self.cardsColor = Color.green
+        case "gray":
+            self.cardsColor = Color.gray
+
+        default:
+            self.cardsColor = Color.red
+
+        }
     }
 }
 
 struct CardBackView: View {
-    @Binding var cardSida: Int
-    var ccv: String = "336"
 
+    @Binding var cardSida: Int
+   @State var cardsColor: Color = Color.red
+    var getCreditCard: CreditCardCore
+    @Binding var currentCreditCard: Int
+    
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \CreditCardCore.bankTitle, ascending: true)],
+        animation: .default)
+     var creditsCardsList: FetchedResults<CreditCardCore>
+
+    
     var body: some View{
         ZStack{
 
@@ -166,7 +226,7 @@ struct CardBackView: View {
                     .background(Color.black)
                     .frame( width: 200,  height: 45)
 
-                    Text(ccv)
+                    Text("336")
                         .padding(5.0)
 
                         .background(Color.white)
@@ -182,16 +242,45 @@ struct CardBackView: View {
                 
             }
             .frame(width: 350, height: 220, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.red.opacity(0.6), .red]), startPoint: .top, endPoint: .leading))
+            .background(LinearGradient(gradient: Gradient(colors: [cardsColor, cardsColor]), startPoint: .top, endPoint: .leading))
             .foregroundColor(Color.white)
             .cornerRadius(15.0)
-            .shadow(color: Color.red.opacity(0.9) , radius: 20    , x: 10, y: 10)
+            .shadow(color: cardsColor.opacity(0.9) , radius: 20    , x: 10, y: 10)
             .onTapGesture {
                 self.cardSida = 1
+                changeCard()
             }
+            .onAppear{
+                changeCard()
+            }
+            .gesture(
+                               DragGesture(minimumDistance: 20)
+                                   .onEnded { _ in
+                                    self.cardSida = 1
+                                   }
+                           )
 
             
      
+        }
+    }
+    
+    func changeCard()  {
+        switch getCreditCard.cardsColor {
+        case "red":
+            self.cardsColor = Color.red
+        case "blue":
+            self.cardsColor = Color.blue
+        case "yellow":
+            self.cardsColor = Color.yellow
+        case "green":
+            self.cardsColor = Color.green
+        case "gray":
+            self.cardsColor = Color.gray
+
+        default:
+            self.cardsColor = Color.red
+
         }
     }
 }
