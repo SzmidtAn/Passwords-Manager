@@ -12,7 +12,7 @@ struct CardItemView: View {
 
     var body: some View {
         
-        switch getCardsSida {
+        switch getCardSida {
         case 1:
             CardFrontView()
                 
