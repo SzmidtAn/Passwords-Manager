@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Password MEnager
+
+  Created by Aneta Szmidt on 2021-02-11.
+  
+*/
+
+"Accounts name %@" = "Hej %@!";

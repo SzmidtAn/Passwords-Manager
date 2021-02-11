@@ -28,6 +28,8 @@
 		1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */; };
 		1E829F1A25C942C400C4CB76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */; };
 		1E82D09625D428C400CE0992 /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E82D09525D428C400CE0992 /* PushNotifications.swift */; };
+		1EB78DAB25D51FB000F812E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1EB78DAA25D51FB000F812E5 /* Localizable.strings */; };
+		1EB78DB325D544A200F812E5 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB78DB225D544A200F812E5 /* CardItemView.swift */; };
 		1EBF026A25CC2674005B200D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026925CC2674005B200D /* Persistence.swift */; };
 		1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */; };
 		1EBF027325CC61FA005B200D /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF027225CC61FA005B200D /* TestClass.swift */; };
@@ -58,6 +60,8 @@
 		1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1E82D09525D428C400CE0992 /* PushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
 		1E82D09825D42A9300CE0992 /* Password MEnager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Password MEnager.entitlements"; sourceTree = "<group>"; };
+		1EB78DAA25D51FB000F812E5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		1EB78DB225D544A200F812E5 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		1EBF026925CC2674005B200D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
 		1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataTest 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				1E8090F225B9EAB00001D99D /* AppView.swift */,
 				1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */,
 				1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */,
+				1EB78DAA25D51FB000F812E5 /* Localizable.strings */,
 				1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */,
 				1EBF027225CC61FA005B200D /* TestClass.swift */,
 				1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */,
@@ -120,6 +125,7 @@
 				1E8090E525B9CC760001D99D /* Info.plist */,
 				1E8090DA25B9CC710001D99D /* Password_MEnager.xcdatamodeld */,
 				1E8090DF25B9CC760001D99D /* Preview Content */,
+				1EB78DB225D544A200F812E5 /* CardItemView.swift */,
 			);
 			path = "Password MEnager";
 			sourceTree = "<group>";
@@ -189,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB78DAB25D51FB000F812E5 /* Localizable.strings in Resources */,
 				1E8090E425B9CC760001D99D /* LaunchScreen.storyboard in Resources */,
 				1E829F1A25C942C400C4CB76 /* GoogleService-Info.plist in Resources */,
 				1E8090E125B9CC760001D99D /* Preview Assets.xcassets in Resources */,
@@ -211,6 +218,7 @@
 				1E3B071325BDAAB000D41179 /* MailDetailView.swift in Sources */,
 				1E8090F325B9EAB00001D99D /* AppView.swift in Sources */,
 				1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */,
+				1EB78DB325D544A200F812E5 /* CardItemView.swift in Sources */,
 				1EBF027325CC61FA005B200D /* TestClass.swift in Sources */,
 				1E6BA9D325BC3CD40007A1CD /* PasswordGenerator.swift in Sources */,
 				1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */,
