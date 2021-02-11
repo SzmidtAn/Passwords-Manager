@@ -39,6 +39,19 @@ struct Notes: Identifiable {
     
 }
 
+struct CreditCard: Identifiable {
+    var id = UUID()
+    
+  var bankTitle :String
+    var cardsTyp:String
+  var cardsNumber :String
+    var cardsValid :String
+    var cardsOwner:String
+    var cardsColor: String
+    
+}
+
+
 
 import CoreData
 
@@ -94,5 +107,28 @@ extension NoteMO {
 {
         Notes(id: uuid ?? UUID() ,title: title, note: note  )
         
+    }
+}
+
+
+@objc(CardCor)
+final class CreditCardMO: NSManagedObject {
+    @NSManaged var uuid: UUID?
+
+    
+    @NSManaged  var bankTitle :String
+    @NSManaged   var cardsTyp:String
+    @NSManaged  var cardsNumber :String
+    @NSManaged    var cardsValid :String
+    @NSManaged    var cardsOwner:String
+    @NSManaged   var cardsColor: String
+      
+}
+
+
+extension CreditCardMO {
+    func convertToTodo() -> CreditCard
+{
+CreditCard(id: uuid ?? UUID(), bankTitle: bankTitle, cardsTyp: cardsTyp, cardsNumber: cardsNumber, cardsValid: cardsValid, cardsOwner: cardsOwner, cardsColor: cardsColor)
     }
 }

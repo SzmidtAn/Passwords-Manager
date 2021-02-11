@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view anrd set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let contentView = CardItemView()
+        let contentView = AppView(name: "guest")
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
 
 

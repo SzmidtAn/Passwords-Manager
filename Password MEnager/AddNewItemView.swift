@@ -25,7 +25,7 @@ struct AddNewItemView: View {
     @State private var getUsername = ""
 
     @State private var showSheet = false
-    var categoriesList = ["Password", "Mail", "Note"]
+    var categoriesList = ["Password", "Mail", "Note", "Credit Card"]
 
        @State private var selectedStrength = 0
     
@@ -104,6 +104,13 @@ struct AddNewItemView: View {
                     Label {TextEditor( text: $getUsername)
                     } icon: {Image(systemName: "note.text")}
 
+                case 3:
+                    
+                    
+                    Button("Add new credit cart", action: {
+                        addNewCreditCard()
+                    }).buttonStyle(DefaultButtonStyle())
+                    
 
                     
                     
@@ -170,6 +177,37 @@ struct AddNewItemView: View {
 
     }
     
+    func addNewCreditCard(){
+        
+        
+       
+            
+            let newCreditCard = CreditCardCore(context: viewContext)
+        newCreditCard.bankTitle = "Bank"
+        newCreditCard.cardsTyp = "Master"
+        newCreditCard.cardsNumber = "0000 0000 2235 7786"
+        newCreditCard.cardsValid = "02/23"
+        newCreditCard.cardsOwner = "Aneta Ericsson"
+        newCreditCard.cardsColor = "grey"
+        
+            newCreditCard.id = UUID()
+            
+            do {
+                try viewContext.save()
+                
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("error")
+            }
+            
+        self.presentation.wrappedValue.dismiss()
+       
+        
+        }
+
 
     func addNewMail(){
         

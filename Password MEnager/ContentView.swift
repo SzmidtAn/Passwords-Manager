@@ -211,35 +211,13 @@ struct ListsView: View {
                             
                         })
        }
-//
-//                    Section(header: Text("Notes")
-//                                .fontWeight(.light)
-//                                .foregroundColor(Color.black)
-//                                .bold()
-//                                .shadow(radius: 30 )){                            ForEach(savedItemsList.NotesList){
-//                                item in
-//                                NotesListRowView(item: item)
-//
-//
-//                            }
-//                            .onDelete(perform: { indexSet in
-//                                savedItemsList.PasswordsList.remove(atOffsets: indexSet)
-//                            })
-//
-//
-//
-//    }
+
                     
                 }
-
-                
-                
-
                 .listStyle(InsetGroupedListStyle())
-        
                 .shadow(color: Color.purple.opacity(0.5) , radius: 10	, x: 10, y: 10)
 
-        
+     
         
     }
 

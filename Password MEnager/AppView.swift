@@ -25,8 +25,11 @@ struct AppView: View {
                   Text("List")
             }.tag(0)
             
-   
-            
+        CardItemView()
+            .tabItem {
+                  Image(systemName: "creditcard.fill")
+                  Text("Wallet")
+            }.tag(1)
             
            FavouriteView()
                 .tabItem {
@@ -34,14 +37,14 @@ struct AppView: View {
                 Text("Favorite")
                 
                 
-            }.tag(1)
+            }.tag(2)
         
             Text("Settings").tabItem {
                 Image(systemName: "gearshape.2.fill")
                 Text("Settings")
                 
                 
-            }.tag(2)
+            }.tag(3)
         
 
         
