@@ -11,10 +11,10 @@ import SwiftUI
 struct LoginView: View {
     
 
-    @State private var username = ""
-    @State private var password = ""
+    @State private var username = UserDefaults.standard.string(forKey: "usersUsername") ?? ""
+    @State private var password = UserDefaults.standard.string(forKey: "usersPassword") ?? ""
     @State private var unlock = false
-    @State var isUser = false
+    @State var isUser = UserDefaults.standard.bool(forKey: "ifUser")
 
     
     init() {
@@ -49,7 +49,7 @@ struct LoginView: View {
 
                       
                     NavigationLink(
-                        destination: LoginPinView( pinKod: $password, username: self.$username, isUser: $isUser, isUnlocked: $unlock)
+                        destination: LoginPinView( pinKod: $password, username: $username, isUser: $isUser, isUnlocked: $unlock)
                     ){
                         
                     

@@ -23,7 +23,15 @@ struct AddNewItemView: View {
     @State  var getPassword: String = ""
     @State private var getUrl = ""
     @State private var getUsername = ""
+    @State private var bankTitle = "Bank"
+    @State private var cardsTyp = "VISA"
+    @State private var cardsNumber = "0000 0000 0000 0000"
+    @State private var cardsValid = "MM/YY"
+    @State private var cardsOwner = "NAME NAME"
 
+
+    
+    @State private var cardsColor = Color.red
     @State private var showSheet = false
     var categoriesList = ["Password", "Mail", "Note", "Credit Card"]
 
@@ -33,7 +41,7 @@ struct AddNewItemView: View {
     var body: some View {
 
    
-
+        VStack{
         Form{
             
                 
@@ -42,13 +50,15 @@ struct AddNewItemView: View {
 
             Section {
                             Picker(selection: $selectedStrength, label: Text("Category")) {
-                                ForEach(0 ..< categoriesList.count) {
-                                    Text(self.categoriesList[$0])
+                                ForEach(0 ..< categoriesList.count) { i in
+                                    Text(self.categoriesList[i])
+                             
     }
                             }
                             .pickerStyle(SegmentedPickerStyle())
                      }
-
+            
+       
 //
             Section{
 
@@ -104,30 +114,14 @@ struct AddNewItemView: View {
                     Label {TextEditor( text: $getUsername)
                     } icon: {Image(systemName: "note.text")}
 
-                case 3:
-                    
-                    
-                    Button("Add new credit cart", action: {
-                        addNewCreditCard()
-                    }).buttonStyle(DefaultButtonStyle())
-                    
-
-                    
-                    
+           
+                            
                 default:
-                    Text("Choose category")
+                    Text("Tap on the card and fill in")
                 }
-//
-//
-//
-//
 
-//
-//
-//
         }
-//
-//
+
             Section{
                 NavigationLink(
                     destination: ReadFromPictureView(username: $getUsername, password: $getPassword)    ){
@@ -174,6 +168,56 @@ struct AddNewItemView: View {
         .shadow(color: Color.purple, radius: 20 )
         .background(backgrundColor())
         .ignoresSafeArea()
+
+            if selectedStrength == 3 {
+                VStack{
+                            HStack{
+                                TextField(bankTitle, text: $bankTitle)
+                Spacer()
+                                TextField(cardsTyp, text: $cardsTyp)
+                            .font(.title)
+                                    
+                    }
+                    .padding()
+                    HStack{
+                    Image("chip")
+                        .resizable()
+                        .frame(width: 60, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                   Spacer()
+                    }
+                    .padding(.leading)
+                    
+                    TextField(cardsNumber, text: $cardsNumber)
+                        .font(.title)
+                    HStack{
+                        Spacer()
+                        Text("VALID\nTHRU")
+                            .font(.system(size:7))
+                        TextField(cardsValid, text: $cardsValid)
+                        Spacer()
+
+                    }
+                    .padding(1.0)
+                    HStack{
+                        TextField(cardsOwner, text: $cardsOwner)
+                    Spacer()
+                    }
+                    .padding([ .leading, .bottom])
+                    
+                    Spacer()
+
+                }
+                .frame(width: 350, height: 220, alignment: .center)
+                .background(LinearGradient(gradient: Gradient(colors: [cardsColor, cardsColor]), startPoint: .top, endPoint: .leading))
+                .foregroundColor(Color.white)
+                .cornerRadius(15.0)
+                .shadow(color: cardsColor.opacity(0.8) , radius: 10   , x: 10, y:10 )
+            
+
+            }
+
+        }
+        Spacer()
 
     }
     
@@ -275,7 +319,7 @@ struct AddNewItemView: View {
     func addNewNote(){
         
         
-        if getTitle != "" && getPassword != ""{
+        if getTitle != "" && getUsername != ""{
        
             
             let newNote = NoteCore(context: viewContext)

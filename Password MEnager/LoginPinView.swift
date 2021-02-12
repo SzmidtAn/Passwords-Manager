@@ -64,7 +64,7 @@ struct LoginPinView: View {
                         Spacer()
                     }
                     }else{
-                        Text("Accounts name \(username)")
+                        Text("Hello \(username)")
                         
                     }
                    
@@ -142,7 +142,7 @@ struct LoginPinView: View {
 
             .ignoresSafeArea()
             .alert(isPresented: $showingAlert) {
-                Alert(title: Text("Accounts name \(username)"), message: Text("Your pin kod is: \(pinKod)"), dismissButton: .default(Text("Got it!")){
+                Alert(title: Text("Hello \(username)"), message: Text("Your pin kod is: \(pinKod)"), dismissButton: .default(Text("Got it!")){
                     self.presentationMode.wrappedValue.dismiss()
 
                 })
@@ -189,7 +189,12 @@ struct LoginPinView: View {
     
     func saveNewPin() {
         pinKod = num
+        UserDefaults.standard.set(pinKod,  forKey: "usersPassword")
+        UserDefaults.standard.set(username,  forKey: "usersUsername")
+
+
         isUser = true
+        UserDefaults.standard.set(isUser,  forKey: "ifUser")
         showingAlert = true
       
 

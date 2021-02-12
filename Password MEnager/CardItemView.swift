@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardItemView: View {
     @State var getCardSida = 1
-    @State var currentCreditCard = 1
+    @State var currentCreditCard = 0
     @State var getCreditCard = CreditCardCore()
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -21,6 +21,7 @@ struct CardItemView: View {
     var body: some View {
         
         VStack{
+            
             ZStack{
                 ForEach(0..<creditsCardsList.count){card in
                     if card != currentCreditCard{

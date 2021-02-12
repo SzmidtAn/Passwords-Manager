@@ -124,8 +124,8 @@
 				1E8090E225B9CC760001D99D /* LaunchScreen.storyboard */,
 				1E8090E525B9CC760001D99D /* Info.plist */,
 				1E8090DA25B9CC710001D99D /* Password_MEnager.xcdatamodeld */,
-				1E8090DF25B9CC760001D99D /* Preview Content */,
 				1EB78DB225D544A200F812E5 /* CardItemView.swift */,
+				1E8090DF25B9CC760001D99D /* Preview Content */,
 			);
 			path = "Password MEnager";
 			sourceTree = "<group>";
