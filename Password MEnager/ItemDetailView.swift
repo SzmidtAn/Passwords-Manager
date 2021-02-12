@@ -16,6 +16,7 @@ struct ItemDetailView: View {
     var note: NoteCore = NoteCore()
     @State var weeks = 8
    @State var titleNav = ""
+    @State var item: String = ""
 
     @State var ifCategory: String
     @State var ifEditMode = false
@@ -84,7 +85,7 @@ struct ItemDetailView: View {
         .sheet(isPresented: $isShareViewPresented, onDismiss: {
                   print("Dismiss")
               }, content: {
-                  ActivityViewController(itemsToShare: ["tex"])
+                  ActivityViewController(itemsToShare: [item])
               })
 
         
@@ -100,12 +101,16 @@ struct ItemDetailView: View {
         switch(ifCategory){
         case "mail":
            titleNav =   mail.title!
+            item = "\(mail.title!) Username: \(mail.adres!) Password: \(mail.password!)"
 
         case "password":
             titleNav =   password.title!
+            item = "\(password.title!) \(String(describing: password.url)) Username: \(password.username!) Password: \(password.password!)"
 
         case "note":
             titleNav =  note.title!
+            item = "\(note.title!) Note: \(note.note!)"
+
         default :
         Text("text")
         

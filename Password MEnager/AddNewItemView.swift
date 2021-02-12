@@ -132,7 +132,7 @@ struct AddNewItemView: View {
                 NavigationLink(
                     destination: ReadFromPictureView(username: $getUsername, password: $getPassword)    ){
 
-                    Button("Skan login details from picture", action: {
+                    Button("Skan login details from image", action: {
                         self.showSheet.toggle()
                     }).buttonStyle(DefaultButtonStyle())
 
@@ -184,11 +184,11 @@ struct AddNewItemView: View {
             
             let newCreditCard = CreditCardCore(context: viewContext)
         newCreditCard.bankTitle = "Nordea"
-        newCreditCard.cardsTyp = "VISA"
-        newCreditCard.cardsNumber = "7847 0000 2235 7786"
-        newCreditCard.cardsValid = "02/28"
-        newCreditCard.cardsOwner = "Martin Ericsson"
-        newCreditCard.cardsColor = "green"
+        newCreditCard.cardsTyp = "Master Card"
+        newCreditCard.cardsNumber = "6446 2367 9754 3356"
+        newCreditCard.cardsValid = "02/24"
+        newCreditCard.cardsOwner = "Erik Ericsson"
+        newCreditCard.cardsColor = "red"
         
             newCreditCard.id = UUID()
             

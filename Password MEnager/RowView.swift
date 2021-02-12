@@ -259,7 +259,6 @@ struct PasswordListRowView: View{
 
 
 struct NotesListRowView: View{
-    @State   var img = "mail"
     @State   var starImage = "star"
     @State   var title = ""
 
@@ -278,20 +277,7 @@ struct NotesListRowView: View{
         }
         
     }
-    func getImage() {
-        let liveAlbums = item.title
 
-        switch liveAlbums {
-      
-        case "Gmail":
-            img = "gmail"
-        case "Hotmail":
-            img = "outlook"
-        default:
-            img = "mail"
-        }
-        doFavourite()
-    }
 
     var body: some View{
         
@@ -303,7 +289,7 @@ struct NotesListRowView: View{
         
         HStack{
          
-            Image(img)
+            Image(systemName: "note")
                 .resizable()
                 .frame(width: 20.0, height: 20.0)
 
@@ -344,7 +330,6 @@ struct NotesListRowView: View{
    
         .onAppear(){
 
-       getImage()
             doFavourite()
   
         }

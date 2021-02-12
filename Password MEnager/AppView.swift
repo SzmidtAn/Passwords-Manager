@@ -22,7 +22,7 @@ struct AppView: View {
             
             .tabItem {
                   Image(systemName: "list.dash")
-                  Text("List")
+                  Text("Accounts")
             }.tag(0)
             
         CardItemView()
