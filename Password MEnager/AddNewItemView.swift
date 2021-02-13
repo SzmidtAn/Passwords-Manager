@@ -132,7 +132,7 @@ struct AddNewItemView: View {
                 }
                 }else{
                 NavigationLink(
-                    destination: SkanCreditCardView()    ){
+                    destination: SkanCreditCardView(bankTitle: $bankTitle, cardsTyp: $cardsTyp, cardsNumber: $cardsNumber, cardsValid: $cardsValid, cardsOwner: $cardsOwner, cardsColor: $cardsColor)    ){
                     Button("Skan cards details", action: {
                         self.showSheetCardsDetails.toggle()
                     }).buttonStyle(DefaultButtonStyle())

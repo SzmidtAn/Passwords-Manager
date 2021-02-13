@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */; };
 		1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */; };
 		1E2CA35225D7EB6600362AC8 /* SkanCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */; };
+		1E2CA36425D801E600362AC8 /* SweetCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2CA36325D801E600362AC8 /* SweetCardScanner */; };
 		1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */; };
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
@@ -75,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2CA36425D801E600362AC8 /* SweetCardScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +160,7 @@
 			);
 			name = "Password MEnager";
 			packageProductDependencies = (
+				1E2CA36325D801E600362AC8 /* SweetCardScanner */,
 			);
 			productName = "Password MEnager";
 			productReference = 1E8090D125B9CC710001D99D /* Password MEnager.app */;
@@ -187,6 +190,7 @@
 			);
 			mainGroup = 1E8090C825B9CC710001D99D;
 			packageReferences = (
+				1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */,
 			);
 			productRefGroup = 1E8090D225B9CC710001D99D /* Products */;
 			projectDirPath = "";
@@ -436,6 +440,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aaronLab/SweetCardScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1E2CA36325D801E600362AC8 /* SweetCardScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */;
+			productName = SweetCardScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1E8090DA25B9CC710001D99D /* Password_MEnager.xcdatamodeld */ = {
