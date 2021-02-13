@@ -28,11 +28,11 @@ struct AddNewItemView: View {
     @State private var cardsNumber = "0000 0000 0000 0000"
     @State private var cardsValid = "MM/YY"
     @State private var cardsOwner = "NAME NAME"
-
-
-    
-    @State private var cardsColor = Color.red
+    @State var getChoosenColor = Color.red
+    @State private var cardsColor = "red"
     @State private var showSheet = false
+    @State private var showSheetCardsDetails = false
+
     var categoriesList = ["Password", "Mail", "Note", "Credit Card"]
 
        @State private var selectedStrength = 0
@@ -123,22 +123,33 @@ struct AddNewItemView: View {
         }
 
             Section{
+                if selectedStrength != 3 {
                 NavigationLink(
                     destination: ReadFromPictureView(username: $getUsername, password: $getPassword)    ){
-
                     Button("Skan login details from image", action: {
                         self.showSheet.toggle()
                     }).buttonStyle(DefaultButtonStyle())
-
-
+                }
+                }else{
+                NavigationLink(
+                    destination: SkanCreditCardView()    ){
+                    Button("Skan cards details", action: {
+                        self.showSheetCardsDetails.toggle()
+                    }).buttonStyle(DefaultButtonStyle())
+                    }
+                    
                 }
 
+                
             }
 
 
             Section{
                 if self.showSheet{
                     PasswordGenerator(pass: self.$getPassword)
+                }
+                if self.showSheetCardsDetails{
+                    
                 }
             }
             
@@ -158,6 +169,8 @@ struct AddNewItemView: View {
                                         self.addNewMail()
                                     case 2:
                                         self.addNewNote()
+                                    case 3:
+                                        self.addNewCreditCard()
                                     default:
                        break
                        }
@@ -170,6 +183,8 @@ struct AddNewItemView: View {
         .ignoresSafeArea()
 
             if selectedStrength == 3 {
+                chooseColorForCardView(getChoosenColor: $getChoosenColor)
+                
                 VStack{
                             HStack{
                                 TextField(bankTitle, text: $bankTitle)
@@ -189,6 +204,7 @@ struct AddNewItemView: View {
                     
                     TextField(cardsNumber, text: $cardsNumber)
                         .font(.title)
+                        .padding(.horizontal)
                     HStack{
                         Spacer()
                         Text("VALID\nTHRU")
@@ -208,31 +224,54 @@ struct AddNewItemView: View {
 
                 }
                 .frame(width: 350, height: 220, alignment: .center)
-                .background(LinearGradient(gradient: Gradient(colors: [cardsColor, cardsColor]), startPoint: .top, endPoint: .leading))
+                .background(LinearGradient(gradient: Gradient(colors: [getChoosenColor, getChoosenColor]), startPoint: .top, endPoint: .leading))
                 .foregroundColor(Color.white)
                 .cornerRadius(15.0)
-                .shadow(color: cardsColor.opacity(0.8) , radius: 10   , x: 10, y:10 )
+                .shadow(color: getChoosenColor.opacity(0.8) , radius: 10   , x: 10, y:10 )
             
 
             }
 
         }
+        .offset(y: -100)
         Spacer()
 
     }
     
+    func getColorFromUser() {
+        
+        switch getChoosenColor {
+        case Color.red:
+            self.cardsColor = "red"
+        case Color.orange:
+            self.cardsColor = "orange"
+        case Color.blue:
+            self.cardsColor = "blue"
+        case Color.green:
+            self.cardsColor = "green"
+        case Color.gray:
+            self.cardsColor = "gray"
+        default:
+            self.cardsColor = "red"
+        }
+        
+        
+        
+    }
+    
+    
     func addNewCreditCard(){
         
-        
+        getColorFromUser()
        
             
             let newCreditCard = CreditCardCore(context: viewContext)
-        newCreditCard.bankTitle = "Nordea"
-        newCreditCard.cardsTyp = "Master Card"
-        newCreditCard.cardsNumber = "6446 2367 9754 3356"
-        newCreditCard.cardsValid = "02/24"
-        newCreditCard.cardsOwner = "Erik Ericsson"
-        newCreditCard.cardsColor = "red"
+        newCreditCard.bankTitle = bankTitle
+        newCreditCard.cardsTyp = cardsTyp
+        newCreditCard.cardsNumber = cardsNumber
+        newCreditCard.cardsValid = cardsValid
+        newCreditCard.cardsOwner = cardsOwner
+        newCreditCard.cardsColor = cardsColor
         
             newCreditCard.id = UUID()
             
@@ -355,3 +394,49 @@ struct AddNewItemView_Previews: PreviewProvider {
     }
 }
 
+struct chooseColorForCardView: View {
+    @Binding  var getChoosenColor: Color
+    
+    var body: some View{
+        
+        HStack{
+            Rectangle()
+                .frame(width: 20, height: 20, alignment: .center)
+                .foregroundColor(Color.red)
+                .onTapGesture {
+                    getChoosenColor = Color.red
+                }
+            
+            Rectangle()
+                .frame(width: 20, height: 20, alignment: .center)
+                .foregroundColor(Color.orange)
+                .onTapGesture {
+                    getChoosenColor = Color.orange
+                }
+       
+            Rectangle()
+                .frame(width: 20, height: 20, alignment: .center)
+                .foregroundColor(Color.green)
+                .onTapGesture {
+                    getChoosenColor = Color.green
+                }
+            
+            Rectangle()
+                .frame(width: 20, height: 20, alignment: .center)
+                .foregroundColor(Color.blue)
+                .onTapGesture {
+                    getChoosenColor = Color.blue
+                }
+        
+            Rectangle()
+                .frame(width: 20, height: 20, alignment: .center)
+                .foregroundColor(Color.gray)
+                .onTapGesture {
+                    getChoosenColor = Color.gray
+                }
+        
+        }
+        
+        
+    }
+}

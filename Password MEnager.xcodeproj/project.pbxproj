@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */; };
 		1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */; };
+		1E2CA35225D7EB6600362AC8 /* SkanCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */; };
 		1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */; };
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFromPictureView.swift; sourceTree = "<group>"; };
 		1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawOnImageView.swift; sourceTree = "<group>"; };
+		1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkanCreditCardView.swift; sourceTree = "<group>"; };
 		1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		1E3B070F25BDAA5B00D41179 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1E82D09825D42A9300CE0992 /* Password MEnager.entitlements */,
+				1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */,
 				1E8090D425B9CC710001D99D /* AppDelegate.swift */,
 				1E8090D625B9CC710001D99D /* SceneDelegate.swift */,
 				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
@@ -154,6 +157,8 @@
 			dependencies = (
 			);
 			name = "Password MEnager";
+			packageProductDependencies = (
+			);
 			productName = "Password MEnager";
 			productReference = 1E8090D125B9CC710001D99D /* Password MEnager.app */;
 			productType = "com.apple.product-type.application";
@@ -181,6 +186,8 @@
 				Base,
 			);
 			mainGroup = 1E8090C825B9CC710001D99D;
+			packageReferences = (
+			);
 			productRefGroup = 1E8090D225B9CC710001D99D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -230,6 +237,7 @@
 				1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */,
 				1E6ADC3325C064C1000130C8 /* LoginPinView.swift in Sources */,
 				1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */,
+				1E2CA35225D7EB6600362AC8 /* SkanCreditCardView.swift in Sources */,
 				1E8090D925B9CC710001D99D /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

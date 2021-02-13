@@ -149,8 +149,8 @@ struct CardFrontView: View {
             self.cardsColor = Color.red
         case "blue":
             self.cardsColor = Color.blue
-        case "yellow":
-            self.cardsColor = Color.yellow
+        case "orange":
+            self.cardsColor = Color.orange
         case "green":
             self.cardsColor = Color.green
         case "gray":
