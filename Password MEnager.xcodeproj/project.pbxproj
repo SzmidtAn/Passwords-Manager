@@ -35,6 +35,7 @@
 		1EBF026A25CC2674005B200D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026925CC2674005B200D /* Persistence.swift */; };
 		1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */; };
 		1EBF027325CC61FA005B200D /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF027225CC61FA005B200D /* TestClass.swift */; };
+		1EC04AAB25DA9CF900B585F0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
 		1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataTest 2.xcdatamodel"; sourceTree = "<group>"; };
 		1EBF027225CC61FA005B200D /* TestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
+		1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
 				1E8090D825B9CC710001D99D /* ContentView.swift */,
 				1E6ADC2F25C033AB000130C8 /* LoginView.swift */,
+				1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */,
 				1EBF026925CC2674005B200D /* Persistence.swift */,
 				1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */,
 				1E6ADC3225C064C1000130C8 /* LoginPinView.swift */,
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */,
+				1EC04AAB25DA9CF900B585F0 /* SettingsView.swift in Sources */,
 				1E8090ED25B9CDF50001D99D /* Password.swift in Sources */,
 				1E8090D525B9CC710001D99D /* AppDelegate.swift in Sources */,
 				1E8090D725B9CC710001D99D /* SceneDelegate.swift in Sources */,

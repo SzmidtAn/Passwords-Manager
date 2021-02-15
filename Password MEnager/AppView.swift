@@ -9,6 +9,9 @@ import SwiftUI
 
 struct AppView: View {
     let name: String
+    @State private var isDarkModeOn = UserDefaults.standard.bool(forKey: "isDarkModeOn")
+    @State private var isNotificationsOn = UserDefaults.standard.bool(forKey: "isNotificationsOn")
+    
     var body: some View {
 
 
@@ -38,11 +41,12 @@ struct AppView: View {
                 
                 
             }.tag(2)
-        
-            Text("Settings").tabItem {
-                Image(systemName: "gearshape.2.fill")
-                Text("Settings")
-                
+            SettingsView()
+                 .tabItem {
+                    Image(systemName: "gearshape.2.fill")
+                    Text("Settings")
+                 
+          
                 
             }.tag(3)
         
@@ -52,10 +56,40 @@ struct AppView: View {
         
     }
         .accentColor(.purple)
-         
+        .onAppear{
+            getUsersPrefferences()
+            saveSettings()
+        }
+      
   
         
 }
+    
+    func getUsersPrefferences() {
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                isNotificationsOn = false
+            } else if settings.authorizationStatus == .denied {
+                isNotificationsOn = false
+            } else if settings.authorizationStatus == .authorized {
+                isNotificationsOn = true
+
+                
+            }
+        })
+    }
+    
+    func saveSettings() {
+        UserDefaults.standard.set(isDarkModeOn,  forKey: "isDarkModeOn")
+        UserDefaults.standard.set(isNotificationsOn,  forKey: "isNotificationsOn")
+
+        if isNotificationsOn == false{
+            
+        }
+        
+    }
 }
 
 struct AppView_Previews: PreviewProvider {

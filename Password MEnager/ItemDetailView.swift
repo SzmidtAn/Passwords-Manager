@@ -458,18 +458,72 @@ struct showChangePasswordView: View {
     
     @Binding var weeks: Int
     @Binding var isScheduleViewPresented: Bool
+    @State private var isNotificationsOn = UserDefaults.standard.bool(forKey: "isNotificationsOn")
+    @State var showingAlertPermission = false
+
     let titleNav: String
     var body: some View{
         VStack{
             Stepper("Change password after \(weeks) weeks", value: $weeks, in: 1...104)
          
             Button("Done") {
+                if isNotificationsOn{
          showPushNotification()
                 self.isScheduleViewPresented.toggle()
+                    showingAlertPermission = false
+                }else{
+               showingAlertPermission = true
+
+                }
+                
+                
             }
+            .alert(isPresented: $showingAlertPermission) {
+                Alert(title: Text("Permission denied"), message: Text("You must to allow to get push notifications. Go to settings"),   primaryButton: .default(Text("Cancel"), action: {
+                }),
+                      secondaryButton: .destructive(Text("Go to settings"), action: goToSettings)
+                )
+                
+            }
+            
         }
         .padding()
     }
+    
+    func goToSettings() {
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+
+        isNotificationsOn.toggle()
+        saveSettings()
+    }
+    
+    func getUsersPrefferences() {
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                isNotificationsOn = false
+            } else if settings.authorizationStatus == .denied {
+                isNotificationsOn = false
+                print("perm denied")
+            } else if settings.authorizationStatus == .authorized {
+                isNotificationsOn = true
+                print("perm ok")
+
+                
+            }
+        })
+    }
+    
+    func saveSettings() {
+        UserDefaults.standard.set(isNotificationsOn,  forKey: "isNotificationsOn")
+
+        if isNotificationsOn == false{
+            
+        }
+        
+    }
+    
     
     func showPushNotification(){
         let content = UNMutableNotificationContent()
@@ -478,12 +532,15 @@ struct showChangePasswordView: View {
         content.sound = UNNotificationSound.default
         
         let waitTime = weeks * 86400 * 7
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(waitTime), repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(10), repeats: false)
 
         // choose a random identifier
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
         // add our notification request
         UNUserNotificationCenter.current().add(request)
+        
+
+     
     }
 }

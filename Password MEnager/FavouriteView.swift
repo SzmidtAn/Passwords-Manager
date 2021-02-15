@@ -124,7 +124,7 @@ struct FavouriteView: View {
                 }
 
                 
-                .navigationBarTitle("Favourite")
+                .navigationBarTitle("Favorite")
                         .navigationBarItems(trailing: EditButton())
                 .shadow(color: Color.purple.opacity(0.5) , radius: 15    , x: 10, y: 10)
                         .listStyle(InsetGroupedListStyle())
