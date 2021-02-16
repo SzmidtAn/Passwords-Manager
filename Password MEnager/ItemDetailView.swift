@@ -8,6 +8,8 @@
 import SwiftUI
 import UIKit
 
+ var mainColor:Color = Color.red
+
 struct ItemDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -156,10 +158,10 @@ struct showDetailsMail : View {
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
-                     .stroke(Color.purple, lineWidth: 5)
+                     .stroke(mainColor, lineWidth: 5)
              )
         .padding()
-        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
+        .shadow(color: mainColor.opacity(0.5) , radius: 10    , x: 10, y: 10)
         .onDisappear{
             saveEditedItem()
         }
@@ -167,6 +169,7 @@ struct showDetailsMail : View {
             title = item.title!
             mail = item.adres!
             password = item.password!
+
             
         }
         
@@ -229,10 +232,10 @@ struct showDetailsPassword : View {
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
-                     .stroke(Color.purple, lineWidth: 5)
+                     .stroke(mainColor, lineWidth: 5)
              )
         .padding()
-        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
+        .shadow(color: mainColor.opacity(0.5) , radius: 10    , x: 10, y: 10)
         
         .onDisappear{
             saveEditedItem()
@@ -288,6 +291,11 @@ struct DetailRow: View {
             if ifEditMode{
             TextField(text, text: $text)
                 .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                .onReceive(text.publisher.collect()) {
+                    if label != "Note"{
+                       self.text = String($0.prefix(30))
+                   }
+                }
             }else{
                 Text(text)
 
@@ -332,6 +340,9 @@ struct PasswordRow: View {
             
             if ifEditMode{
                 TextField(password, text: $password)
+                    .onReceive(password.publisher.collect()) {
+                           self.password = String($0.prefix(25))
+                       }
 
                 .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
             }else{
@@ -401,10 +412,10 @@ struct showDetailsNotes : View {
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
-                     .stroke(Color.purple, lineWidth: 5)
+                     .stroke(mainColor, lineWidth: 5)
              )
         .padding()
-        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
+        .shadow(color: mainColor.opacity(0.5) , radius: 10    , x: 10, y: 10)
         .onDisappear{
             saveEditedItem()
         }

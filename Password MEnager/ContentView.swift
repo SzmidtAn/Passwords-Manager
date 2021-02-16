@@ -84,10 +84,10 @@ struct addNewButton: View {
          .frame(width: 50, height: 50)
      .clipShape(Circle())
          .foregroundColor(.white)
-         .background(Color.purple)
+         .background(mainColor)
          .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
      .overlay(Circle().stroke(Color.white, lineWidth: 3))
-        .shadow(color: Color.purple.opacity(0.5) , radius: 10    , x: 10, y: 10)
+        .shadow(color: mainColor.opacity(0.5) , radius: 10    , x: 10, y: 10)
         .animation(.easeIn)
 
      }
@@ -215,7 +215,7 @@ struct ListsView: View {
                     
                 }
                 .listStyle(InsetGroupedListStyle())
-                .shadow(color: Color.purple.opacity(0.5) , radius: 10	, x: 10, y: 10)
+                .shadow(color: mainColor.opacity(0.5) , radius: 10	, x: 10, y: 10)
 
      
         
@@ -226,7 +226,7 @@ struct ListsView: View {
 struct backgrundColor: View {
     var body: some View{
         LinearGradient(
-            gradient: Gradient(colors: [.purple, .white, .white]),
+            gradient: Gradient(colors: [mainColor, .white, .white]),
           startPoint: UnitPoint(x: 0.0, y: 0.0),
           endPoint: .bottomTrailing
         )

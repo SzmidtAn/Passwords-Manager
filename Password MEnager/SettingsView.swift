@@ -9,11 +9,18 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var username = UserDefaults.standard.string(forKey: "usersUsername") ?? ""
+    @State private var password = UserDefaults.standard.string(forKey: "usersPassword") ?? ""
     @State private var isDarkModeOn = UserDefaults.standard.bool(forKey: "isDarkModeOn")
     @State private var isNotificationsOn = UserDefaults.standard.bool(forKey: "isNotificationsOn")
-    @State var getTamplesColor = Color.purple
+    @State var getTamplesColor = mainColor
     @State var showingAlertPermission = false
+    @State var showingAlertEditName = false
+    @State var showingAlertEditPassword = false
+    @State var getCurrentPassword = ""
+    @State var newPassword = ""
 
+
+    
 
     
     var body: some View {
@@ -21,7 +28,7 @@ struct SettingsView: View {
 
         HStack{
             Text("Hello \(username)")
-                .foregroundColor(Color.purple)
+                .foregroundColor(mainColor)
             Spacer()
             }
 
@@ -57,18 +64,72 @@ struct SettingsView: View {
                         .foregroundColor(Color.pink)
 
 
+                        if showingAlertEditName{
+                            HStack{
+                            TextField(username, text: $username)
+                                .accentColor(Color.blue)
+                                .foregroundColor(Color.blue)
+                                .onReceive(newPassword.publisher.collect()) {
+                                       self.newPassword = String($0.prefix(15))
+                                   }
+                                Button("Done", action: {
+                                    showingAlertEditName.toggle()
+                                })
+                            }
+                            
+                            }else{
                         Text("Edit name")
+                            .onTapGesture {
+                                showingAlertEditName.toggle()
+                            }
                         }
+                        
+                        
+                        }
+            
+                    
+                    
                     
                     HStack{
                     Image(systemName: "lock.circle.fill")
                         .font(.largeTitle)
                         .foregroundColor(Color.orange)
 
-
+                        if showingAlertEditPassword{
+                            VStack{
+                        
+                                TextField("Current pin kod", text: $getCurrentPassword)
+                                    .accentColor(Color.blue)
+                                    .foregroundColor(Color.blue)
+                                
+                                HStack{
+                                    TextField("New pin kod", text: $newPassword)
+                                        .onReceive(newPassword.publisher.collect()) {
+                                               self.newPassword = String($0.prefix(4))
+                                           }
+                                        .accentColor(Color.blue)
+                                    .foregroundColor(Color.blue)
+                                    
+                                    Button("Done", action: {
+                                        if getCurrentPassword == password{
+                                        showingAlertEditPassword.toggle()
+                                            password = newPassword
+                                            getCurrentPassword = ""
+                                            newPassword = ""
+                                        }else{
+                                            getCurrentPassword = "Old pin kod not accepted"
+                                        }
+                                    })
+                                    
+                                }
+                            }
+                            }else{
                         Text("Change pin kod")
+                            .onTapGesture {
+                                showingAlertEditPassword.toggle()
+                            }
                         }
-                    
+                    }
 
                 }
                 
@@ -132,7 +193,7 @@ struct SettingsView: View {
                 
             }
             .listStyle(InsetGroupedListStyle())
-            .shadow(color: Color.purple.opacity(0.8), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 10, y: 10)
+            .shadow(color: mainColor.opacity(0.8), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/, x: 10, y: 10)
 
 
             
@@ -149,6 +210,8 @@ struct SettingsView: View {
         
         
     }
+    
+ 
     
     
     func goToSettings() {
@@ -176,11 +239,13 @@ struct SettingsView: View {
     func saveSettings() {
         UserDefaults.standard.set(isDarkModeOn,  forKey: "isDarkModeOn")
         UserDefaults.standard.set(isNotificationsOn,  forKey: "isNotificationsOn")
-
-        if isNotificationsOn == false{
-            
-        }
+        UserDefaults.standard.set(username,  forKey: "usersUsername")
+        UserDefaults.standard.set(password,  forKey: "usersPassword")
         
+        getCurrentPassword = ""
+        newPassword = ""
+        showingAlertEditName = false
+        showingAlertEditPassword = false
     }
     
 }
@@ -201,6 +266,8 @@ struct TemplesColors: View {
                 .foregroundColor(Color.red)
                 .onTapGesture {
                     getTamplesColor = Color.red
+                    mainColor = Color.red
+
                 }
             
             Rectangle()
@@ -208,6 +275,8 @@ struct TemplesColors: View {
                 .foregroundColor(Color.orange)
                 .onTapGesture {
                     getTamplesColor = Color.orange
+                    mainColor = Color.orange
+
                 }
        
             Rectangle()
@@ -215,6 +284,8 @@ struct TemplesColors: View {
                 .foregroundColor(Color.green)
                 .onTapGesture {
                     getTamplesColor = Color.green
+                    mainColor = Color.green
+
                 }
             
             Rectangle()
@@ -222,6 +293,8 @@ struct TemplesColors: View {
                 .foregroundColor(Color.blue)
                 .onTapGesture {
                     getTamplesColor = Color.blue
+                    mainColor = Color.blue
+
                 }
         
             Rectangle()
@@ -229,6 +302,8 @@ struct TemplesColors: View {
                 .foregroundColor(Color.gray)
                 .onTapGesture {
                     getTamplesColor = Color.gray
+                    mainColor = Color.gray
+
                 }
         
         }
