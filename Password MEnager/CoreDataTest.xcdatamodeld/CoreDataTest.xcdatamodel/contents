@@ -7,6 +7,7 @@
         <attribute name="cardsOwner" optional="YES" attributeType="String"/>
         <attribute name="cardsTyp" optional="YES" attributeType="String"/>
         <attribute name="cardsValid" optional="YES" attributeType="String"/>
+        <attribute name="cvv" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
@@ -37,10 +38,10 @@
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="CreditCardCore" positionX="-54" positionY="72" width="128" height="149"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="74"/>
         <element name="MailCore" positionX="-54" positionY="54" width="128" height="119"/>
         <element name="NoteCore" positionX="-54" positionY="63" width="128" height="89"/>
         <element name="PasswordCore" positionX="-63" positionY="9" width="128" height="119"/>
-        <element name="CreditCardCore" positionX="-54" positionY="72" width="128" height="134"/>
     </elements>
 </model>

@@ -15,6 +15,7 @@
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
 		1E3B071325BDAAB000D41179 /* MailDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B071225BDAAB000D41179 /* MailDetailView.swift */; };
+		1E51E79025DE889400127C6A /* Password_MenagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E51E78F25DE889400127C6A /* Password_MenagerTests.swift */; };
 		1E6ADC3025C033AB000130C8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6ADC2F25C033AB000130C8 /* LoginView.swift */; };
 		1E6ADC3325C064C1000130C8 /* LoginPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6ADC3225C064C1000130C8 /* LoginPinView.swift */; };
 		1E6BA9D325BC3CD40007A1CD /* PasswordGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */; };
@@ -38,14 +39,27 @@
 		1EC04AAB25DA9CF900B585F0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1E51E79225DE889400127C6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E8090C925B9CC710001D99D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E8090D025B9CC710001D99D;
+			remoteInfo = "Password MEnager";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadFromPictureView.swift; sourceTree = "<group>"; };
 		1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawOnImageView.swift; sourceTree = "<group>"; };
 		1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkanCreditCardView.swift; sourceTree = "<group>"; };
 		1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
-		1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		1E3B070F25BDAA5B00D41179 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		1E3B071225BDAAB000D41179 /* MailDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailDetailView.swift; sourceTree = "<group>"; };
+		1E51E78D25DE889400127C6A /* Password MenagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Password MenagerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E51E78F25DE889400127C6A /* Password_MenagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password_MenagerTests.swift; sourceTree = "<group>"; };
+		1E51E79125DE889400127C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E6ADC2F25C033AB000130C8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1E6ADC3225C064C1000130C8 /* LoginPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinView.swift; sourceTree = "<group>"; };
 		1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGenerator.swift; sourceTree = "<group>"; };
@@ -74,6 +88,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1E51E78A25DE889400127C6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1E8090CE25B9CC710001D99D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,10 +106,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E51E78E25DE889400127C6A /* Password MenagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				1E51E78F25DE889400127C6A /* Password_MenagerTests.swift */,
+				1E51E79125DE889400127C6A /* Info.plist */,
+			);
+			path = "Password MenagerTests";
+			sourceTree = "<group>";
+		};
 		1E8090C825B9CC710001D99D = {
 			isa = PBXGroup;
 			children = (
 				1E8090D325B9CC710001D99D /* Password MEnager */,
+				1E51E78E25DE889400127C6A /* Password MenagerTests */,
 				1E8090D225B9CC710001D99D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				1E8090D125B9CC710001D99D /* Password MEnager.app */,
+				1E51E78D25DE889400127C6A /* Password MenagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +181,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1E51E78C25DE889400127C6A /* Password MenagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E51E79425DE889400127C6A /* Build configuration list for PBXNativeTarget "Password MenagerTests" */;
+			buildPhases = (
+				1E51E78925DE889400127C6A /* Sources */,
+				1E51E78A25DE889400127C6A /* Frameworks */,
+				1E51E78B25DE889400127C6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E51E79325DE889400127C6A /* PBXTargetDependency */,
+			);
+			name = "Password MenagerTests";
+			productName = "Password MenagerTests";
+			productReference = 1E51E78D25DE889400127C6A /* Password MenagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1E8090D025B9CC710001D99D /* Password MEnager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E8090E825B9CC760001D99D /* Build configuration list for PBXNativeTarget "Password MEnager" */;
@@ -178,6 +228,10 @@
 				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					1E51E78C25DE889400127C6A = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 1E8090D025B9CC710001D99D;
+					};
 					1E8090D025B9CC710001D99D = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -200,11 +254,19 @@
 			projectRoot = "";
 			targets = (
 				1E8090D025B9CC710001D99D /* Password MEnager */,
+				1E51E78C25DE889400127C6A /* Password MenagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1E51E78B25DE889400127C6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1E8090CF25B9CC710001D99D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,6 +282,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1E51E78925DE889400127C6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E51E79025DE889400127C6A /* Password_MenagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1E8090CD25B9CC710001D99D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +322,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1E51E79325DE889400127C6A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E8090D025B9CC710001D99D /* Password MEnager */;
+			targetProxy = 1E51E79225DE889400127C6A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		1E8090E225B9CC760001D99D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -264,6 +342,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1E51E79525DE889400127C6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Password MenagerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "PassMenager.Password-MenagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Password MEnager.app/Password MEnager";
+			};
+			name = Debug;
+		};
+		1E51E79625DE889400127C6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Password MenagerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "PassMenager.Password-MenagerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Password MEnager.app/Password MEnager";
+			};
+			name = Release;
+		};
 		1E8090E625B9CC760001D99D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -425,6 +541,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1E51E79425DE889400127C6A /* Build configuration list for PBXNativeTarget "Password MenagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E51E79525DE889400127C6A /* Debug */,
+				1E51E79625DE889400127C6A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1E8090CC25B9CC710001D99D /* Build configuration list for PBXProject "Password MEnager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

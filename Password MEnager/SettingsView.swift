@@ -168,23 +168,7 @@ struct SettingsView: View {
 
                 }
                 
-                
-                Section(header: Text("Tamples")){
-                    
-                    HStack{
-                    Image(systemName: "pencil.circle.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(getTamplesColor)
-
-
-                        Spacer()
-                        TemplesColors(getTamplesColor: $getTamplesColor)
-                        
-                        }
-                    
-
-                }
-                
+ 
                 
                 
                 
@@ -256,56 +240,3 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
-struct TemplesColors: View {
-    @Binding var getTamplesColor: Color
-    
-    var body: some View{
-        HStack{
-            Rectangle()
-                .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(Color.red)
-                .onTapGesture {
-                    getTamplesColor = Color.red
-                    mainColor = Color.red
-
-                }
-            
-            Rectangle()
-                .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(Color.orange)
-                .onTapGesture {
-                    getTamplesColor = Color.orange
-                    mainColor = Color.orange
-
-                }
-       
-            Rectangle()
-                .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(Color.green)
-                .onTapGesture {
-                    getTamplesColor = Color.green
-                    mainColor = Color.green
-
-                }
-            
-            Rectangle()
-                .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(Color.blue)
-                .onTapGesture {
-                    getTamplesColor = Color.blue
-                    mainColor = Color.blue
-
-                }
-        
-            Rectangle()
-                .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(Color.gray)
-                .onTapGesture {
-                    getTamplesColor = Color.gray
-                    mainColor = Color.gray
-
-                }
-        
-        }
-    }
-}

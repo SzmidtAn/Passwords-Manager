@@ -31,7 +31,7 @@ struct FavouriteView: View {
     init() {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [  .foregroundColor: UIColor.white]
-        UINavigationBar.appearance().tintColor = .purple
+        UINavigationBar.appearance().tintColor = UIColor( mainColor)
         
         UITableView.appearance().backgroundColor = UIColor(Color.white.opacity(0))
 
@@ -126,7 +126,7 @@ struct FavouriteView: View {
                 
                 .navigationBarTitle("Favorite")
                         .navigationBarItems(trailing: EditButton())
-                .shadow(color: Color.purple.opacity(0.5) , radius: 15    , x: 10, y: 10)
+                .shadow(color: mainColor.opacity(0.5) , radius: 15    , x: 10, y: 10)
                         .listStyle(InsetGroupedListStyle())
                         .background(backgrundColor())
                         .ignoresSafeArea()

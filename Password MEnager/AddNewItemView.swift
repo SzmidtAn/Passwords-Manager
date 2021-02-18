@@ -27,6 +27,7 @@ struct AddNewItemView: View {
     @State private var cardsTyp = "VISA"
     @State private var cardsNumber = "0000 0000 0000 0000"
     @State private var cardsValid = "MM/YY"
+    @State private var cardsCVV = "000"
     @State private var cardsOwner = "NAME NAME"
     @State var getChoosenColor = Color.red
     @State private var cardsColor = "red"
@@ -178,7 +179,7 @@ struct AddNewItemView: View {
         {
                  Text("Done")
                                 } )
-        .shadow(color: Color.purple, radius: 20 )
+        .shadow(color: mainColor, radius: 20 )
         .background(backgrundColor())
         .ignoresSafeArea()
 
@@ -229,11 +230,25 @@ struct AddNewItemView: View {
                 .cornerRadius(15.0)
                 .shadow(color: getChoosenColor.opacity(0.8) , radius: 10   , x: 10, y:10 )
             
+                HStack{
+                    Spacer()
+                    Text("CVV")
+                    TextField(cardsCVV, text: $cardsCVV)
+                    Spacer()
 
+                }
+                .frame(width: 100, height: 50, alignment: .center)
+                .background(Color.white)
+                .border(mainColor, width: 1.0)
+                .padding()
+                
             }
 
         }
         .offset(y: -100)
+        
+ 
+        
         Spacer()
 
     }
@@ -272,6 +287,7 @@ struct AddNewItemView: View {
         newCreditCard.cardsValid = cardsValid
         newCreditCard.cardsOwner = cardsOwner
         newCreditCard.cardsColor = cardsColor
+        newCreditCard.cvv = cardsCVV
         
             newCreditCard.id = UUID()
             

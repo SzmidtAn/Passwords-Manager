@@ -8,6 +8,8 @@
 import LocalAuthentication
 import SwiftUI
 
+var mainColor:Color = Color("MainColor")
+
 struct LoginView: View {
     
 
@@ -44,7 +46,7 @@ struct LoginView: View {
 
                 
                     Circle()
-                .foregroundColor(Color.purple.opacity(0.5))
+                .foregroundColor(mainColor.opacity(0.5))
                 .frame( width: 450, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
 
                       
@@ -54,9 +56,9 @@ struct LoginView: View {
                         
                     
                Circle()
-                .foregroundColor(.purple)
+                .foregroundColor(mainColor)
                 .frame( width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .shadow(color: Color.purple, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                .shadow(color: mainColor, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
                 }
                     
                     if isUser{
@@ -115,28 +117,29 @@ struct loginFormView: View {
             
         TextField("Password", text: $password)
             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            
     
         } .background(Color.white)
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
-                     .stroke(Color.purple, lineWidth: 5)
+                     .stroke(mainColor, lineWidth: 5)
              )
         .padding()
-        .shadow(color: Color.purple, radius: 30 )
+        .shadow(color: mainColor, radius: 30 )
         
         Button("Login", action: {
             
         })
         .frame(width: 296.0)
-        .background(Color.purple)
+        .background(mainColor)
         .foregroundColor(Color.white)
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
-                     .stroke(Color.purple, lineWidth: 5)
+                     .stroke(mainColor, lineWidth: 5)
              )
-        .shadow(color: Color.purple, radius: 30 )
+        .shadow(color: mainColor, radius: 30 )
     }
 }
 
@@ -200,7 +203,7 @@ struct ifUserLogoView: View {
             .offset(y: 165)
     }
     
-    func authentication(){
+    func authentication() -> Bool{
 
         let context = LAContext()
             var error: NSError?
@@ -223,7 +226,7 @@ struct ifUserLogoView: View {
             
         }
         
-    
+    return isUnlocked
     }
     
 }

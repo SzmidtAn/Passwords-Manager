@@ -8,7 +8,6 @@
 import SwiftUI
 import UIKit
 
- var mainColor:Color = Color.red
 
 struct ItemDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext

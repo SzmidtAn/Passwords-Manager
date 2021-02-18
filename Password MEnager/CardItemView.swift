@@ -24,7 +24,7 @@ struct CardItemView: View {
             
             ZStack{
                 ForEach(0..<creditsCardsList.count){card in
-                    if card != currentCreditCard{
+                    if card != currentCreditCard && card < 5 {
                     CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[card], currentCreditCard: $currentCreditCard)
                         .offset(x: CGFloat(-10 * card), y: CGFloat(40 * card))
                     }
@@ -190,7 +190,7 @@ struct CardBackView: View {
                     .background(Color.black)
                     .frame( width: 200,  height: 45)
 
-                    Text("336")
+                    Text(getCreditCard.cvv ?? "366")
                         .padding(5.0)
 
                         .background(Color.white)

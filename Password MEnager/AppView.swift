@@ -55,7 +55,7 @@ struct AppView: View {
         
         
     }
-        .accentColor(.purple)
+        .accentColor(mainColor)
         .onAppear{
             getUsersPrefferences()
             saveSettings()

@@ -90,7 +90,7 @@ struct ReadFromPictureView: View {
                        
                             }
                             .listStyle(InsetGroupedListStyle())
-                            .shadow(color: Color.purple, radius: 30)
+                            .shadow(color: mainColor, radius: 30)
                             .padding()
                             
 
@@ -129,13 +129,13 @@ struct ReadFromPictureView: View {
                       Text("Get text ")
                      
                         .padding()
-                        .background(Color.purple)
+                        .background(mainColor)
                         .cornerRadius(40)
                         .foregroundColor(.white)
                         .padding(8)
                      
             }
-            .shadow(color: Color.purple, radius: 4 )
+            .shadow(color: mainColor, radius: 4 )
             
             
    

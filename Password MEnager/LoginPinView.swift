@@ -49,7 +49,7 @@ struct LoginPinView: View {
          
             ZStack{
                 
-                Color.purple
+                mainColor
                 
                 logoView()
                 
@@ -137,7 +137,7 @@ struct LoginPinView: View {
                 checkIfUser()
             }
             
-            .background(Color.purple)
+            .background(mainColor)
             .foregroundColor(.white)
 
             .ignoresSafeArea()

@@ -27,7 +27,7 @@ struct PasswordGenerator: View {
             Stepper("Characters: \(length)", value: $length, in: 6...25)
             Button("Generate password", action: autoPasswordGenerator)
                 .padding()
-                .border(Color.purple)
+                .border(mainColor)
          
         }
         .padding()

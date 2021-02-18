@@ -48,7 +48,8 @@ struct CreditCard: Identifiable {
     var cardsValid :String
     var cardsOwner:String
     var cardsColor: String
-    
+    var cardsCVV: String = "365"
+
 }
 
 
@@ -122,13 +123,14 @@ final class CreditCardMO: NSManagedObject {
     @NSManaged    var cardsValid :String
     @NSManaged    var cardsOwner:String
     @NSManaged   var cardsColor: String
-      
+    @NSManaged   var cardsCVV: String
+
 }
 
 
 extension CreditCardMO {
     func convertToTodo() -> CreditCard
 {
-CreditCard(id: uuid ?? UUID(), bankTitle: bankTitle, cardsTyp: cardsTyp, cardsNumber: cardsNumber, cardsValid: cardsValid, cardsOwner: cardsOwner, cardsColor: cardsColor)
+        CreditCard(id: uuid ?? UUID(), bankTitle: bankTitle, cardsTyp: cardsTyp, cardsNumber: cardsNumber, cardsValid: cardsValid, cardsOwner: cardsOwner, cardsColor: cardsColor, cardsCVV: cardsCVV)
     }
 }
