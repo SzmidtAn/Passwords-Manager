@@ -99,8 +99,6 @@ struct addNewButton: View {
 struct ListsView: View {
     
 
-    @State private var paymentType = 0
-    static let paymentTypes = ["Cash", "CredicCard", "iDinePoints"]
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -226,7 +224,7 @@ struct ListsView: View {
 struct backgrundColor: View {
     var body: some View{
         LinearGradient(
-            gradient: Gradient(colors: [mainColor, .white, .white]),
+            gradient: Gradient(colors: [mainColor, Color("backgrund") , Color("backgrund")]),
           startPoint: UnitPoint(x: 0.0, y: 0.0),
           endPoint: .bottomTrailing
         )

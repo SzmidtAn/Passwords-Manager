@@ -13,13 +13,13 @@ struct LoginPinView: View {
     @State var circle2 = "circle"
     @State var circle3 = "circle"
     @State var circle4 = "circle"
-    @Binding var pinKod: String
+    @Binding var pincode: String
     @Binding var username: String
 
     @State private var showingAlert = false
     @Binding var isUser: Bool
     
-    @State var pinKodText: String = ""
+    @State var pincodeText: String = ""
     
         
 
@@ -70,7 +70,7 @@ struct LoginPinView: View {
                    
                     
                     
-                Text(pinKodText)
+                Text(pincodeText)
                     .padding()
                 
                 HStack{
@@ -142,7 +142,7 @@ struct LoginPinView: View {
 
             .ignoresSafeArea()
             .alert(isPresented: $showingAlert) {
-                Alert(title: Text("Hello \(username)"), message: Text("Your pin kod is: \(pinKod)"), dismissButton: .default(Text("Got it!")){
+                Alert(title: Text("Hello \(username)"), message: Text("Your PIN is: \(pincode)"), dismissButton: .default(Text("Got it!")){
                     self.presentationMode.wrappedValue.dismiss()
 
                 })
@@ -160,15 +160,15 @@ struct LoginPinView: View {
     func checkIfUser(){
         
         if isUser{
-            pinKodText = "Pin kod"
+            pincodeText = "Enter your PIN"
         }else{
-            pinKodText = "You can choose your pin kod"
+            pincodeText = "You can choose your PIN"
         }
     }
     
     func checkPin(){
-        print(pinKod)
-        if num == pinKod{
+        print(pincode)
+        if num == pincode{
             circle4 = "circle.fill"
 
             isUnlocked = true
@@ -188,8 +188,8 @@ struct LoginPinView: View {
     }
     
     func saveNewPin() {
-        pinKod = num
-        UserDefaults.standard.set(pinKod,  forKey: "usersPassword")
+        pincode = num
+        UserDefaults.standard.set(pincode,  forKey: "usersPassword")
         UserDefaults.standard.set(username,  forKey: "usersUsername")
 
 

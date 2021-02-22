@@ -24,7 +24,7 @@ struct CardItemView: View {
             
             ZStack{
                 ForEach(0..<creditsCardsList.count){card in
-                    if card != currentCreditCard && card < 5 {
+                    if card != currentCreditCard && card > 2 {
                     CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[card], currentCreditCard: $currentCreditCard)
                         .offset(x: CGFloat(-10 * card), y: CGFloat(40 * card))
                     }
@@ -51,8 +51,8 @@ struct CardItemView: View {
             Spacer()
         
         }
-        .background( Color.white.opacity(0))
-    
+        .background(Color("backgrund"))
+
     }
     
 }
@@ -111,7 +111,7 @@ struct CardFrontView: View {
                 .padding([ .leading, .bottom])
             }
             .frame(width: 350, height: 220, alignment: .center)
-            .background(LinearGradient(gradient: Gradient(colors: [cardsColor, cardsColor]), startPoint: .top, endPoint: .leading))
+            .background(cardsBackgrundColor(getCardsColor: cardsColor))
             .foregroundColor(Color.white)
             .cornerRadius(15.0)
             .shadow(color: cardsColor.opacity(0.8) , radius: 10   , x: 10, y: 10)
@@ -206,7 +206,7 @@ struct CardBackView: View {
                 
             }
             .frame(width: 350, height: 220, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .background(LinearGradient(gradient: Gradient(colors: [cardsColor, cardsColor]), startPoint: .top, endPoint: .leading))
+            .background(cardsBackgrundColor(getCardsColor: cardsColor))
             .foregroundColor(Color.white)
             .cornerRadius(15.0)
             .shadow(color: cardsColor.opacity(0.9) , radius: 20    , x: 10, y: 10)
@@ -243,5 +243,25 @@ struct CardBackView: View {
             self.cardsColor = Color.red
 
         }
+    }
+}
+
+
+struct cardsBackgrundColor:View {
+    var cardsColor: Color
+    var cardsColorLight: Color
+
+    init(getCardsColor: Color) {
+    self.cardsColor =  getCardsColor
+        self.cardsColorLight = getCardsColor.opacity(0.5)
+    }
+
+    var body: some View{
+        LinearGradient(
+            gradient: Gradient(colors: [cardsColor, cardsColor.opacity(0.3), cardsColor.opacity(0.8)]),
+          startPoint: UnitPoint(x: 0.0, y: 0.0),
+          endPoint: .bottomTrailing
+        )
+        .background(Color.white)
     }
 }

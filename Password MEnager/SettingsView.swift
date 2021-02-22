@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SettingsView: View {
     @State private var username = UserDefaults.standard.string(forKey: "usersUsername") ?? ""
@@ -18,8 +19,16 @@ struct SettingsView: View {
     @State var showingAlertEditPassword = false
     @State var getCurrentPassword = ""
     @State var newPassword = ""
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
 
-
+    private var window: UIWindow? {
+         guard let scene = UIApplication.shared.connectedScenes.first,
+               let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
+               let window = windowSceneDelegate.window else {
+             return nil
+         }
+         return window
+     }
     
 
     
@@ -47,6 +56,21 @@ struct SettingsView: View {
                         Text("Dark mode")
                       //  Spacer()
                         Toggle(isOn: $isDarkModeOn) {
+                            
+                        }
+                        .onTapGesture {
+                            if #available(iOS 13.0, *) {
+                                if isDarkModeOn{
+                                window?.overrideUserInterfaceStyle = .light
+                                }else{
+                                    window?.overrideUserInterfaceStyle = .dark
+                                }
+                                
+                                }
+                            
+
+                      
+
                             
                         }
                         }
@@ -98,12 +122,12 @@ struct SettingsView: View {
                         if showingAlertEditPassword{
                             VStack{
                         
-                                TextField("Current pin kod", text: $getCurrentPassword)
+                                TextField("Current PIN", text: $getCurrentPassword)
                                     .accentColor(Color.blue)
                                     .foregroundColor(Color.blue)
                                 
                                 HStack{
-                                    TextField("New pin kod", text: $newPassword)
+                                    TextField("New PIN", text: $newPassword)
                                         .onReceive(newPassword.publisher.collect()) {
                                                self.newPassword = String($0.prefix(4))
                                            }
@@ -117,14 +141,14 @@ struct SettingsView: View {
                                             getCurrentPassword = ""
                                             newPassword = ""
                                         }else{
-                                            getCurrentPassword = "Old pin kod not accepted"
+                                            getCurrentPassword = "Old PIN not accepted"
                                         }
                                     })
                                     
                                 }
                             }
                             }else{
-                        Text("Change pin kod")
+                        Text("Change PIN")
                             .onTapGesture {
                                 showingAlertEditPassword.toggle()
                             }
@@ -182,8 +206,10 @@ struct SettingsView: View {
 
             
         }
+        .background(Color("backgrund"))
         .onAppear{
             getUsersPrefferences()
+            
         }
         .onDisappear{
             saveSettings()
@@ -218,6 +244,13 @@ struct SettingsView: View {
                 
             }
         })
+        
+        if colorScheme == .dark{
+            isDarkModeOn = true
+        }else{
+            isDarkModeOn = false
+        }
+        
     }
     
     func saveSettings() {

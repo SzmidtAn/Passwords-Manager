@@ -51,7 +51,7 @@ struct LoginView: View {
 
                       
                     NavigationLink(
-                        destination: LoginPinView( pinKod: $password, username: $username, isUser: $isUser, isUnlocked: $unlock)
+                        destination: LoginPinView( pincode: $password, username: $username, isUser: $isUser, isUnlocked: $unlock)
                     ){
                         
                     

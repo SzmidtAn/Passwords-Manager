@@ -10,7 +10,18 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
+    @State private var isDarkModeOn = UserDefaults.standard.bool(forKey: "isDarkModeOn")
+
+    var window: UIWindow? {
+      didSet {
+        if isDarkModeOn{
+        window?.overrideUserInterfaceStyle = .dark
+            
+        }else{
+            window?.overrideUserInterfaceStyle = .light
+        }
+              }
+    }
     let persistenceController = PersistenceController.shared
 
 

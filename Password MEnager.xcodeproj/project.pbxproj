@@ -346,7 +346,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SK8AD2UYJF;
 				INFOPLIST_FILE = "Password MenagerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -365,7 +367,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SK8AD2UYJF;
 				INFOPLIST_FILE = "Password MenagerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -502,8 +506,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Password MEnager/Password MEnager.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Password MEnager/Preview Content\"";
+				DEVELOPMENT_TEAM = SK8AD2UYJF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Password MEnager/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -512,6 +518,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "PassMenager.Password-MEnager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -523,8 +530,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Password MEnager/Password MEnager.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Password MEnager/Preview Content\"";
+				DEVELOPMENT_TEAM = SK8AD2UYJF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Password MEnager/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -533,6 +542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "PassMenager.Password-MEnager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

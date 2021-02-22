@@ -153,7 +153,7 @@ struct showDetailsMail : View {
             PasswordRow(password: $password, ifEditMode: ifEditMode)
 
         }
-        .background(Color.white)
+        .background(Color("backgrund"))
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
@@ -227,7 +227,7 @@ struct showDetailsPassword : View {
 
      
         }
-        .background(Color.white)
+        .background(Color("backgrund"))
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)
@@ -407,7 +407,7 @@ struct showDetailsNotes : View {
 
      
         }
-        .background(Color.white)
+        .background(Color("backgrund"))
         .cornerRadius(20)
              .overlay(
                  RoundedRectangle(cornerRadius: 20)

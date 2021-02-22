@@ -134,6 +134,7 @@ struct FavouriteView: View {
 
             }
             .ignoresSafeArea()
+            
         }
     }
         
