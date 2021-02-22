@@ -119,16 +119,12 @@ struct CardFrontView: View {
             .zIndex(Double(hasOffset ? 30 : 0 + currentCreditCard))
             .rotation3DEffect(.degrees(degrees), axis: (x: 1, y: 1, z: 1))
                        .onTapGesture {
-                       withAnimation(.linear(duration: 1.0)) {
-                    self.hasOffset.toggle()
-                    self.degrees += 360
-                    currentCreditCard =    creditsCardsList.firstIndex(where: { i in i.id == getCreditCard.id })!
-                    if cardSida == 1{
-                    cardSida = 3
-                    }else{
-                        cardSida = 1
-                    }
-                               }
+                        currentCreditCard =    creditsCardsList.firstIndex(where: { i in i.id == getCreditCard.id })!
+                        if cardSida == 1{
+                        cardSida = 3
+                        }else{
+                            cardSida = 1
+                        }
                             }
             .gesture(
                     DragGesture(minimumDistance: 20)

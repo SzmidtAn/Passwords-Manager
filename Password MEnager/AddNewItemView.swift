@@ -28,7 +28,7 @@ struct AddNewItemView: View {
     @State private var cardsNumber = "0000 0000 0000 0000"
     @State private var cardsValid = "MM/YY"
     @State private var cardsCVV = "000"
-    @State private var cardsOwner = "NAME NAME"
+    @State private var cardsOwner = "NAME SURNAME"
     @State var getChoosenColor = Color.red
     @State private var cardsColor = "red"
     @State private var showSheet = false
@@ -188,9 +188,16 @@ struct AddNewItemView: View {
                 
                 VStack{
                             HStack{
-                                TextField(bankTitle, text: $bankTitle)
+                                TextField("Bank", text: $bankTitle)
+                                    .onTapGesture {
+                                        bankTitle = ""
+                                    }
                 Spacer()
-                                TextField(cardsTyp, text: $cardsTyp)
+                                TextField("VISA", text: $cardsTyp)
+                                    
+                                    .onTapGesture {
+                                        cardsTyp = ""
+                                    }
                             .font(.title)
                                     
                     }
@@ -203,20 +210,29 @@ struct AddNewItemView: View {
                     }
                     .padding(.leading)
                     
-                    TextField(cardsNumber, text: $cardsNumber)
+                    TextField("0000 0000 0000 0000", text: $cardsNumber)
                         .font(.title)
                         .padding(.horizontal)
+                        .onTapGesture {
+                            cardsNumber = ""
+                        }
                     HStack{
                         Spacer()
                         Text("VALID\nTHRU")
                             .font(.system(size:7))
-                        TextField(cardsValid, text: $cardsValid)
+                        TextField("MM/YY", text: $cardsValid)
+                            .onTapGesture {
+                                cardsValid = ""
+                            }
                         Spacer()
 
                     }
                     .padding(1.0)
                     HStack{
-                        TextField(cardsOwner, text: $cardsOwner)
+                        TextField("NAME SURNAME", text: $cardsOwner)
+                            .onTapGesture {
+                                cardsOwner = ""
+                            }
                     Spacer()
                     }
                     .padding([ .leading, .bottom])
@@ -233,7 +249,7 @@ struct AddNewItemView: View {
                 HStack{
                     Spacer()
                     Text("CVV")
-                    TextField(cardsCVV, text: $cardsCVV)
+                    TextField("000", text: $cardsCVV)
                     Spacer()
 
                 }
