@@ -12,12 +12,12 @@ import SweetCardScanner
 
 struct SkanCreditCardView: View {
     @State var navigationStatus: NavigationStatus? = .ready
-    @Binding  var bankTitle: String
-    @Binding  var cardsTyp: String
-    @Binding  var cardsNumber: String
-    @Binding  var cardsValid: String
-    @Binding  var cardsOwner: String
-    @Binding  var cardsColor: String
+      var bankTitle: String = ""
+      var cardsTyp: String = ""
+    @State  var cardsNumber: String = ""
+    @State    var cardsValid: String = ""
+    @State  var cardsOwner: String = ""
+      var cardsColor: String = ""
 
      // MARK: - BODY
 
@@ -30,7 +30,7 @@ struct SkanCreditCardView: View {
                  ZStack {
 
                      NavigationLink(
-                         destination: AddNewItemView()
+                        destination: AddNewItemView(cardsNumber: self.cardsNumber, cardsValid: self.cardsValid, cardsOwner: self.cardsOwner)
                              .onDisappear {
                                
                                  self.navigationStatus = .ready
@@ -48,9 +48,18 @@ struct SkanCreditCardView: View {
                              }
                              .onSuccess { card in
                                  self.navigationStatus = .pop
-                                cardsNumber = card.number!
-                                cardsOwner = card.name!
-                                cardsValid = "\(card.month)/\(card.year)"
+                                if card.number != nil {
+                                 
+                                    cardsNumber = card.number!
+                                }
+                                if card.name != nil {
+                                 
+                        cardsOwner = card.name!
+                                }
+                                if card.expireDate != nil {
+                                 
+                                    cardsValid = "\(card.month)/\(card.year)"
+                                }
                              }
                      }
 
@@ -67,7 +76,6 @@ struct SkanCreditCardView: View {
                  } //: ZSTACK
 
              } //: GEOMETRY
-
          } //: NAVIGATION
 
      }

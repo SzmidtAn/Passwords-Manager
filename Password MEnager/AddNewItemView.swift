@@ -19,16 +19,17 @@ struct AddNewItemView: View {
 
     @Environment(\.presentationMode) var presentation
     
+    @State  var cardsNumber: String  = "0000 0000 0000 0000"
+    @State  var cardsValid : String = "MM/YY"
+    @State private var cardsCVV = "000"
+    @State  var cardsOwner: String  = "NAME SURNAME"
     @State private var getTitle = ""
     @State  var getPassword: String = ""
     @State private var getUrl = ""
     @State private var getUsername = ""
     @State private var bankTitle = "Bank"
     @State private var cardsTyp = "VISA"
-    @State private var cardsNumber = "0000 0000 0000 0000"
-    @State private var cardsValid = "MM/YY"
-    @State private var cardsCVV = "000"
-    @State private var cardsOwner = "NAME SURNAME"
+  
     @State var getChoosenColor = Color.red
     @State private var cardsColor = "red"
     @State private var showSheet = false
@@ -133,7 +134,7 @@ struct AddNewItemView: View {
                 }
                 }else{
                 NavigationLink(
-                    destination: SkanCreditCardView(bankTitle: $bankTitle, cardsTyp: $cardsTyp, cardsNumber: $cardsNumber, cardsValid: $cardsValid, cardsOwner: $cardsOwner, cardsColor: $cardsColor)    ){
+                    destination: SkanCreditCardView()    ){
                     Button("Skan cards details", action: {
                         self.showSheetCardsDetails.toggle()
                     }).buttonStyle(DefaultButtonStyle())

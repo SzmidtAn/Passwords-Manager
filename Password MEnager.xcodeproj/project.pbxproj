@@ -10,7 +10,7 @@
 		1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */; };
 		1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */; };
 		1E2CA35225D7EB6600362AC8 /* SkanCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */; };
-		1E2CA36425D801E600362AC8 /* SweetCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2CA36325D801E600362AC8 /* SweetCardScanner */; };
+		1E2CA36425D801E600362AC8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2CA36325D801E600362AC8 /* SwiftPackageProductDependency */; };
 		1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */; };
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
@@ -37,6 +37,7 @@
 		1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */; };
 		1EBF027325CC61FA005B200D /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF027225CC61FA005B200D /* TestClass.swift */; };
 		1EC04AAB25DA9CF900B585F0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */; };
+		C6E832233783105BC9D63E99 /* Pods_Password_MEnager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E8758ACDE3A9E904886FE8 /* Pods_Password_MEnager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,9 @@
 		1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataTest 2.xcdatamodel"; sourceTree = "<group>"; };
 		1EBF027225CC61FA005B200D /* TestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
 		1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2D5854123ABC6FDE7C935FBC /* Pods-Password MEnager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Password MEnager.release.xcconfig"; path = "Target Support Files/Pods-Password MEnager/Pods-Password MEnager.release.xcconfig"; sourceTree = "<group>"; };
+		46E8758ACDE3A9E904886FE8 /* Pods_Password_MEnager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Password_MEnager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0EA72BE9B022522E42C5781 /* Pods-Password MEnager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Password MEnager.debug.xcconfig"; path = "Target Support Files/Pods-Password MEnager/Pods-Password MEnager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +103,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E2CA36425D801E600362AC8 /* SweetCardScanner in Frameworks */,
+				1E2CA36425D801E600362AC8 /* BuildFile in Frameworks */,
+				C6E832233783105BC9D63E99 /* Pods_Password_MEnager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		036435C5B9D661CCE4BDC6F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0EA72BE9B022522E42C5781 /* Pods-Password MEnager.debug.xcconfig */,
+				2D5854123ABC6FDE7C935FBC /* Pods-Password MEnager.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		1E51E78E25DE889400127C6A /* Password MenagerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +136,8 @@
 				1E8090D325B9CC710001D99D /* Password MEnager */,
 				1E51E78E25DE889400127C6A /* Password MenagerTests */,
 				1E8090D225B9CC710001D99D /* Products */,
+				036435C5B9D661CCE4BDC6F4 /* Pods */,
+				94E480C9011C3C351F6D3FDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +195,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		94E480C9011C3C351F6D3FDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46E8758ACDE3A9E904886FE8 /* Pods_Password_MEnager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -203,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E8090E825B9CC760001D99D /* Build configuration list for PBXNativeTarget "Password MEnager" */;
 			buildPhases = (
+				4180BB9AC75473F88FBE262E /* [CP] Check Pods Manifest.lock */,
 				1E8090CD25B9CC710001D99D /* Sources */,
 				1E8090CE25B9CC710001D99D /* Frameworks */,
 				1E8090CF25B9CC710001D99D /* Resources */,
@@ -213,7 +239,7 @@
 			);
 			name = "Password MEnager";
 			packageProductDependencies = (
-				1E2CA36325D801E600362AC8 /* SweetCardScanner */,
+				1E2CA36325D801E600362AC8 /* SwiftPackageProductDependency */,
 			);
 			productName = "Password MEnager";
 			productReference = 1E8090D125B9CC710001D99D /* Password MEnager.app */;
@@ -247,7 +273,7 @@
 			);
 			mainGroup = 1E8090C825B9CC710001D99D;
 			packageReferences = (
-				1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */,
+				1E2CA36225D801E600362AC8 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 1E8090D225B9CC710001D99D /* Products */;
 			projectDirPath = "";
@@ -280,6 +306,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4180BB9AC75473F88FBE262E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Password MEnager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E51E78925DE889400127C6A /* Sources */ = {
@@ -502,6 +553,7 @@
 		};
 		1E8090E925B9CC760001D99D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0EA72BE9B022522E42C5781 /* Pods-Password MEnager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -526,6 +578,7 @@
 		};
 		1E8090EA25B9CC760001D99D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D5854123ABC6FDE7C935FBC /* Pods-Password MEnager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -581,7 +634,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */ = {
+		1E2CA36225D801E600362AC8 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aaronLab/SweetCardScanner.git";
 			requirement = {
@@ -592,9 +645,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1E2CA36325D801E600362AC8 /* SweetCardScanner */ = {
+		1E2CA36325D801E600362AC8 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */;
+			package = 1E2CA36225D801E600362AC8 /* RemoteSwiftPackageReference */;
 			productName = SweetCardScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
