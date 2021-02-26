@@ -30,7 +30,7 @@ struct SkanCreditCardView: View {
                  ZStack {
 
                      NavigationLink(
-                        destination: AddNewItemView(cardsNumber: self.cardsNumber, cardsValid: self.cardsValid, cardsOwner: self.cardsOwner)
+                        destination: AddNewItemView(cardsNumber: self.cardsNumber, cardsValid: self.cardsValid, cardsOwner: self.cardsOwner, selectedStrength: 3)
                              .onDisappear {
                                
                                  self.navigationStatus = .ready

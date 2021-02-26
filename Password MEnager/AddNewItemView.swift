@@ -37,7 +37,7 @@ struct AddNewItemView: View {
 
     var categoriesList = ["Password", "Mail", "Note", "Credit Card"]
 
-       @State private var selectedStrength = 0
+    @State var selectedStrength: Int = 0
     
     
     var body: some View {
