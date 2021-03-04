@@ -176,6 +176,7 @@ struct AddNewItemView: View {
                                     default:
                        break
                        }
+                                    getViewList = false
                   } )
         {
                  Text("Done")
@@ -214,14 +215,31 @@ struct AddNewItemView: View {
                     TextField("0000 0000 0000 0000", text: $cardsNumber)
                         .font(.title)
                         .padding(.horizontal)
+                        .onReceive(cardsNumber.publisher.collect()) {
+                            self.cardsNumber = String($0.prefix(19))
+                            if cardsNumber.count == 4 || cardsNumber.count == 9 || cardsNumber.count == 14 {
+                           cardsNumber.insert(" ", at: cardsNumber.index(cardsNumber.endIndex, offsetBy: 0))
+                            }
+
+                           }
+                    
                         .onTapGesture {
+                            if cardsNumber == "0000 0000 0000 0000"{
                             cardsNumber = ""
+                            }
                         }
                     HStack{
                         Spacer()
                         Text("VALID\nTHRU")
                             .font(.system(size:7))
                         TextField("MM/YY", text: $cardsValid)
+                            .onReceive(cardsValid.publisher.collect()) {
+                                   self.cardsValid = String($0.prefix(5))
+                                if cardsValid.count == 2 {
+                                    cardsValid.insert("/", at: cardsValid.index(cardsValid.endIndex, offsetBy: 0))
+                                }
+                                
+                               }
                             .onTapGesture {
                                 cardsValid = ""
                             }
@@ -231,6 +249,9 @@ struct AddNewItemView: View {
                     .padding(1.0)
                     HStack{
                         TextField("NAME SURNAME", text: $cardsOwner)
+                            .onReceive(cardsOwner.publisher.collect()) {
+                                   self.cardsOwner = String($0.prefix(25))
+                               }
                             .onTapGesture {
                                 cardsOwner = ""
                             }
@@ -251,6 +272,12 @@ struct AddNewItemView: View {
                     Spacer()
                     Text("CVV")
                     TextField("000", text: $cardsCVV)
+                        .onReceive(cardsCVV.publisher.collect()) {
+                               self.cardsCVV = String($0.prefix(3))
+                           }
+                        .onTapGesture {
+                            cardsCVV = ""
+                        }
                     Spacer()
 
                 }
@@ -262,7 +289,6 @@ struct AddNewItemView: View {
             }
 
         }
-        .offset(y: -100)
         
  
         
@@ -316,7 +342,6 @@ struct AddNewItemView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                print("error")
             }
             
         self.presentation.wrappedValue.dismiss()
@@ -345,7 +370,6 @@ struct AddNewItemView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                print("error")
             }
             
         self.presentation.wrappedValue.dismiss()
@@ -375,7 +399,6 @@ struct AddNewItemView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                print("error")
             }
             
         self.presentation.wrappedValue.dismiss()
@@ -408,7 +431,6 @@ struct AddNewItemView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                print("error")
             }
             
         self.presentation.wrappedValue.dismiss()

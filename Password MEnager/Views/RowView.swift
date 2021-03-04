@@ -35,6 +35,8 @@ struct MailListRowView: View{
 
     func doFavourite() {
         if item.isFavourite{
+            ifEmpty = false
+
             starImage = "star.fill"
 
         }else{
@@ -102,7 +104,6 @@ struct MailListRowView: View{
             
                         let nsError = error as NSError
                         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                        print("error")
                     }
 
                     
@@ -143,6 +144,8 @@ struct PasswordListRowView: View{
     
     func doFavourite() {
         if item.isFavourite{
+            ifEmpty = false
+
             starImage = "star.fill"
 
         }else{
@@ -233,7 +236,6 @@ struct PasswordListRowView: View{
             
                         let nsError = error as NSError
                         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                        print("error")
                     }
 
                     
@@ -269,6 +271,8 @@ struct NotesListRowView: View{
     func doFavourite() {
         title = item.title!
         if item.isFavourite{
+            ifEmpty = false
+
             starImage = "star.fill"
 
         }else{
@@ -318,7 +322,6 @@ struct NotesListRowView: View{
             
                         let nsError = error as NSError
                         fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                        print("error")
                     }
 
                 }

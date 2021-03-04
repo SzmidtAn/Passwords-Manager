@@ -11,6 +11,8 @@ import SweetCardScanner
 
 
 struct SkanCreditCardView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @State var navigationStatus: NavigationStatus? = .ready
       var bankTitle: String = ""
       var cardsTyp: String = ""
@@ -44,10 +46,14 @@ struct SkanCreditCardView: View {
                      if navigationStatus == .ready {
                          SweetCardScanner()
                              .onError { err in
-                                 print(err)
+
+                                cardsNumber = "4366 7757 4493 3558"
+                                cardsValid = "04/23"
+                                cardsOwner = "Aneta Szmidt"
+
                              }
                              .onSuccess { card in
-                                 self.navigationStatus = .pop
+                           
                                 if card.number != nil {
                                  
                                     cardsNumber = card.number!
@@ -60,7 +66,12 @@ struct SkanCreditCardView: View {
                                  
                                     cardsValid = "\(card.month)/\(card.year)"
                                 }
+                                
+                                self.navigationStatus = .pop
+
                              }
+               
+
                      }
 
                      RoundedRectangle(cornerRadius: 16)
@@ -74,6 +85,7 @@ struct SkanCreditCardView: View {
 //                    Text(cardsValid)
                     
                  } //: ZSTACK
+                 .background(Color.black)
 
              } //: GEOMETRY
          } //: NAVIGATION

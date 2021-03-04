@@ -113,8 +113,7 @@ struct ItemDetailView: View {
             item = "\(note.title!) Note: \(note.note!)"
 
         default :
-        Text("text")
-        
+            break
         }
             
     }
@@ -190,7 +189,6 @@ struct showDetailsMail : View {
        
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            print("error")
         }
         
 
@@ -267,7 +265,6 @@ struct showDetailsPassword : View {
        
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            print("error")
         }
         
 
@@ -440,7 +437,6 @@ struct showDetailsNotes : View {
        
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            print("error")
         }
         
 
@@ -540,7 +536,9 @@ struct showChangePasswordView: View {
         content.title = "It's time to change password!"
         content.subtitle = "\(titleNav) hasn't changeed the password for \(weeks) "
         content.sound = UNNotificationSound.default
+       
         
+        // 10 sec only for precentation of push notification
         let waitTime = weeks * 86400 * 7
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(10), repeats: false)
 

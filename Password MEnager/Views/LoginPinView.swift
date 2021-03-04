@@ -143,6 +143,7 @@ struct LoginPinView: View {
             .ignoresSafeArea()
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Hello \(username)"), message: Text("Your PIN is: \(pincode)"), dismissButton: .default(Text("Got it!")){
+                    self.isUnlocked = true
                     self.presentationMode.wrappedValue.dismiss()
 
                 })

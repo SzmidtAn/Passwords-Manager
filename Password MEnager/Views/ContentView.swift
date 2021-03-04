@@ -117,7 +117,11 @@ struct ListsView: View {
         animation: .default)
     private var NotesList: FetchedResults<NoteCore>
 
+    
 
+    init(){
+        
+    }
     
     
     var body: some View{
@@ -214,6 +218,14 @@ struct ListsView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 .shadow(color: mainColor.opacity(0.5) , radius: 10	, x: 10, y: 10)
+                .onAppear{
+                    if passwordsList.count > 0 || NotesList.count > 0 ||  MailsList.count > 0 {
+                    
+                    getViewList = false
+                    }else{
+                        getViewList = true
+                    }
+                }
 
      
         

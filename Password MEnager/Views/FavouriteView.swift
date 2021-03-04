@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+var ifEmpty = true
 
 struct FavouriteView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \PasswordCore.title, ascending: true)],
@@ -43,6 +45,9 @@ struct FavouriteView: View {
 
         NavigationView{
 
+            if ifEmpty{
+                EmptyFavouriteListView()
+            }else{
 
             ZStack{
                 List{
@@ -56,6 +61,7 @@ struct FavouriteView: View {
                         
                     
                             }
+                            
                             .onDelete(perform: { indexSet in
                                 withAnimation {
                                     indexSet.map { passwordsList[$0] }.forEach(viewContext.delete)
@@ -135,6 +141,7 @@ struct FavouriteView: View {
             }
             .ignoresSafeArea()
             
+            }
         }
     }
         

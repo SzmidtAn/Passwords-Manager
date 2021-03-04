@@ -10,7 +10,7 @@
 		1E123F6B25C43D6F00F9CF69 /* ReadFromPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */; };
 		1E1E33D325C99DC5001E50B1 /* DrawOnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */; };
 		1E2CA35225D7EB6600362AC8 /* SkanCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */; };
-		1E2CA36425D801E600362AC8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2CA36325D801E600362AC8 /* SwiftPackageProductDependency */; };
+		1E2CA36425D801E600362AC8 /* SweetCardScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2CA36325D801E600362AC8 /* SweetCardScanner */; };
 		1E2F5DDD25BAFFE600B61916 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */; };
 		1E2F5DE025BB10B700B61916 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */; };
 		1E3B071025BDAA5B00D41179 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B070F25BDAA5B00D41179 /* RowView.swift */; };
@@ -35,7 +35,6 @@
 		1EB78DB325D544A200F812E5 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB78DB225D544A200F812E5 /* CardItemView.swift */; };
 		1EBF026A25CC2674005B200D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026925CC2674005B200D /* Persistence.swift */; };
 		1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */; };
-		1EBF027325CC61FA005B200D /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBF027225CC61FA005B200D /* TestClass.swift */; };
 		1EC04AAB25DA9CF900B585F0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */; };
 		C6E832233783105BC9D63E99 /* Pods_Password_MEnager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E8758ACDE3A9E904886FE8 /* Pods_Password_MEnager.framework */; };
 /* End PBXBuildFile section */
@@ -84,7 +83,6 @@
 		1EBF026925CC2674005B200D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1EBF026D25CC269E005B200D /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
 		1EBF026E25CC269E005B200D /* CoreDataTest 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataTest 2.xcdatamodel"; sourceTree = "<group>"; };
-		1EBF027225CC61FA005B200D /* TestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
 		1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2D5854123ABC6FDE7C935FBC /* Pods-Password MEnager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Password MEnager.release.xcconfig"; path = "Target Support Files/Pods-Password MEnager/Pods-Password MEnager.release.xcconfig"; sourceTree = "<group>"; };
 		46E8758ACDE3A9E904886FE8 /* Pods_Password_MEnager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Password_MEnager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E2CA36425D801E600362AC8 /* BuildFile in Frameworks */,
+				1E2CA36425D801E600362AC8 /* SweetCardScanner in Frameworks */,
 				C6E832233783105BC9D63E99 /* Pods_Password_MEnager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,7 +115,6 @@
 				C0EA72BE9B022522E42C5781 /* Pods-Password MEnager.debug.xcconfig */,
 				2D5854123ABC6FDE7C935FBC /* Pods-Password MEnager.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -153,35 +150,17 @@
 		1E8090D325B9CC710001D99D /* Password MEnager */ = {
 			isa = PBXGroup;
 			children = (
+				1EDFBD5225F1281F00F4EDAE /* Push Notification */,
+				1EDFBD5125F1281500F4EDAE /* Items */,
+				1EDFBD5025F1280000F4EDAE /* Views */,
 				1E82D09825D42A9300CE0992 /* Password MEnager.entitlements */,
-				1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */,
-				1E8090D425B9CC710001D99D /* AppDelegate.swift */,
 				1E8090D625B9CC710001D99D /* SceneDelegate.swift */,
-				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
-				1E8090D825B9CC710001D99D /* ContentView.swift */,
-				1E6ADC2F25C033AB000130C8 /* LoginView.swift */,
-				1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */,
-				1EBF026925CC2674005B200D /* Persistence.swift */,
 				1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */,
-				1E6ADC3225C064C1000130C8 /* LoginPinView.swift */,
-				1E3B071225BDAAB000D41179 /* MailDetailView.swift */,
-				1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */,
-				1E8090F225B9EAB00001D99D /* AppView.swift */,
 				1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */,
-				1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */,
 				1EB78DAA25D51FB000F812E5 /* Localizable.strings */,
-				1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */,
-				1EBF027225CC61FA005B200D /* TestClass.swift */,
-				1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */,
-				1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */,
-				1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */,
-				1E8090EC25B9CDF50001D99D /* Password.swift */,
-				1E82D09525D428C400CE0992 /* PushNotifications.swift */,
 				1E8090DD25B9CC760001D99D /* Assets.xcassets */,
-				1E8090E225B9CC760001D99D /* LaunchScreen.storyboard */,
 				1E8090E525B9CC760001D99D /* Info.plist */,
 				1E8090DA25B9CC710001D99D /* Password_MEnager.xcdatamodeld */,
-				1EB78DB225D544A200F812E5 /* CardItemView.swift */,
 				1E8090DF25B9CC760001D99D /* Preview Content */,
 			);
 			path = "Password MEnager";
@@ -193,6 +172,47 @@
 				1E8090E025B9CC760001D99D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1EDFBD5025F1280000F4EDAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E8090D425B9CC710001D99D /* AppDelegate.swift */,
+				1E8090D825B9CC710001D99D /* ContentView.swift */,
+				1E6ADC2F25C033AB000130C8 /* LoginView.swift */,
+				1E8090F225B9EAB00001D99D /* AppView.swift */,
+				1E2F5DDC25BAFFE600B61916 /* FavouriteView.swift */,
+				1E2F5DDF25BB10B700B61916 /* ItemDetailView.swift */,
+				1E123F6A25C43D6F00F9CF69 /* ReadFromPictureView.swift */,
+				1E8090F525B9EBEE0001D99D /* AddNewItemView.swift */,
+				1E1E33D225C99DC5001E50B1 /* DrawOnImageView.swift */,
+				1E6ADC3225C064C1000130C8 /* LoginPinView.swift */,
+				1E8090E225B9CC760001D99D /* LaunchScreen.storyboard */,
+				1EB78DB225D544A200F812E5 /* CardItemView.swift */,
+				1E3B071225BDAAB000D41179 /* MailDetailView.swift */,
+				1EC04AAA25DA9CF900B585F0 /* SettingsView.swift */,
+				1E3B070F25BDAA5B00D41179 /* RowView.swift */,
+				1E2CA35125D7EB6600362AC8 /* SkanCreditCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1EDFBD5125F1281500F4EDAE /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1EBF026925CC2674005B200D /* Persistence.swift */,
+				1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */,
+				1E8090EC25B9CDF50001D99D /* Password.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		1EDFBD5225F1281F00F4EDAE /* Push Notification */ = {
+			isa = PBXGroup;
+			children = (
+				1E82D09525D428C400CE0992 /* PushNotifications.swift */,
+			);
+			path = "Push Notification";
 			sourceTree = "<group>";
 		};
 		94E480C9011C3C351F6D3FDD /* Frameworks */ = {
@@ -239,7 +259,7 @@
 			);
 			name = "Password MEnager";
 			packageProductDependencies = (
-				1E2CA36325D801E600362AC8 /* SwiftPackageProductDependency */,
+				1E2CA36325D801E600362AC8 /* SweetCardScanner */,
 			);
 			productName = "Password MEnager";
 			productReference = 1E8090D125B9CC710001D99D /* Password MEnager.app */;
@@ -273,7 +293,7 @@
 			);
 			mainGroup = 1E8090C825B9CC710001D99D;
 			packageReferences = (
-				1E2CA36225D801E600362AC8 /* RemoteSwiftPackageReference */,
+				1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */,
 			);
 			productRefGroup = 1E8090D225B9CC710001D99D /* Products */;
 			projectDirPath = "";
@@ -355,7 +375,6 @@
 				1E8090F325B9EAB00001D99D /* AppView.swift in Sources */,
 				1E8090F625B9EBEE0001D99D /* AddNewItemView.swift in Sources */,
 				1EB78DB325D544A200F812E5 /* CardItemView.swift in Sources */,
-				1EBF027325CC61FA005B200D /* TestClass.swift in Sources */,
 				1E6BA9D325BC3CD40007A1CD /* PasswordGenerator.swift in Sources */,
 				1EBF026F25CC269E005B200D /* CoreDataTest.xcdatamodeld in Sources */,
 				1E6ADC3025C033AB000130C8 /* LoginView.swift in Sources */,
@@ -634,7 +653,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1E2CA36225D801E600362AC8 /* RemoteSwiftPackageReference */ = {
+		1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aaronLab/SweetCardScanner.git";
 			requirement = {
@@ -645,9 +664,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1E2CA36325D801E600362AC8 /* SwiftPackageProductDependency */ = {
+		1E2CA36325D801E600362AC8 /* SweetCardScanner */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1E2CA36225D801E600362AC8 /* RemoteSwiftPackageReference */;
+			package = 1E2CA36225D801E600362AC8 /* XCRemoteSwiftPackageReference "SweetCardScanner" */;
 			productName = SweetCardScanner;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -24,7 +24,7 @@ struct CardItemView: View {
             
             ZStack{
                 ForEach(0..<creditsCardsList.count){card in
-                    if card != currentCreditCard && card > 2 {
+                    if card != currentCreditCard  {
                     CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[card], currentCreditCard: $currentCreditCard)
                         .offset(x: CGFloat(-10 * card), y: CGFloat(40 * card))
                     }
@@ -37,17 +37,22 @@ struct CardItemView: View {
         switch getCardSida {
         case 1:
           CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[self.currentCreditCard], currentCreditCard: $currentCreditCard)
+            .shadow(color: Color( creditsCardsList[self.currentCreditCard].cardsColor! ).opacity(0.8) , radius: 20    , x: 10, y: 10)
 
         case 2:
             CardBackView(cardSida: $getCardSida, getCreditCard: creditsCardsList[currentCreditCard], currentCreditCard: $currentCreditCard)
+                .shadow(color: Color( creditsCardsList[self.currentCreditCard].cardsColor! ).opacity(0.8) , radius: 20    , x: 10, y: 10)
 
         case 3:
             CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[self.currentCreditCard], currentCreditCard: $currentCreditCard)
+                .shadow(color: Color( creditsCardsList[self.currentCreditCard].cardsColor! ).opacity(0.8) , radius: 20    , x: 10, y: 10)
 
         default:
             CardFrontView( cardSida: $getCardSida, getCreditCard: creditsCardsList[1], currentCreditCard: $currentCreditCard)
+                .shadow(color: Color( creditsCardsList[self.currentCreditCard].cardsColor! ).opacity(0.8) , radius: 20    , x: 10, y: 10)
 
         }
+
             Spacer()
         
         }
@@ -98,23 +103,26 @@ struct CardFrontView: View {
                 
                 Text(getCreditCard.cardsNumber!)
                     .font(.title)
+                    .shadow(radius: 5)
                 HStack{
                     Text("VALID\nTHRU")
                         .font(.system(size:7))
+                    
                     Text(getCreditCard.cardsValid!)
                 }
+                .shadow(radius: 5)
                 .padding(1.0)
                 HStack{
                     Text(getCreditCard.cardsOwner!)
                 Spacer()
                 }
+                .shadow(radius: 5)
                 .padding([ .leading, .bottom])
             }
             .frame(width: 350, height: 220, alignment: .center)
             .background(cardsBackgrundColor(getCardsColor: cardsColor))
             .foregroundColor(Color.white)
             .cornerRadius(15.0)
-            .shadow(color: cardsColor.opacity(0.8) , radius: 10   , x: 10, y: 10)
             .offset(y: hasOffset ? 300 : 0)
             .zIndex(Double(hasOffset ? 30 : 0 + currentCreditCard))
             .rotation3DEffect(.degrees(degrees), axis: (x: 1, y: 1, z: 1))
@@ -205,7 +213,6 @@ struct CardBackView: View {
             .background(cardsBackgrundColor(getCardsColor: cardsColor))
             .foregroundColor(Color.white)
             .cornerRadius(15.0)
-            .shadow(color: cardsColor.opacity(0.9) , radius: 20    , x: 10, y: 10)
             .onTapGesture {
                 self.cardSida = 1
                 changeCard()
