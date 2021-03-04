@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Foundation
 import SweetCardScanner
-
+import AVKit
 
 
 struct SkanCreditCardView: View {
@@ -20,6 +21,7 @@ struct SkanCreditCardView: View {
     @State    var cardsValid: String = ""
     @State  var cardsOwner: String = ""
       var cardsColor: String = ""
+  //  private let player = AVPlayer(url: URL(string: "https://vimeo.com/519600221")!)
 
      // MARK: - BODY
 
@@ -46,6 +48,9 @@ struct SkanCreditCardView: View {
                      if navigationStatus == .ready {
                          SweetCardScanner()
                              .onError { err in
+                             //   player.play()
+
+                       
 
                                 cardsNumber = "4366 7757 4493 3558"
                                 cardsValid = "04/23"
@@ -79,6 +84,13 @@ struct SkanCreditCardView: View {
                          .foregroundColor(.white)
                          .padding(16)
                          .frame(width: geometry.size.width, height: geometry.size.width * 0.63, alignment: .center)
+                    
+               //     VideoPlayer(player: player)
+                    
+                    Image("skana_card")
+                        .resizable()
+                       //   .frame(width: 400.0, height: 700.0)
+                               
 
 //                    Text(cardsNumber)
 //                    Text(cardsOwner)
@@ -86,9 +98,10 @@ struct SkanCreditCardView: View {
                     
                  } //: ZSTACK
                  .background(Color.black)
-
+            
              } //: GEOMETRY
          } //: NAVIGATION
+       
 
      }
  }

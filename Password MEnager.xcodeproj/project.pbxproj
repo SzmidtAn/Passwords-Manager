@@ -155,6 +155,7 @@
 				1EDFBD5025F1280000F4EDAE /* Views */,
 				1E82D09825D42A9300CE0992 /* Password MEnager.entitlements */,
 				1E8090D625B9CC710001D99D /* SceneDelegate.swift */,
+				1EBF026925CC2674005B200D /* Persistence.swift */,
 				1E829F1925C942C300C4CB76 /* GoogleService-Info.plist */,
 				1EBF026C25CC269E005B200D /* CoreDataTest.xcdatamodeld */,
 				1EB78DAA25D51FB000F812E5 /* Localizable.strings */,
@@ -200,7 +201,6 @@
 		1EDFBD5125F1281500F4EDAE /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				1EBF026925CC2674005B200D /* Persistence.swift */,
 				1E6BA9D225BC3CD40007A1CD /* PasswordGenerator.swift */,
 				1E8090EC25B9CDF50001D99D /* Password.swift */,
 			);
